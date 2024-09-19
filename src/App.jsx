@@ -1,4 +1,4 @@
-import AddCD from "./component/AddCD";
+import AddCD from './cd/add/AddCD';
 
 function App() {
   return <AddCD />;

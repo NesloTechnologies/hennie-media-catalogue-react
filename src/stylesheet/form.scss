@@ -1,15 +1,15 @@
-@use "mixins" as mixins;
-@import "media-queries";
+@use 'mixins' as mixins;
+@import 'media-queries';
 
 $margin: (
-  "x-large": 40px,
-  "large": 34px,
-  "medium": 20px,
-  "small": 4px,
-  "zero": 0,
+  'x-large': 40px,
+  'large': 34px,
+  'medium': 20px,
+  'small': 4px,
+  'zero': 0
 );
 
-body {
+div {
   letter-spacing: 0.5px;
   color: #20102b;
   display: flex;
@@ -46,7 +46,7 @@ body {
       padding: 55px 0 20px 0;
     }
     > h1 {
-      margin: map-get($margin, "zero");
+      margin: map-get($margin, 'zero');
       text-align: center;
       font-weight: 400;
       text-decoration: none;
@@ -61,7 +61,7 @@ body {
 
     > button {
       font-size: 0.75rem;
-      @include mixins.flex;
+      @include mixins.flex-centre;
       text-decoration: none;
       border: none;
       background-color: #e89843;
@@ -77,7 +77,7 @@ body {
 
   > main {
     height: 100vh;
-    @include mixins.flex;
+    @include mixins.flex-centre;
     width: auto;
     height: auto;
     border-bottom-left-radius: 12px;
@@ -127,7 +127,7 @@ body {
             width: 85vw;
           }
           &:nth-of-type(odd) {
-            margin-right: map-get($margin, "x-large");
+            margin-right: map-get($margin, 'x-large');
 
             @include small {
               margin-right: 0;
@@ -136,13 +136,13 @@ body {
         }
 
         > label {
-          margin-bottom: map-get($margin, "small");
+          margin-bottom: map-get($margin, 'small');
           font-size: 0.875rem;
         }
 
         > input {
           padding: 0 16px 0 16px;
-          margin-bottom: map-get($margin, "medium");
+          margin-bottom: map-get($margin, 'medium');
           width: 369px;
           height: 44px;
           border-radius: 5px;
@@ -156,7 +156,7 @@ body {
       }
 
       > fieldset:last-child {
-        margin-top: map-get($margin, "medium");
+        margin-top: map-get($margin, 'medium');
         display: flex;
         justify-content: flex-start;
         align-items: flex-end;
@@ -170,8 +170,8 @@ body {
 
         button {
           font-size: 0.8125rem;
-          margin-right: map-get($margin, "medium");
-          margin-bottom: map-get($margin, "zero");
+          margin-right: map-get($margin, 'medium');
+          margin-bottom: map-get($margin, 'zero');
           width: 79px;
           height: 48px;
           background-color: #20102b;
@@ -191,8 +191,8 @@ body {
       }
 
       button:nth-child(2) {
-        margin: map-get($margin, "zero");
-        @include mixins.flex;
+        margin: map-get($margin, 'zero');
+        @include mixins.flex-centre;
         text-decoration: none;
       }
     }

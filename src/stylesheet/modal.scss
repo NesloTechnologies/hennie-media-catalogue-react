@@ -1,6 +1,6 @@
 @use 'mixins' as mixins;
 @use 'colour' as colour;
-@use 'font-weight' as font-weight;
+@use 'typography' as typography;
 @use 'button' as button;
 
 @import 'media-queries';
@@ -19,7 +19,7 @@ $margins: (
   'small': 35px
 );
 
-section {
+section.modal {
   @include mixins.flex-centre;
   flex-direction: column;
   background-color: #ffffff;
@@ -95,7 +95,7 @@ section {
 
         h1 {
           margin: 0;
-          font-weight: map-get(font-weight.$font-weight, '400');
+          font-weight: map-get(typography.$typography, '400');
           font-size: map-get($sizes, 'large');
           max-width: 403px;
           overflow-wrap: normal;
@@ -120,7 +120,7 @@ section {
       width: 42vw;
 
       dt {
-        font-weight: map-get(font-weight.$font-weight, '700');
+        font-weight: map-get(typography.$typography, '700');
         width: 50%;
         margin-bottom: map-get($margins, 'small');
         font-size: map-get($sizes, 'medium');

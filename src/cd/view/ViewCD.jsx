@@ -5,9 +5,12 @@ import closeIcon from '../../asset/icon/close.svg';
 import '../../stylesheet/modal.scss';
 import '../../stylesheet/styles.scss';
 
-const ViewCD = ({ title, id, artist, duration, releaseDate, isOpen }) =>
-  isOpen && (
-    <section>
+const ViewCD = ({ title, id, artist, duration, releaseDate, isOpen }) => {
+  if (!isOpen) {
+    return <></>
+  }
+  return (
+    <section className='modal'>
       <div>
         <header>
           <h1>{title}</h1>
@@ -30,6 +33,7 @@ const ViewCD = ({ title, id, artist, duration, releaseDate, isOpen }) =>
         </dl>
       </div>
     </section>
-  );
+  )
+}
 
 export default ViewCD;

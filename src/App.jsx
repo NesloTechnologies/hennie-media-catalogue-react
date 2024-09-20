@@ -1,14 +1,5 @@
-import ViewCD from './cd/view/ViewCD';
+import EditCD from './cd/edit/EditCD';
 
-const App = () => (
-  <ViewCD
-    title='Nevermind'
-    id={1}
-    artist='Nirvana'
-    duration='48:00'
-    releaseDate='24/09/1991'
-    isOpen
-  />
-);
+const App = () => <EditCD />;
 
 export default App;

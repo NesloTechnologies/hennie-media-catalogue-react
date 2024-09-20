@@ -7,11 +7,11 @@ import '../../stylesheet/styles.scss';
 
 const ViewCD = ({ title, id, artist, duration, releaseDate, isOpen }) => {
   if (!isOpen) {
-    return <></>
+    return <></>;
   }
-  
+
   return (
-    <section className='modal'>
+    <section className="modal">
       <div>
         <header>
           <h1>{title}</h1>
@@ -34,7 +34,7 @@ const ViewCD = ({ title, id, artist, duration, releaseDate, isOpen }) => {
         </dl>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default ViewCD;

@@ -6,7 +6,7 @@ import '../../stylesheet/form.scss';
 import '../../stylesheet/styles.scss';
 
 const AddCD = () => (
-  <div>
+  <form>
     <header>
       <h1>Add&nbsp;CD</h1>
       <button>
@@ -14,36 +14,34 @@ const AddCD = () => (
       </button>
     </header>
     <main>
-      <form>
+      <fieldset>
         <fieldset>
-          <fieldset>
-            <label htmlFor="title">Title</label>
-            <input name="title" id="title" type="text" />
-          </fieldset>
-          <fieldset>
-            <label htmlFor="artist">Artist</label>
-            <input name="artist" id="artist" type="text" />
-          </fieldset>
+          <label htmlFor="title">Title</label>
+          <input name="title" id="title" type="text" />
         </fieldset>
+        <fieldset>
+          <label htmlFor="artist">Artist</label>
+          <input name="artist" id="artist" type="text" />
+        </fieldset>
+      </fieldset>
 
+      <fieldset>
         <fieldset>
-          <fieldset>
-            <label htmlFor="duration">Duration</label>
-            <input name="duration" id="duration" type="number" />
-          </fieldset>
-          <fieldset>
-            <label htmlFor="release-date">Release&nbsp;Date</label>
-            <input name="release-date" id="release-date" type="date" />
-          </fieldset>
+          <label htmlFor="duration">Duration</label>
+          <input name="duration" id="duration" type="number" />
         </fieldset>
         <fieldset>
-          <button>Add</button>
+          <label htmlFor="release-date">Release&nbsp;Date</label>
+          <input name="release-date" id="release-date" type="date" />
+        </fieldset>
+      </fieldset>
+      <fieldset>
+        <button>Add</button>
 
-          <button>Cancel</button>
-        </fieldset>
-      </form>
+        <button>Cancel</button>
+      </fieldset>
     </main>
-  </div>
+  </form>
 );
 
 export default AddCD;

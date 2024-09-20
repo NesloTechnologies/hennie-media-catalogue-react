@@ -9,6 +9,7 @@ const ViewCD = ({ title, id, artist, duration, releaseDate, isOpen }) => {
   if (!isOpen) {
     return <></>
   }
+  
   return (
     <section className='modal'>
       <div>

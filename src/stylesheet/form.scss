@@ -9,7 +9,7 @@ $margin: (
   'zero': 0
 );
 
-form {
+section.form {
   letter-spacing: 0.3125rem;
   color: #20102b;
   display: flex;
@@ -95,106 +95,108 @@ form {
       width: 100vw;
       padding: 0 0 55px 0;
     }
-    @include small {
-      width: 90vw;
-    }
-    fieldset {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 0;
-      border: none;
-
-      @include medium {
-        flex-direction: column;
-        justify-content: center;
-      }
-
+    form {
       @include small {
-        flex-direction: column;
-        justify-content: center;
-        width: 85vw;
+        width: 90vw;
       }
-
-      > fieldset {
-        width: 50%;
-        border: none;
+      fieldset {
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
+        width: 100%;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 0;
+        border: none;
+
+        @include medium {
+          flex-direction: column;
+          justify-content: center;
+        }
 
         @include small {
+          flex-direction: column;
+          justify-content: center;
           width: 85vw;
         }
-        &:nth-of-type(odd) {
-          margin-right: map-get($margin, 'x-large');
+
+        > fieldset {
+          width: 50%;
+          border: none;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
 
           @include small {
-            margin-right: 0;
+            width: 85vw;
+          }
+          &:nth-of-type(odd) {
+            margin-right: map-get($margin, 'x-large');
+
+            @include small {
+              margin-right: 0;
+            }
+          }
+        }
+
+        > label {
+          margin-bottom: map-get($margin, 'small');
+          font-size: 0.875rem;
+        }
+
+        > input {
+          padding: 0 16px 0 16px;
+          margin-bottom: map-get($margin, 'medium');
+          width: 369px;
+          height: 44px;
+          border-radius: 5px;
+          border: 1px solid #20102b;
+          box-shadow: 0 0 1px #808080;
+
+          @include small {
+            width: 81vw;
           }
         }
       }
 
-      > label {
-        margin-bottom: map-get($margin, 'small');
-        font-size: 0.875rem;
-      }
+      > fieldset:last-child {
+        margin-top: map-get($margin, 'medium');
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-end;
 
-      > input {
-        padding: 0 16px 0 16px;
-        margin-bottom: map-get($margin, 'medium');
-        width: 369px;
-        height: 44px;
-        border-radius: 5px;
-        border: 1px solid #20102b;
-        box-shadow: 0 0 1px #808080;
-
-        @include small {
-          width: 81vw;
+        @include medium {
+          flex-direction: row;
         }
-      }
-    }
+        @include small {
+          flex-direction: row;
+        }
 
-    > fieldset:last-child {
-      margin-top: map-get($margin, 'medium');
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-end;
+        button {
+          font-size: 0.8125rem;
+          margin-right: map-get($margin, 'medium');
+          margin-bottom: map-get($margin, 'zero');
+          width: 79px;
+          height: 48px;
+          background-color: #20102b;
+          color: #f5f4f0;
+          border: none;
+          border-radius: 8px;
+        }
 
-      @include medium {
-        flex-direction: row;
-      }
-      @include small {
-        flex-direction: row;
-      }
-
-      button {
-        font-size: 0.8125rem;
-        margin-right: map-get($margin, 'medium');
-        margin-bottom: map-get($margin, 'zero');
-        width: 79px;
-        height: 48px;
-        background-color: #20102b;
-        color: #f5f4f0;
-        border: none;
-        border-radius: 8px;
+        button:nth-child(2) {
+          background-color: #ffffff;
+          width: 77px;
+          height: 46px;
+          color: #20102b;
+          font-size: 0.8125rem;
+          border: 1px solid #20102b;
+        }
       }
 
       button:nth-child(2) {
-        background-color: #ffffff;
-        width: 77px;
-        height: 46px;
-        color: #20102b;
-        font-size: 0.8125rem;
-        border: 1px solid #20102b;
+        margin: map-get($margin, 'zero');
+        @include mixins.flex-centre;
+        text-decoration: none;
       }
-    }
-
-    button:nth-child(2) {
-      margin: map-get($margin, 'zero');
-      @include mixins.flex-centre;
-      text-decoration: none;
     }
   }
 }

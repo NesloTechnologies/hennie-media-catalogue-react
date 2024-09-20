@@ -46,7 +46,7 @@ const EditCD = ({ id }) => {
   };
 
   const handleSave = () => {
-    // PUT back to API to save the updated CD
+    // TODO: put back to API to save the updated CD
     console.log(cd);
   };
 

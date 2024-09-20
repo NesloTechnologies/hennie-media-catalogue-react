@@ -1,0 +1,141 @@
+@use 'mixins' as mixins;
+@use 'colour' as colour;
+@use 'typography' as typography;
+@use 'button' as button;
+
+@import 'media-queries';
+
+$sizes: (
+  'x-large': 48px,
+  'large': 36px,
+  'medium': 16px,
+  'small': 12px
+);
+
+$margins: (
+  'x-large': 55px,
+  'large': 50px,
+  'medium': 40px,
+  'small': 35px
+);
+
+section.modal {
+  @include mixins.flex-centre;
+  flex-direction: column;
+  background-color: #ffffff;
+  width: 100vw;
+  height: 100vh;
+
+  @include medium {
+    width: 80vw;
+  }
+
+  @include small {
+    z-index: 1;
+    top: 0;
+    width: 100vw;
+    min-height: 89vh;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  @include medium {
+    width: min-content;
+    align-items: flex-start;
+  }
+
+  @include small {
+    align-items: flex-start;
+    padding: 0 40px 0 40px;
+    width: 80vw;
+  }
+
+  div {
+    width: 42vw;
+    box-shadow: 0 0 2px map-get(colour.$colour, 'border');
+    height: auto;
+    border: none;
+    border-radius: map-get($sizes, 'small');
+    top: 25%;
+    padding: 55px 50px;
+
+    button {
+      font-size: map-get($sizes, 'small');
+      @include mixins.flex-centre;
+      align-self: flex-start;
+      text-decoration: none;
+      border: none;
+      background-color: #e89843;
+      color: #ffffff;
+      height: map-get($sizes, 'x-large');
+      width: map-get($sizes, 'x-large');
+      border-radius: map-get($sizes, 'small');
+      cursor: pointer;
+    }
+
+    > header {
+        padding: 0;
+        width: 42vw;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+
+        @include medium {
+          min-width: 50vw;
+          width: 65vw;
+        }
+
+        @include small {
+          width: 80vw;
+        }
+
+        h1 {
+          margin: 0;
+          font-weight: map-get(typography.$typography, '400');
+          font-size: map-get($sizes, 'large');
+          max-width: 403px;
+          overflow-wrap: normal;
+          color: #20102b;
+
+          @include medium {
+            font-size: 1.575rem;
+          }
+
+          @include small {
+            max-width: 68vw;
+            font-size: 1.575rem;
+            justify-self: flex-start;
+          }
+        }
+    }
+
+    dl {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0;
+      width: 42vw;
+
+      dt {
+        font-weight: map-get(typography.$typography, '700');
+        width: 50%;
+        margin-bottom: map-get($margins, 'small');
+        font-size: map-get($sizes, 'medium');
+        color: #4d4055;
+      }
+
+      dd {
+        margin-bottom: map-get($margins, 'small');
+        margin-left: 0;
+        font-size: map-get($sizes, 'medium');
+        text-align: left;
+        color: #4d4055;
+        max-width: 50%;
+        overflow-wrap: normal;
+      }
+    }
+  }
+}

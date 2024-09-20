@@ -76,41 +76,41 @@ section {
     }
 
     > header {
-      padding: 0;
-      width: 42vw;
-      height: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-
-      @include medium {
-        min-width: 50vw;
-        width: 65vw;
-      }
-
-      @include small {
-        width: 80vw;
-      }
-
-      h1 {
-        margin: 0;
-        font-weight: map-get(font-weight.$font-weight, '400');
-        font-size: map-get($sizes, 'large');
-        max-width: 403px;
-        overflow-wrap: normal;
-        color: #20102b;
+        padding: 0;
+        width: 42vw;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
 
         @include medium {
-          font-size: 1.575rem;
+          min-width: 50vw;
+          width: 65vw;
         }
 
         @include small {
-          max-width: 68vw;
-          font-size: 1.575rem;
-          justify-self: flex-start;
+          width: 80vw;
         }
-      }
+
+        h1 {
+          margin: 0;
+          font-weight: map-get(font-weight.$font-weight, '400');
+          font-size: map-get($sizes, 'large');
+          max-width: 403px;
+          overflow-wrap: normal;
+          color: #20102b;
+
+          @include medium {
+            font-size: 1.575rem;
+          }
+
+          @include small {
+            max-width: 68vw;
+            font-size: 1.575rem;
+            justify-self: flex-start;
+          }
+        }
     }
 
     dl {

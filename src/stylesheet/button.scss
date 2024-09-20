@@ -1,0 +1,33 @@
+@mixin button-style {
+  background-color: map-get(colour.$colour, 'primary-font');
+  padding: 16px 24px;
+  border-radius: 12px;
+  color: map-get(colour.$colors, 'select-font');
+  border: none;
+  width: 79px;
+  height: 48px;
+}
+
+@mixin view-button {
+  @include button-style;
+  width: 18px;
+  background-color: map-get(colour.$colour, 'view');
+  height: 12px;
+  padding: 18px 15px 18px 15px;
+}
+
+@mixin edit-button {
+  @include button-style;
+  width: 18px;
+  height: 24px;
+  padding: 12px 14px 12px 16px;
+  background-color: map-get(colour.$colour, 'edit');
+}
+
+@mixin delete-button {
+  @include button-style;
+  width: 18px;
+  background-color: map-get(colors.$colour, 'delete');
+  height: 18px;
+  padding: 15px;
+}

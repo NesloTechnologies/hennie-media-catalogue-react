@@ -1,0 +1,7 @@
+@use 'colour' as colour;
+
+@mixin flex-centre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

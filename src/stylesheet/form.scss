@@ -1,0 +1,202 @@
+@use 'mixins' as mixins;
+@import 'media-queries';
+
+$margin: (
+  'x-large': 40px,
+  'large': 34px,
+  'medium': 20px,
+  'small': 4px,
+  'zero': 0
+);
+
+section.form {
+  letter-spacing: 0.3125rem;
+  color: #20102b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+
+  @include small {
+    overflow: hidden;
+  }
+
+  header {
+    width: 856px;
+    height: 82px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    background-color: #ffffff;
+    padding: 55px 50px 0 50px;
+
+    @include medium {
+      width: 80vw;
+    }
+
+    @include small {
+      height: 40px;
+      width: 100vw;
+      padding: 55px 0 20px 0;
+    }
+    > h1 {
+      margin: map-get($margin, 'zero');
+      text-align: center;
+      font-weight: 400;
+      text-decoration: none;
+      font-size: 2.25rem;
+      line-height: 24px;
+
+      @include small {
+        font-size: 1.575rem;
+        margin-left: 6vw;
+      }
+    }
+
+    > button {
+      font-size: 0.75rem;
+      @include mixins.flex-centre;
+      text-decoration: none;
+      border: none;
+      background-color: #e89843;
+      color: #ffffff;
+      height: 48px;
+      width: 48px;
+      border-radius: 12px;
+      @include small {
+        margin-right: 6vw;
+      }
+    }
+  }
+
+  > main {
+    height: 100vh;
+    @include mixins.flex-centre;
+    width: auto;
+    height: auto;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background-color: #ffffff;
+    padding: 0 50px 55px 50px;
+    display: flex;
+    flex-direction: column;
+
+    @include medium {
+      width: 80vw;
+    }
+
+    @include small {
+      width: 100vw;
+      padding: 0 0 55px 0;
+    }
+    form {
+      @include small {
+        width: 90vw;
+      }
+      fieldset {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 0;
+        border: none;
+
+        @include medium {
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        @include small {
+          flex-direction: column;
+          justify-content: center;
+          width: 85vw;
+        }
+
+        > fieldset {
+          width: 50%;
+          border: none;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+
+          @include small {
+            width: 85vw;
+          }
+          &:nth-of-type(odd) {
+            margin-right: map-get($margin, 'x-large');
+
+            @include small {
+              margin-right: 0;
+            }
+          }
+        }
+
+        > label {
+          margin-bottom: map-get($margin, 'small');
+          font-size: 0.875rem;
+        }
+
+        > input {
+          padding: 0 16px 0 16px;
+          margin-bottom: map-get($margin, 'medium');
+          width: 369px;
+          height: 44px;
+          border-radius: 5px;
+          border: 1px solid #20102b;
+          box-shadow: 0 0 1px #808080;
+
+          @include small {
+            width: 81vw;
+          }
+        }
+      }
+
+      > fieldset:last-child {
+        margin-top: map-get($margin, 'medium');
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-end;
+
+        @include medium {
+          flex-direction: row;
+        }
+        @include small {
+          flex-direction: row;
+        }
+
+        button {
+          font-size: 0.8125rem;
+          margin-right: map-get($margin, 'medium');
+          margin-bottom: map-get($margin, 'zero');
+          width: 79px;
+          height: 48px;
+          background-color: #20102b;
+          color: #f5f4f0;
+          border: none;
+          border-radius: 8px;
+        }
+
+        button:nth-child(2) {
+          background-color: #ffffff;
+          width: 77px;
+          height: 46px;
+          color: #20102b;
+          font-size: 0.8125rem;
+          border: 1px solid #20102b;
+        }
+      }
+
+      button:nth-child(2) {
+        margin: map-get($margin, 'zero');
+        @include mixins.flex-centre;
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { formatDate } from '@neslotech/ns-ui-utils';
+import { formatDate } from '@neslotech/ui-utils';
 
 import closeIcon from '../../asset/icon/close.svg';
 
@@ -23,7 +23,7 @@ const EditCD = ({ id }) => {
       title: 'Nevermind',
       artist: 'Nirvana',
       duration: 48,
-      releaseDate: formatDate(new Date('1991-04-24'), 'en-ZA').replace(/\//g, '-')
+      releaseDate: formatDate('1991-04-24', 'fr-CA')
     };
 
     setCd(mockCD);
@@ -36,7 +36,7 @@ const EditCD = ({ id }) => {
     if (key === 'releaseDate') {
       setCd((prevCD) => ({
         ...prevCD,
-        releaseDate: formatDate(new Date(value), 'en-ZA').replace(/\//g, '-')
+        releaseDate: formatDate(value, 'fr-CA')
       }));
     }
 

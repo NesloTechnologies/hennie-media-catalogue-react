@@ -1,5 +1,5 @@
-import EditCD from './cd/edit/EditCD';
+import CDTable from './cd/table/CDTable';
 
-const App = () => <EditCD />;
+const App = () => <CDTable />;
 
 export default App;

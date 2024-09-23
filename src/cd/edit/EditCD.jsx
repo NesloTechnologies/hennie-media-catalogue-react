@@ -1,5 +1,6 @@
-import moment from 'moment/moment';
 import React, { useEffect, useState } from 'react';
+
+import { formatDate } from '@neslotech/ns-ui-utils';
 
 import closeIcon from '../../asset/icon/close.svg';
 
@@ -22,7 +23,7 @@ const EditCD = ({ id }) => {
       title: 'Nevermind',
       artist: 'Nirvana',
       duration: 48,
-      releaseDate: moment(new Date('1991-04-24')).format('YYYY-MM-DD')
+      releaseDate: formatDate(new Date('1991-04-24'), 'en-ZA').replace(/\//g, '-')
     };
 
     setCd(mockCD);
@@ -35,7 +36,7 @@ const EditCD = ({ id }) => {
     if (key === 'releaseDate') {
       setCd((prevCD) => ({
         ...prevCD,
-        releaseDate: moment(new Date(value)).format('YYYYY-MM-DD')
+        releaseDate: formatDate(new Date(value), 'en-ZA').replace(/\//g, '-')
       }));
     }
 
@@ -50,7 +51,7 @@ const EditCD = ({ id }) => {
   };
 
   return (
-    <section className="edit">
+    <section className="form">
       <header>
         <h1>Edit CD</h1>
         <button>

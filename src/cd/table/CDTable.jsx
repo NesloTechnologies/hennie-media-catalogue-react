@@ -8,18 +8,20 @@ import { ReactComponent as DeleteIcon } from '../../asset/icon/delete.svg';
 import { ReactComponent as EditIcon } from '../../asset/icon/edit.svg';
 import { ReactComponent as ViewIcon } from '../../asset/icon/view.svg';
 
+import ViewCD from '../view/ViewCD';
+
 import '../../stylesheet/styles.scss';
 import '../../stylesheet/table.scss';
 
 const CDRow = ({ id, title, artist, duration, releaseDate, setCDView }) => (
-  <tr key={id} onClick={setCDView}>
+  <tr>
     <td>{id}</td>
     <td>{title}</td>
     <td>{artist}</td>
     <td>{duration}</td>
     <td>{releaseDate}</td>
     <td>
-      <ViewIcon className="icon view-icon" />
+      <ViewIcon className="icon view-icon" onClick={setCDView} />
       <EditIcon className="icon edit-icon" />
       <DeleteIcon className="icon delete-icon" />
     </td>
@@ -48,6 +50,7 @@ const mockCDs = [
 
 const CDTable = () => {
   const [cds, setCds] = useState([]);
+  const [cdToView, setCDToView] = useState(undefined);
 
   useEffect(() => {
     // TODO: Make actual API call to initialize cds
@@ -55,15 +58,25 @@ const CDTable = () => {
     setCds(mockCDs);
   }, []);
 
+  const handleViewClick = (cd) => {
+    setCDToView(cd);
+  };
+
+  const closeView = () => {
+    setCDToView(undefined)
+  }
+
   const tableRows = useMemo(
     () =>
       cds.map((cd) => (
         <CDRow
+          key={cd.id}
           id={cd.id}
           title={cd.title}
           artist={cd.artist}
           duration={cd.duration}
           releaseDate={cd.releaseDate}
+          setCDView={() => handleViewClick(cd)}
         ></CDRow>
       )),
     [cds]
@@ -104,6 +117,13 @@ const CDTable = () => {
           </thead>
           <tbody>{tableRows}</tbody>
         </table>
+        {cdToView && (
+          <ViewCD
+            className="dialog"
+            cd={cdToView}
+            closeView={closeView}
+          />
+        )}
       </section>
     </section>
   );

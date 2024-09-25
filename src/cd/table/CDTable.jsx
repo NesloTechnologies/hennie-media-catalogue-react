@@ -62,7 +62,7 @@ const CDTable = () => {
     setCDToView(cd);
   };
 
-  const resetCDView = () => {
+  const closeView = () => {
     setCDToView(undefined)
   }
 
@@ -121,7 +121,7 @@ const CDTable = () => {
           <ViewCD
             className="dialog"
             cd={cdToView}
-            resetCDView={resetCDView}
+            closeView={closeView}
           />
         )}
       </section>

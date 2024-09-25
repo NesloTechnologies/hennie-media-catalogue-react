@@ -1,0 +1,341 @@
+@use 'mixins' as mixins;
+@use 'colour' as colour;
+@use 'typography' as typography;
+@use 'button' as button;
+@import 'media-queries';
+
+section.table {
+  background-color: #f7f7f7;
+
+  @include small {
+    padding: 60px 20px 49px 20px;
+    padding-bottom: 100px;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 90vw;
+
+    @include medium {
+      padding: 4.4vh 5.2vw 4.4vh 5.2vw;
+    }
+
+    @include large {
+      padding: 19.2vh 4vw 4.4vh 4vw;
+    }
+
+    > div {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      min-width: 50vw;
+
+      @include small {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      > h1 {
+        font-weight: map-get(typography.$typography, '400');
+        font-size: 2.25rem;
+        letter-spacing: 1px;
+        margin: 0 40px 0 0;
+        color: map-get(colour.$colour, 'primary-font');
+
+        @include medium {
+          font-size: 1.575rem;
+        }
+
+        @include small {
+          font-size: 1.5rem;
+          margin-bottom: 28px;
+        }
+      }
+
+      > nav {
+        min-width: 33%;
+
+        @include mixins.flex-centre;
+
+        @include small {
+          width: 100vw;
+          height: 28px;
+          margin-bottom: 28px;
+        }
+
+        > .link {
+          @include mixins.flex-centre;
+          background-color: #f7f7f7;
+          max-width: 4.79vw;
+          max-height: 1.98vw;
+          font-weight: map-get(typography.$typography, '400');
+          font-size: 0.8125rem;
+          line-height: 15px;
+          padding: 0.27vw 1.25vw;
+          color: map-get(colour.$colour, 'primary-font');
+          text-decoration: none;
+
+          @include medium {
+            font-size: 0.56875rem;
+          }
+
+          @include small {
+            padding: 6px 24px;
+            font-size: 0.8125rem;
+            width: 18.13vw;
+            height: 28px;
+            margin: 8px;
+          }
+        }
+
+        #current-location {
+          background-color: map-get(colour.$colour, 'accent');
+          color: map-get(colour.$colour, 'select-font');
+          border-radius: 12px;
+          font-weight: map-get(typography.$typography, '700');
+        }
+      }
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @include button.button-style;
+
+      @include medium {
+        width: 68px;
+        height: 34px;
+        font-size: 0.56875rem;
+      }
+
+      @include small {
+        display: none;
+      }
+    }
+  }
+
+  > section {
+    padding: 0 70px 0 70px;
+
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      outline: 0;
+
+      @include small {
+        height: 95px;
+      }
+    }
+
+    table {
+      min-width: 90vw;
+      background-color: map-get(colour.$colour, 'table-bg');
+      border-collapse: collapse;
+      border-radius: 12px;
+      height: fit-content;
+
+      td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+      }
+
+      thead {
+        @include small {
+          display: none;
+        }
+      }
+
+      tr {
+        border-bottom: map-get(colour.$colour, 'border') 1px groove;
+
+        @include small {
+          position: relative;
+          width: 90vw;
+          height: 14.31vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        th,
+        td {
+          text-align: left;
+          height: 60px;
+          color: map-get(colour.$colour, 'secondary-font');
+          font-weight: map-get(typography.$typography, '400');
+          font-size: 1rem;
+          padding-right: 20px;
+
+          @include medium {
+            font-size: 0.7rem;
+            height: 42px;
+          }
+
+          @include small {
+            height: 24px;
+            display: none;
+          }
+        }
+
+        th:first-of-type,
+        td:first-of-type {
+          max-width: 8.61vw;
+          width: 6.67vw;
+          padding-left: 50px;
+
+          @include medium {
+            padding-left: 20px;
+          }
+        }
+
+        td:nth-of-type(2) {
+          max-width: 22.43vw;
+          font-weight: 500;
+
+          @include medium {
+            max-width: 11.12vw;
+          }
+
+          @include small {
+            display: table-cell;
+            font-weight: 500;
+            max-width: 70vw;
+            margin: 0;
+            padding: 20px 0 5px 20px;
+          }
+        }
+
+        td:nth-of-type(3) {
+          max-width: 17.84vw;
+
+          @include medium {
+            max-width: 13.89vw;
+          }
+
+          @include small {
+            display: table-cell;
+            font-weight: 400;
+            max-width: 70vw;
+            margin: 0;
+            padding: 0 0 20px 20px;
+          }
+        }
+
+        td:nth-of-type(4) {
+          max-width: 12.15vw;
+
+          @include medium {
+            width: 2.04vw;
+          }
+        }
+
+        td:nth-of-type(5) {
+          max-width: 14.72vw;
+        }
+
+        td:nth-of-type(6) {
+          min-width: 12.5vw;
+          padding: 0;
+        }
+
+        td:last-of-type {
+          display: none;
+          @include small {
+            display: table-cell;
+            position: absolute;
+            right: 21px;
+            bottom: 35%;
+          }
+        }
+      }
+
+      tr:nth-of-type(1) {
+        @include small {
+          width: 90vw;
+        }
+      }
+
+      tbody {
+        height: fit-content;
+
+        tr:last-of-type {
+          border-bottom: none;
+        }
+
+        @include small {
+          display: flex;
+          flex-direction: column;
+        }
+
+        tr {
+          td:nth-of-type(6) {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+
+            @include small {
+              display: none;
+            }
+
+            .icon:hover {
+              opacity: 1;
+            }
+
+            .icon {
+              opacity: 0.8;
+              margin: 11px 12px 11px 0;
+              border-radius: 12px;
+              width: 18px;
+
+              @include medium {
+                width: 12px;
+              }
+            }
+
+            .view-icon {
+              @include button.view-button;
+
+              @include medium {
+                width: 10px;
+                height: 12px;
+                padding: 10px;
+              }
+            }
+
+            .edit-icon {
+              @include button.edit-button;
+
+              @include medium {
+                width: 10px;
+                height: 16px;
+                padding: 8px 10px;
+              }
+            }
+
+            .delete-icon {
+              @include button.delete-button;
+              @include medium {
+                width: 8px;
+                height: 12px;
+                padding: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import closeIcon from '../../asset/icon/close.svg';
+import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 import '../../stylesheet/form.scss';
 import '../../stylesheet/styles.scss';
@@ -10,7 +10,7 @@ const AddCD = () => (
     <header>
       <h1>Add&nbsp;CD</h1>
       <button>
-        <img src={closeIcon} alt="close button" />
+        <CloseIcon />
       </button>
     </header>
     <main>

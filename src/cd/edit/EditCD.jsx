@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { formatDate } from '@neslotech/ui-utils';
 
-import closeIcon from '../../asset/icon/close.svg';
+import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 import '../../stylesheet/form.scss';
 import '../../stylesheet/styles.scss';
@@ -55,7 +55,7 @@ const EditCD = ({ id }) => {
       <header>
         <h1>Edit CD</h1>
         <button>
-          <img src={closeIcon} alt="close icon"></img>
+          <CloseIcon />
         </button>
       </header>
       <main>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import closeIcon from '../../asset/icon/close.svg';
+import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 import '../../stylesheet/modal.scss';
 import '../../stylesheet/styles.scss';
@@ -11,7 +11,7 @@ const ViewCD = ({ title, id, artist, duration, releaseDate, toggleIsOpen }) => (
       <header>
         <h1>{title}</h1>
         <button onClick={toggleIsOpen}>
-          <img src={closeIcon} alt="close icon" />
+          <CloseIcon />
         </button>
       </header>
       <dl>

@@ -65,10 +65,11 @@ section.table {
           margin-bottom: 28px;
         }
 
-        > button {
+        > .link {
+          @include mixins.flex-centre;
           background-color: #f7f7f7;
-          width: 4.79vw;
-          height: 1.98vw;
+          max-width: 4.79vw;
+          max-height: 1.98vw;
           font-weight: map-get(typography.$typography, '400');
           font-size: 0.8125rem;
           line-height: 15px;
@@ -117,7 +118,7 @@ section.table {
     }
   }
 
-  > main {
+  > section {
     padding: 0 70px 0 70px;
 
     table,
@@ -288,8 +289,12 @@ section.table {
             @include small {
               display: none;
             }
-            
-            img {
+
+            .icon:hover {
+              opacity: 1;
+            }
+
+            .icon {
               opacity: 0.8;
               margin: 11px 12px 11px 0;
               border-radius: 12px;
@@ -300,11 +305,7 @@ section.table {
               }
             }
 
-            img:hover {
-              opacity: 1;
-            }
-
-            img:nth-of-type(1) {
+            .view-icon {
               @include button.view-button;
 
               @include medium {
@@ -314,7 +315,7 @@ section.table {
               }
             }
 
-            img:nth-of-type(2) {
+            .edit-icon {
               @include button.edit-button;
 
               @include medium {
@@ -324,7 +325,7 @@ section.table {
               }
             }
 
-            img:nth-of-type(3) {
+            .delete-icon {
               @include button.delete-button;
               @include medium {
                 width: 8px;

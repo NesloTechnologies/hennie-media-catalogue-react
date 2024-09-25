@@ -1,9 +1,9 @@
 import React from 'react';
 
-import arrowIcon from '../../asset/icon/arrow.svg';
-import deleteIcon from '../../asset/icon/delete.svg';
-import editIcon from '../../asset/icon/edit.svg';
-import viewIcon from '../../asset/icon/view.svg';
+import { ReactComponent as ArrowIcon } from '../../asset/icon/arrow.svg';
+import { ReactComponent as DeleteIcon } from '../../asset/icon/delete.svg';
+import { ReactComponent as EditIcon } from '../../asset/icon/edit.svg';
+import { ReactComponent as ViewIcon } from '../../asset/icon/view.svg';
 
 const CDRow = ({ id, title, artist, duration, releaseDate, setCDView }) => (
   <tr onClick={setCDView}>
@@ -13,12 +13,12 @@ const CDRow = ({ id, title, artist, duration, releaseDate, setCDView }) => (
     <td>{duration}</td>
     <td>{releaseDate}</td>
     <td>
-      <img src={viewIcon} alt="view icon" />
-      <img src={editIcon} alt="edit icon" />
-      <img src={deleteIcon} alt="delete icon" />
+      <ViewIcon className="icon view-icon" />
+      <EditIcon className="icon edit-icon" />
+      <DeleteIcon className="icon delete-icon" />
     </td>
     <td>
-      <img src={arrowIcon} alt="arrow icon" />
+      <ArrowIcon />
     </td>
   </tr>
 );

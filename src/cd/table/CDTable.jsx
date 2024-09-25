@@ -1,14 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
 import { formatDate } from '@neslotech/ui-utils';
 
-import closeIcon from '../../asset/icon/close.svg';
-
-import ViewCD from '../view/ViewCD';
-import CDRow from './CDRow';
+import { ReactComponent as ArrowIcon } from '../../asset/icon/arrow.svg';
+import { ReactComponent as DeleteIcon } from '../../asset/icon/delete.svg';
+import { ReactComponent as EditIcon } from '../../asset/icon/edit.svg';
+import { ReactComponent as ViewIcon } from '../../asset/icon/view.svg';
 
 import '../../stylesheet/styles.scss';
 import '../../stylesheet/table.scss';
+import { Link } from 'react-router-dom';
+
+const CDRow = ({ id, title, artist, duration, releaseDate, setCDView }) => (
+  <tr onClick={setCDView}>
+    <td>{id}</td>
+    <td>{title}</td>
+    <td>{artist}</td>
+    <td>{duration}</td>
+    <td>{releaseDate}</td>
+    <td>
+      <ViewIcon className="icon view-icon" />
+      <EditIcon className="icon edit-icon" />
+      <DeleteIcon className="icon delete-icon" />
+    </td>
+    <td>
+      <ArrowIcon />
+    </td>
+  </tr>
+);
 
 const mockCDs = [
   {
@@ -36,7 +55,7 @@ const CDTable = () => {
     setCds(mockCDs);
   }, []);
 
-  const tableRows = cds.map((cd) => (
+  const tableRows = useMemo(() => cds.map((cd) => (
     <CDRow
       key={cd.id}
       id={cd.id}
@@ -45,7 +64,7 @@ const CDTable = () => {
       duration={cd.duration}
       releaseDate={cd.releaseDate}
     ></CDRow>
-  ));
+  )), [cds]);
 
   return (
     <section className="table">
@@ -53,18 +72,18 @@ const CDTable = () => {
         <div>
           <h1>Media&nbsp;Catalogue</h1>
           <nav>
-            <button id="current-location" href="../table/cd-table.html">
+            <Link className='link' id="current-location" to={'/'}>
               CD
-            </button>
+            </Link>
             <span>|</span>
-            <button href="../../dvd/table/dvd-table.html">DVD</button>
+            <Link className='link' to={'/dvd-table'}>DVD</Link>
             <span>|</span>
-            <button href="../../book/table/book-table.html">Book</button>
+            <Link className='link' to={'/book-table'}>Book</Link>
           </nav>
         </div>
         <button>Add&nbsp;CD</button>
       </header>
-      <main>
+      <section>
         <table>
           <thead>
             <tr>
@@ -78,7 +97,7 @@ const CDTable = () => {
           </thead>
           <tbody>{tableRows}</tbody>
         </table>
-      </main>
+      </section>
     </section>
   );
 };

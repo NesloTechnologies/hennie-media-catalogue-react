@@ -14,7 +14,7 @@ import '../../stylesheet/styles.scss';
 import '../../stylesheet/table.scss';
 
 const CDRow = ({ id, title, artist, duration, releaseDate, setCDView }) => (
-  <tr key={id}>
+  <tr>
     <td>{id}</td>
     <td>{title}</td>
     <td>{artist}</td>
@@ -50,8 +50,7 @@ const mockCDs = [
 
 const CDTable = () => {
   const [cds, setCds] = useState([]);
-  const [cdView, setCDView] = useState({});
-  const [isOpen, setIsOpen] = useState(false);
+  const [cdToView, setCDToView] = useState(undefined);
 
   useEffect(() => {
     // TODO: Make actual API call to initialize cds
@@ -59,19 +58,19 @@ const CDTable = () => {
     setCds(mockCDs);
   }, []);
 
-  const toggleIsOpen = () => {
-    setIsOpen((prevBool) => !prevBool);
+  const handleViewClick = (cd) => {
+    setCDToView(cd);
   };
 
-  const handleViewClick = (cd) => {
-    setCDView(cd);
-    toggleIsOpen();
-  };
+  const resetCDView = () => {
+    setCDToView(undefined)
+  }
 
   const tableRows = useMemo(
     () =>
       cds.map((cd) => (
         <CDRow
+          key={cd.id}
           id={cd.id}
           title={cd.title}
           artist={cd.artist}
@@ -118,15 +117,11 @@ const CDTable = () => {
           </thead>
           <tbody>{tableRows}</tbody>
         </table>
-        {isOpen && (
+        {cdToView && (
           <ViewCD
             className="dialog"
-            id={cdView.id}
-            title={cdView.title}
-            artist={cdView.artist}
-            duration={cdView.duration}
-            releaseDate={cdView.releaseDate}
-            toggleIsOpen={toggleIsOpen}
+            cd={cdToView}
+            resetCDView={resetCDView}
           />
         )}
       </section>

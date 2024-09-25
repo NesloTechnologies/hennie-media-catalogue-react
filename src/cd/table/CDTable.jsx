@@ -12,7 +12,7 @@ import '../../stylesheet/styles.scss';
 import '../../stylesheet/table.scss';
 
 const CDRow = ({ id, title, artist, duration, releaseDate, setCDView }) => (
-  <tr onClick={setCDView}>
+  <tr key={id} onClick={setCDView}>
     <td>{id}</td>
     <td>{title}</td>
     <td>{artist}</td>
@@ -59,7 +59,6 @@ const CDTable = () => {
     () =>
       cds.map((cd) => (
         <CDRow
-          key={cd.id}
           id={cd.id}
           title={cd.title}
           artist={cd.artist}

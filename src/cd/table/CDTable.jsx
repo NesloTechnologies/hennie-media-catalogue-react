@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { formatDate } from '@neslotech/ui-utils';
 
@@ -9,7 +10,6 @@ import { ReactComponent as ViewIcon } from '../../asset/icon/view.svg';
 
 import '../../stylesheet/styles.scss';
 import '../../stylesheet/table.scss';
-import { Link } from 'react-router-dom';
 
 const CDRow = ({ id, title, artist, duration, releaseDate, setCDView }) => (
   <tr onClick={setCDView}>
@@ -55,16 +55,20 @@ const CDTable = () => {
     setCds(mockCDs);
   }, []);
 
-  const tableRows = useMemo(() => cds.map((cd) => (
-    <CDRow
-      key={cd.id}
-      id={cd.id}
-      title={cd.title}
-      artist={cd.artist}
-      duration={cd.duration}
-      releaseDate={cd.releaseDate}
-    ></CDRow>
-  )), [cds]);
+  const tableRows = useMemo(
+    () =>
+      cds.map((cd) => (
+        <CDRow
+          key={cd.id}
+          id={cd.id}
+          title={cd.title}
+          artist={cd.artist}
+          duration={cd.duration}
+          releaseDate={cd.releaseDate}
+        ></CDRow>
+      )),
+    [cds]
+  );
 
   return (
     <section className="table">
@@ -72,13 +76,17 @@ const CDTable = () => {
         <div>
           <h1>Media&nbsp;Catalogue</h1>
           <nav>
-            <Link className='link' id="current-location" to={'/'}>
+            <Link className="link" id="current-location" to="/">
               CD
             </Link>
             <span>|</span>
-            <Link className='link' to={'/dvd-table'}>DVD</Link>
+            <Link className="link" to="/dvd-table">
+              DVD
+            </Link>
             <span>|</span>
-            <Link className='link' to={'/book-table'}>Book</Link>
+            <Link className="link" to="/book-table">
+              Book
+            </Link>
           </nav>
         </div>
         <button>Add&nbsp;CD</button>

@@ -1,12 +1,9 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
+import EditCD from './cd/edit/EditCD';
 import CDTable from './cd/table/CDTable';
-import EditCD from './cd/edit/EditCD'
 import ErrorPage from './error/ErrorPage';
 
 const root = createRoot(document.getElementById('root'));
@@ -22,10 +19,10 @@ const router = createBrowserRouter([
     path: '/edit-cd',
     element: <EditCD />
   }
-])
+]);
 
 root.render(
   <React.StrictMode>
-    <RouterProvider  router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

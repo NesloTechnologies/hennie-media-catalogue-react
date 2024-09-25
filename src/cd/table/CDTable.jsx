@@ -8,18 +8,20 @@ import { ReactComponent as DeleteIcon } from '../../asset/icon/delete.svg';
 import { ReactComponent as EditIcon } from '../../asset/icon/edit.svg';
 import { ReactComponent as ViewIcon } from '../../asset/icon/view.svg';
 
+import ViewCD from '../view/ViewCD';
+
 import '../../stylesheet/styles.scss';
 import '../../stylesheet/table.scss';
 
 const CDRow = ({ id, title, artist, duration, releaseDate, setCDView }) => (
-  <tr key={id} onClick={setCDView}>
+  <tr key={id}>
     <td>{id}</td>
     <td>{title}</td>
     <td>{artist}</td>
     <td>{duration}</td>
     <td>{releaseDate}</td>
     <td>
-      <ViewIcon className="icon view-icon" />
+      <ViewIcon className="icon view-icon" onClick={setCDView} />
       <EditIcon className="icon edit-icon" />
       <DeleteIcon className="icon delete-icon" />
     </td>
@@ -48,12 +50,23 @@ const mockCDs = [
 
 const CDTable = () => {
   const [cds, setCds] = useState([]);
+  const [cdView, setCDView] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // TODO: Make actual API call to initialize cds
 
     setCds(mockCDs);
   }, []);
+
+  const toggleIsOpen = () => {
+    setIsOpen((prevBool) => !prevBool);
+  };
+
+  const handleViewClick = (cd) => {
+    setCDView(cd);
+    toggleIsOpen();
+  };
 
   const tableRows = useMemo(
     () =>
@@ -64,6 +77,7 @@ const CDTable = () => {
           artist={cd.artist}
           duration={cd.duration}
           releaseDate={cd.releaseDate}
+          setCDView={() => handleViewClick(cd)}
         ></CDRow>
       )),
     [cds]
@@ -104,6 +118,17 @@ const CDTable = () => {
           </thead>
           <tbody>{tableRows}</tbody>
         </table>
+        {isOpen && (
+          <ViewCD
+            className="dialog"
+            id={cdView.id}
+            title={cdView.title}
+            artist={cdView.artist}
+            duration={cdView.duration}
+            releaseDate={cdView.releaseDate}
+            toggleIsOpen={toggleIsOpen}
+          />
+        )}
       </section>
     </section>
   );

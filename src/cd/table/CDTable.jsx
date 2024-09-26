@@ -39,34 +39,32 @@ const DeleteCD = ({ cd, closeDelete }) => {
 
   return (
     <section className="modal">
-      <div>
-        <header>
-          <h1>Are you sure you want to delete this item?</h1>
-          <button onClick={closeDelete}>
-            <CloseIcon />
-          </button>
-        </header>
-        <dl>
-          <dt>ID:</dt>
-          <dd>{id}</dd>
+      <header>
+        <h1>Are you sure you want to delete this item?</h1>
+        <button onClick={closeDelete}>
+          <CloseIcon />
+        </button>
+      </header>
+      <dl>
+        <dt>ID:</dt>
+        <dd>{id}</dd>
 
-          <dt>Title:</dt>
-          <dd>{title}</dd>
+        <dt>Title:</dt>
+        <dd>{title}</dd>
 
-          <dt>Artist:</dt>
-          <dd>{artist}</dd>
+        <dt>Artist:</dt>
+        <dd>{artist}</dd>
 
-          <dt>Duration:</dt>
-          <dd>{duration}</dd>
+        <dt>Duration:</dt>
+        <dd>{duration}</dd>
 
-          <dt>Release&nbsp;Date:</dt>
-          <dd>{releaseDate}</dd>
-        </dl>
-        <fieldset>
-          <button>Confirm</button>
-          <button onClick={closeDelete}>Cancel</button>
-        </fieldset>
-      </div>
+        <dt>Release&nbsp;Date:</dt>
+        <dd>{releaseDate}</dd>
+      </dl>
+      <fieldset>
+        <button>Confirm</button>
+        <button onClick={closeDelete}>Cancel</button>
+      </fieldset>
     </section>
   );
 };
@@ -168,7 +166,7 @@ const CDTable = () => {
           <tbody>{tableRows}</tbody>
         </table>
         {cdToDelete && <DeleteCD cd={cdToDelete} closeDelete={closeDelete} />}
-        {cdToView && <ViewCD className="dialog" cd={cdToView} closeView={closeView} />}
+        {cdToView && <ViewCD cd={cdToView} closeView={closeView} />}
       </section>
     </section>
   );

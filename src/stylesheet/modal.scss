@@ -20,24 +20,57 @@ $margins: (
 );
 
 section.modal {
-  @include mixins.flex-centre;
+  width: 42vw;
+  box-shadow: 0 0 2px map-get(colour.$colour, 'border');
+  height: auto;
+  border: none;
+  border-radius: map-get($sizes, 'small');
+  padding: 55px 50px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 25%;
+  left: 25%;
 
-  div {
+  > header {
+    padding: 0;
     width: 42vw;
-    box-shadow: 0 0 2px map-get(colour.$colour, 'border');
     height: auto;
-    border: none;
-    border-radius: map-get($sizes, 'small');
-    top: 25%;
-    padding: 55px 50px;
-    background-color: #ffffff;
-    position: absolute;
-    top: 25%;
-    left: 25%;
-    button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    @include medium {
+      min-width: 50vw;
+      width: 65vw;
+    }
+
+    @include small {
+      width: 80vw;
+    }
+
+    h1 {
+      margin: 0;
+      font-weight: map-get(typography.$typography, '400');
+      font-size: map-get($sizes, 'large');
+      max-width: 403px;
+      overflow-wrap: normal;
+      color: #20102b;
+
+      @include medium {
+        font-size: 1.575rem;
+      }
+
+      @include small {
+        max-width: 68vw;
+        font-size: 1.575rem;
+        justify-self: flex-start;
+      }
+    }
+
+    > button {
       font-size: map-get($sizes, 'small');
-      @include mixins.flex-centre;
-      align-self: flex-start;
+      padding: 0;
       text-decoration: none;
       border: none;
       background-color: #e89843;
@@ -47,68 +80,57 @@ section.modal {
       border-radius: map-get($sizes, 'small');
       cursor: pointer;
     }
+  }
 
-    > header {
-      padding: 0;
-      width: 42vw;
-      height: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
+  dl {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    width: 42vw;
 
-      @include medium {
-        min-width: 50vw;
-        width: 65vw;
-      }
-
-      @include small {
-        width: 80vw;
-      }
-
-      h1 {
-        margin: 0;
-        font-weight: map-get(typography.$typography, '400');
-        font-size: map-get($sizes, 'large');
-        max-width: 403px;
-        overflow-wrap: normal;
-        color: #20102b;
-
-        @include medium {
-          font-size: 1.575rem;
-        }
-
-        @include small {
-          max-width: 68vw;
-          font-size: 1.575rem;
-          justify-self: flex-start;
-        }
-      }
+    dt {
+      font-weight: map-get(typography.$typography, '700');
+      width: 50%;
+      margin-bottom: map-get($margins, 'small');
+      font-size: map-get($sizes, 'medium');
+      color: #4d4055;
     }
 
-    dl {
-      display: flex;
-      flex-wrap: wrap;
-      margin: 0;
-      width: 42vw;
+    dd {
+      margin-bottom: map-get($margins, 'small');
+      margin-left: 0;
+      font-size: map-get($sizes, 'medium');
+      text-align: left;
+      color: #4d4055;
+      max-width: 50%;
+      overflow-wrap: normal;
+    }
+  }
 
-      dt {
-        font-weight: map-get(typography.$typography, '700');
-        width: 50%;
-        margin-bottom: map-get($margins, 'small');
-        font-size: map-get($sizes, 'medium');
-        color: #4d4055;
-      }
+  fieldset {
+    @include mixins.flex-centre;
+    justify-content: flex-start;
+    border: none;
+    padding: 0;
 
-      dd {
-        margin-bottom: map-get($margins, 'small');
-        margin-left: 0;
-        font-size: map-get($sizes, 'medium');
-        text-align: left;
-        color: #4d4055;
-        max-width: 50%;
-        overflow-wrap: normal;
-      }
+    > button {
+      font-size: 0.75rem;
+      @include mixins.flex-centre;
+      text-decoration: none;
+      border: none;
+      background-color: map-get(colour.$colour, 'primary-font');
+      color: #ffffff;
+      margin-right: 20px;
+      width: 77px;
+      height: 46px;
+      border-radius: 12px;
+    }
+
+    > button:last-of-type {
+      background-color: map-get(colour.$colour, 'table-bg');
+      color: map-get(colour.$colour, 'primary-font');
+      border-color: map-get(colour.$colour, 'primary-font');
+      border: 1px solid map-get(colour.$colour, 'primary-font');
     }
   }
 }

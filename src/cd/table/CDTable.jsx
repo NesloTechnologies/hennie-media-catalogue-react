@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { formatDate } from '@neslotech/ui-utils';
 
 import { ReactComponent as ArrowIcon } from '../../asset/icon/arrow.svg';
+import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 import { ReactComponent as DeleteIcon } from '../../asset/icon/delete.svg';
 import { ReactComponent as EditIcon } from '../../asset/icon/edit.svg';
 import { ReactComponent as ViewIcon } from '../../asset/icon/view.svg';
@@ -13,7 +14,7 @@ import ViewCD from '../view/ViewCD';
 import '../../stylesheet/styles.scss';
 import '../../stylesheet/table.scss';
 
-const CDRow = ({ id, title, artist, duration, releaseDate, setCDView }) => (
+const CDRow = ({ id, title, artist, duration, releaseDate, setCDView, setCDToDelete }) => (
   <tr>
     <td>{id}</td>
     <td>{title}</td>
@@ -23,13 +24,50 @@ const CDRow = ({ id, title, artist, duration, releaseDate, setCDView }) => (
     <td>
       <ViewIcon className="icon view-icon" onClick={setCDView} />
       <EditIcon className="icon edit-icon" />
-      <DeleteIcon className="icon delete-icon" />
+      <DeleteIcon className="icon delete-icon" onClick={setCDToDelete} />
     </td>
     <td>
       <ArrowIcon />
     </td>
   </tr>
 );
+
+const DeleteCD = ({ cd, closeDelete }) => {
+  const { title, id, artist, duration, releaseDate } = cd;
+
+  //TODO: Implement actual hhtp delete
+
+  return (
+    <section className="modal">
+      <header>
+        <h1>Are you sure you want to delete this item?</h1>
+        <button onClick={closeDelete}>
+          <CloseIcon />
+        </button>
+      </header>
+      <dl>
+        <dt>ID:</dt>
+        <dd>{id}</dd>
+
+        <dt>Title:</dt>
+        <dd>{title}</dd>
+
+        <dt>Artist:</dt>
+        <dd>{artist}</dd>
+
+        <dt>Duration:</dt>
+        <dd>{duration}</dd>
+
+        <dt>Release&nbsp;Date:</dt>
+        <dd>{releaseDate}</dd>
+      </dl>
+      <fieldset>
+        <button>Confirm</button>
+        <button onClick={closeDelete}>Cancel</button>
+      </fieldset>
+    </section>
+  );
+};
 
 const mockCDs = [
   {
@@ -51,6 +89,7 @@ const mockCDs = [
 const CDTable = () => {
   const [cds, setCds] = useState([]);
   const [cdToView, setCDToView] = useState(undefined);
+  const [cdToDelete, setCDToDelete] = useState(undefined);
 
   useEffect(() => {
     // TODO: Make actual API call to initialize cds
@@ -63,8 +102,16 @@ const CDTable = () => {
   };
 
   const closeView = () => {
-    setCDToView(undefined)
-  }
+    setCDToView(undefined);
+  };
+
+  const handleDeleteClick = (cd) => {
+    setCDToDelete(cd);
+  };
+
+  const closeDelete = () => {
+    setCDToDelete(undefined);
+  };
 
   const tableRows = useMemo(
     () =>
@@ -77,6 +124,7 @@ const CDTable = () => {
           duration={cd.duration}
           releaseDate={cd.releaseDate}
           setCDView={() => handleViewClick(cd)}
+          setCDToDelete={() => handleDeleteClick(cd)}
         ></CDRow>
       )),
     [cds]
@@ -117,13 +165,8 @@ const CDTable = () => {
           </thead>
           <tbody>{tableRows}</tbody>
         </table>
-        {cdToView && (
-          <ViewCD
-            className="dialog"
-            cd={cdToView}
-            closeView={closeView}
-          />
-        )}
+        {cdToDelete && <DeleteCD cd={cdToDelete} closeDelete={closeDelete} />}
+        {cdToView && <ViewCD cd={cdToView} closeView={closeView} />}
       </section>
     </section>
   );

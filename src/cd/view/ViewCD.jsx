@@ -5,11 +5,11 @@ import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 import '../../stylesheet/modal.scss';
 import '../../stylesheet/styles.scss';
 
-const ViewCD = ({cd, closeView}) => {
-  const {title, id, artist, duration, releaseDate} = cd;
+const ViewCD = ({ cd, closeView }) => {
+  const { title, id, artist, duration, releaseDate } = cd;
 
-  return(<section className="modal">
-    <div>
+  return (
+    <section className="modal">
       <header>
         <h1>{title}</h1>
         <button onClick={closeView}>
@@ -29,8 +29,8 @@ const ViewCD = ({cd, closeView}) => {
         <dt>Release&nbsp;Date: </dt>
         <dd>{releaseDate}</dd>
       </dl>
-    </div>
-  </section>)
+    </section>
+  );
 };
 
 export default ViewCD;

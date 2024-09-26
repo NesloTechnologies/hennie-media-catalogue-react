@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { formatDate } from '@neslotech/ui-utils';
 
@@ -55,7 +56,9 @@ const EditCD = ({ id }) => {
       <header>
         <h1>Edit CD</h1>
         <button>
-          <CloseIcon />
+          <Link to={'/'}>
+            <CloseIcon />
+          </Link>
         </button>
       </header>
       <main>
@@ -109,7 +112,9 @@ const EditCD = ({ id }) => {
           <fieldset>
             <button onClick={handleSave}>Save</button>
 
-            <button>Cancel</button>
+            <Link to={'/'}>
+              <button>Cancel</button>
+            </Link>
           </fieldset>
         </form>
       </main>

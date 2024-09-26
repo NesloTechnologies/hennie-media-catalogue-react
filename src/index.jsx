@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: '/edit-cd',
+    path: '/cd/edit',
     element: <EditCD />
   }
 ]);

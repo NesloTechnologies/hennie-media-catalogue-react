@@ -23,7 +23,7 @@ const CDRow = ({ id, title, artist, duration, releaseDate, setCDView, setCDToDel
     <td>{releaseDate}</td>
     <td>
       <ViewIcon className="icon view-icon" onClick={setCDView} />
-      <Link to="/edit-cd">
+      <Link to="cd/edit">
         <EditIcon className="icon edit-icon" />
       </Link>
       <DeleteIcon className="icon delete-icon" onClick={setCDToDelete} />

@@ -8,9 +8,8 @@ import handleChange from '../../utils/handle-Change';
 import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 import '../../stylesheet/form.scss';
-import '../../stylesheet/styles.scss';
 
-const AddCD = () => {
+const CDAdd = () => {
   const [cd, setCD] = useState({
     title: '',
     artist: '',
@@ -86,4 +85,4 @@ const AddCD = () => {
   );
 };
 
-export default AddCD;
+export default CDAdd;

@@ -2,11 +2,13 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import AddCD from './cd/add/AddCD';
-import EditCD from './cd/edit/EditCD';
+import CDAdd from './cd/add/CDAdd';
+import CDEdit from './cd/edit/CDEdit';
 import CDTable from './cd/table/CDTable';
-import AddDVD from './dvd/add/AddDVD';
+import DVDAdd from './dvd/add/DVDAdd';
 import ErrorPage from './error/ErrorPage';
+
+import './stylesheet/styles.scss';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -19,15 +21,15 @@ const router = createBrowserRouter([
   },
   {
     path: '/cd/add',
-    element: <AddCD />
+    element: <CDAdd />
   },
   {
     path: '/cd/edit',
-    element: <EditCD />
+    element: <CDEdit />
   },
   {
     path: '/dvd/add',
-    element: <AddDVD />
+    element: <DVDAdd />
   }
 ]);
 

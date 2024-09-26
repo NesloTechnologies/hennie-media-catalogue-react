@@ -8,9 +8,8 @@ import handleChange from '../../utils/handle-Change';
 import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 import '../../stylesheet/form.scss';
-import '../../stylesheet/styles.scss';
 
-const EditCD = ({ id }) => {
+const CDEdit = ({ id }) => {
   const [cd, setCd] = useState({
     id: 0,
     title: '',
@@ -103,4 +102,4 @@ const EditCD = ({ id }) => {
   );
 };
 
-export default EditCD;
+export default CDEdit;

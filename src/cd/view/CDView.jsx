@@ -3,9 +3,8 @@ import React from 'react';
 import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 import '../../stylesheet/modal.scss';
-import '../../stylesheet/styles.scss';
 
-const ViewCD = ({ cd, closeView }) => {
+const CDView = ({ cd, closeView }) => {
   const { title, id, artist, duration, releaseDate } = cd;
 
   return (
@@ -33,4 +32,4 @@ const ViewCD = ({ cd, closeView }) => {
   );
 };
 
-export default ViewCD;
+export default CDView;

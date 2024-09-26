@@ -8,9 +8,8 @@ import handleChange from '../../utils/handle-Change';
 import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 import '../../stylesheet/form.scss';
-import '../../stylesheet/styles.scss';
 
-const AddDVD = () => {
+const DVDAdd = () => {
   const [dvd, setDVD] = useState({
     title: '',
     director: '',
@@ -106,4 +105,4 @@ const AddDVD = () => {
   );
 };
 
-export default AddDVD;
+export default DVDAdd;

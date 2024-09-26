@@ -11,7 +11,6 @@ import { ReactComponent as ViewIcon } from '../../asset/icon/view.svg';
 
 import ViewCD from '../view/ViewCD';
 
-import '../../stylesheet/delete-modal.scss';
 import '../../stylesheet/styles.scss';
 import '../../stylesheet/table.scss';
 

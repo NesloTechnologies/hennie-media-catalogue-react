@@ -34,19 +34,6 @@ section.modal {
     position: absolute;
     top: 25%;
     left: 25%;
-    button {
-      font-size: map-get($sizes, 'small');
-      @include mixins.flex-centre;
-      align-self: flex-start;
-      text-decoration: none;
-      border: none;
-      background-color: #e89843;
-      color: #ffffff;
-      height: map-get($sizes, 'x-large');
-      width: map-get($sizes, 'x-large');
-      border-radius: map-get($sizes, 'small');
-      cursor: pointer;
-    }
 
     > header {
       padding: 0;
@@ -84,6 +71,19 @@ section.modal {
           justify-self: flex-start;
         }
       }
+
+      > button {
+        font-size: map-get($sizes, 'small');
+        padding: 0;
+        text-decoration: none;
+        border: none;
+        background-color: #e89843;
+        color: #ffffff;
+        height: map-get($sizes, 'x-large');
+        width: map-get($sizes, 'x-large');
+        border-radius: map-get($sizes, 'small');
+        cursor: pointer;
+      }
     }
 
     dl {
@@ -108,6 +108,33 @@ section.modal {
         color: #4d4055;
         max-width: 50%;
         overflow-wrap: normal;
+      }
+    }
+
+    fieldset {
+      @include mixins.flex-centre;
+      justify-content: flex-start;
+      border: none;
+      padding: 0;
+
+      > button {
+        font-size: 0.75rem;
+        @include mixins.flex-centre;
+        text-decoration: none;
+        border: none;
+        background-color: map-get(colour.$colour, 'primary-font');
+        color: #ffffff;
+        margin-right: 20px;
+        width: 77px;
+        height: 46px;
+        border-radius: 12px;
+      }
+
+      > button:last-of-type {
+        background-color: map-get(colour.$colour, 'table-bg');
+        color: map-get(colour.$colour, 'primary-font');
+        border-color: map-get(colour.$colour, 'primary-font');
+        border: 1px solid map-get(colour.$colour, 'primary-font');
       }
     }
   }

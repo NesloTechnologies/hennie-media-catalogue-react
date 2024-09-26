@@ -99,12 +99,13 @@ section.table {
       }
     }
 
-    > button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      @include button.button-style;
+    > a {
+      background-color: map-get(colour.$colour, 'primary-font');
+      color: map-get(colour.$colour, 'select-font');
+      padding: 16px 24px;
+      font-size: 0.8125rem;
+      border-radius: 8px;
+      text-decoration: none;
 
       @include medium {
         width: 68px;

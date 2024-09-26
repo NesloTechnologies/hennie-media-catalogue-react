@@ -151,7 +151,7 @@ const CDTable = () => {
             </Link>
           </nav>
         </div>
-        <button>Add&nbsp;CD</button>
+        <Link to="/cd/add">Add&nbsp;CD</Link>
       </header>
       <section>
         <table>

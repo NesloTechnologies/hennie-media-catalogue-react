@@ -28,14 +28,14 @@ section.form {
 
   header {
     width: 856px;
-    height: 82px;
+    height: fit-content;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     background-color: #ffffff;
-    padding: 55px 50px 0 50px;
+    padding: 55px 50px 28px 50px;
 
     @include medium {
       width: 80vw;

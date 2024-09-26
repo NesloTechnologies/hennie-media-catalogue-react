@@ -9,9 +9,8 @@ import { ReactComponent as DeleteIcon } from '../../asset/icon/delete.svg';
 import { ReactComponent as EditIcon } from '../../asset/icon/edit.svg';
 import { ReactComponent as ViewIcon } from '../../asset/icon/view.svg';
 
-import ViewCD from '../view/ViewCD';
+import CDView from '../view/CDView';
 
-import '../../stylesheet/styles.scss';
 import '../../stylesheet/table.scss';
 
 const CDRow = ({ id, title, artist, duration, releaseDate, setCDView, setCDToDelete }) => (
@@ -151,7 +150,7 @@ const CDTable = () => {
             </Link>
           </nav>
         </div>
-        <button>Add&nbsp;CD</button>
+        <Link to="/cd/add">Add&nbsp;CD</Link>
       </header>
       <section>
         <table>
@@ -168,7 +167,7 @@ const CDTable = () => {
           <tbody>{tableRows}</tbody>
         </table>
         {cdToDelete && <DeleteCD cd={cdToDelete} closeDelete={closeDelete} />}
-        {cdToView && <ViewCD cd={cdToView} closeView={closeView} />}
+        {cdToView && <CDView cd={cdToView} closeView={closeView} />}
       </section>
     </section>
   );

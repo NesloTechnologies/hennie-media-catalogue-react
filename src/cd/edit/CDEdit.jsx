@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 
 import { formatDate } from '@neslotech/ui-utils';
 
+import handleChange from '../../utils/handle-Change';
+
 import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 import '../../stylesheet/form.scss';
-import '../../stylesheet/styles.scss';
 
-const EditCD = ({ id }) => {
+const CDEdit = ({ id }) => {
   const [cd, setCd] = useState({
     id: 0,
     title: '',
@@ -29,23 +30,6 @@ const EditCD = ({ id }) => {
 
     setCd(mockCD);
   }, [id]);
-
-  const handleChange = (event) => {
-    const key = event.target.name;
-    const value = event.target.value;
-
-    if (key === 'releaseDate') {
-      setCd((prevCD) => ({
-        ...prevCD,
-        releaseDate: formatDate(value, 'fr-CA')
-      }));
-    }
-
-    setCd((prevCD) => ({
-      ...prevCD,
-      [key]: value
-    }));
-  };
 
   const handleSave = () => {
     // TODO: put back to API to save the updated CD
@@ -69,7 +53,7 @@ const EditCD = ({ id }) => {
                 id="title"
                 type="text"
                 value={cd.title}
-                onChange={(event) => handleChange(event)}
+                onChange={(event) => handleChange(event, setCd)}
               />
             </fieldset>
             <fieldset>
@@ -79,7 +63,7 @@ const EditCD = ({ id }) => {
                 id="artist"
                 type="text"
                 value={cd.artist}
-                onChange={(event) => handleChange(event)}
+                onChange={(event) => handleChange(event, setCd)}
               />
             </fieldset>
           </fieldset>
@@ -92,7 +76,7 @@ const EditCD = ({ id }) => {
                 id="duration"
                 type="number"
                 value={cd.duration}
-                onChange={(event) => handleChange(event)}
+                onChange={(event) => handleChange(event, setCd)}
               />
             </fieldset>
             <fieldset>
@@ -102,7 +86,7 @@ const EditCD = ({ id }) => {
                 id="releaseDate"
                 type="date"
                 value={cd.releaseDate}
-                onChange={(event) => handleChange(event)}
+                onChange={(event) => handleChange(event, setCd)}
               />
             </fieldset>
           </fieldset>
@@ -118,4 +102,4 @@ const EditCD = ({ id }) => {
   );
 };
 
-export default EditCD;
+export default CDEdit;

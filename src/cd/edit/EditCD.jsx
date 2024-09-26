@@ -55,11 +55,9 @@ const EditCD = ({ id }) => {
     <section className="form">
       <header>
         <h1>Edit CD</h1>
-        <button>
-          <Link to={'/'}>
-            <CloseIcon />
-          </Link>
-        </button>
+        <Link to="/">
+          <CloseIcon />
+        </Link>
       </header>
       <main>
         <form>
@@ -112,9 +110,7 @@ const EditCD = ({ id }) => {
           <fieldset>
             <button onClick={handleSave}>Save</button>
 
-            <Link to={'/'}>
-              <button>Cancel</button>
-            </Link>
+            <Link to="/">Cancel</Link>
           </fieldset>
         </form>
       </main>

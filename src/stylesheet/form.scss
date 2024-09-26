@@ -60,7 +60,7 @@ section.form {
       }
     }
 
-    > button {
+    > a {
       font-size: 0.75rem;
       @include mixins.flex-centre;
       text-decoration: none;
@@ -183,13 +183,19 @@ section.form {
           border-radius: 8px;
         }
 
-        button:nth-child(2) {
+        a {
+          @include mixins.flex-centre;
+          text-decoration: none;
+          font-size: 0.8125rem;
+          width: 79px;
+          height: 48px;
           background-color: #ffffff;
           width: 77px;
           height: 46px;
           color: #20102b;
           font-size: 0.8125rem;
           border: 1px solid #20102b;
+          border-radius: 8px;
         }
       }
 

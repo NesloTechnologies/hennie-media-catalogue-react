@@ -12,6 +12,7 @@ import DVDTable from './dvd/table/DVDTable';
 import ErrorPage from './error/ErrorPage';
 
 import './stylesheet/styles.scss';
+import BookEdit from './book/edit/BookEdit';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -50,7 +51,8 @@ const router = createBrowserRouter([
     element: <BookAdd />
   },
   {
-    path: '/book/edit'
+    path: '/book/edit',
+    element: <BookEdit />
   }
 ]);
 

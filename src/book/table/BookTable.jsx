@@ -9,26 +9,41 @@ import { ReactComponent as DeleteIcon } from '../../asset/icon/delete.svg';
 import { ReactComponent as EditIcon } from '../../asset/icon/edit.svg';
 import { ReactComponent as ViewIcon } from '../../asset/icon/view.svg';
 
-import CDView from '../view/CDView';
+import BookView from '../view/BookView';
 
-import '../../stylesheet/table.scss';
+const mockBooks = [
+  {
+    id: 1,
+    title: 'The Great Gatsby',
+    author: 'F. Scott Fitzgerald',
+    duration: 120,
+    releaseDate: formatDate('01-01-1999', 'fr-CA')
+  },
+  {
+    id: 1,
+    title: 'The Great Gatsby',
+    author: 'F. Scott Fitzgerald',
+    duration: 120,
+    releaseDate: formatDate('01-01-1999', 'fr-CA')
+  }
+];
 
-const CDRow = ({ cd, setCDView, setCDToDelete }) => {
-  const { id, title, artist, duration, releaseDate } = cd;
+const BookRow = ({ book, handleDeleteClick, handleViewClick }) => {
+  const { id, title, author, duration, releaseDate } = book;
 
   return (
     <tr>
       <td>{id}</td>
       <td>{title}</td>
-      <td>{artist}</td>
+      <td>{author}</td>
       <td>{duration}</td>
       <td>{releaseDate}</td>
       <td>
-        <ViewIcon className="icon view-icon" onClick={setCDView} />
-        <Link to="cd/edit">
+        <ViewIcon className="icon view-icon" onClick={handleViewClick} />
+        <Link to="/book/edit">
           <EditIcon className="icon edit-icon" />
         </Link>
-        <DeleteIcon className="icon delete-icon" onClick={setCDToDelete} />
+        <DeleteIcon className="icon delete-icon" onClick={handleDeleteClick} />
       </td>
       <td>
         <ArrowIcon />
@@ -37,11 +52,8 @@ const CDRow = ({ cd, setCDView, setCDToDelete }) => {
   );
 };
 
-const DeleteCD = ({ cd, handleDeleteClose }) => {
-  const { title, id, artist, duration, releaseDate } = cd;
-
-  //TODO: Implement actual hhtp delete
-
+const BookDelete = ({ book, handleDeleteClose }) => {
+  const { id, title, author, duration, releaseDate } = book;
   return (
     <section className="modal">
       <header>
@@ -57,8 +69,8 @@ const DeleteCD = ({ cd, handleDeleteClose }) => {
         <dt>Title:</dt>
         <dd>{title}</dd>
 
-        <dt>Artist:</dt>
-        <dd>{artist}</dd>
+        <dt>Author:</dt>
+        <dd>{author}</dd>
 
         <dt>Duration:</dt>
         <dd>{duration}</dd>
@@ -74,62 +86,41 @@ const DeleteCD = ({ cd, handleDeleteClose }) => {
   );
 };
 
-const mockCDs = [
-  {
-    id: 1,
-    title: 'Nevermind',
-    artist: 'Nirvana',
-    duration: '48',
-    releaseDate: formatDate('1991-04-24', 'fr-CA')
-  },
-  {
-    id: 2,
-    title: 'Gorillaz',
-    artist: 'Gorillaz',
-    duration: '61',
-    releaseDate: formatDate('2001-03-26', 'fr-CA')
-  }
-];
-
-const CDTable = () => {
-  const [cds, setCds] = useState([]);
-  const [cdToView, setCDToView] = useState(undefined);
-  const [cdToDelete, setCDToDelete] = useState(undefined);
+const BookTable = () => {
+  const [books, setBooks] = useState([]);
+  const [bookToView, setBookToView] = useState(undefined);
+  const [bookToDelete, setBookToDelete] = useState(undefined);
 
   useEffect(() => {
-    // TODO: Make actual API call to initialize cds
+    //TODO: initailize books from API
 
-    setCds(mockCDs);
+    setBooks(mockBooks);
   }, []);
 
-  const handleViewClick = (cd) => {
-    setCDToView(cd);
+  const handleViewClick = (book) => {
+    setBookToView(book);
+  };
+
+  const handleDeleteClick = (book) => {
+    setBookToDelete(book);
   };
 
   const handleViewClose = () => {
-    setCDToView(undefined);
-  };
-
-  const handleDeleteClick = (cd) => {
-    setCDToDelete(cd);
+    setBookToView(undefined);
   };
 
   const handleDeleteClose = () => {
-    setCDToDelete(undefined);
+    setBookToDelete(undefined);
   };
 
-  const tableRows = useMemo(
-    () =>
-      cds.map((cd) => (
-        <CDRow
-          key={cd.id}
-          cd={cd}
-          setCDView={() => handleViewClick(cd)}
-          setCDToDelete={() => handleDeleteClick(cd)}
-        ></CDRow>
-      )),
-    [cds]
-  );
+  const bookRows = useMemo(
+    () => 
+      books.map((book) =>( 
+      <BookRow 
+        book={book} 
+        handleViewClick={() => handleViewClick(book)} 
+        handleDeleteClick={() => handleDeleteClick(book)}
+      />)), [books]);
 
   return (
     <main className="table">
@@ -137,7 +128,7 @@ const CDTable = () => {
         <div>
           <h1>Media&nbsp;Catalogue</h1>
           <nav>
-            <Link className="link" id="current-location" to="/">
+            <Link className="link" to="/">
               CD
             </Link>
             <span>|</span>
@@ -145,12 +136,12 @@ const CDTable = () => {
               DVD
             </Link>
             <span>|</span>
-            <Link className="link" to="/book/table">
+            <Link className="link" id="current-location" to="/book/table">
               Book
             </Link>
           </nav>
         </div>
-        <Link to="/cd/add">Add&nbsp;CD</Link>
+        <Link to="/book/add">Add&nbsp;Book</Link>
       </header>
       <section>
         <table>
@@ -164,13 +155,13 @@ const CDTable = () => {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>{tableRows}</tbody>
+          <tbody>{bookRows}</tbody>
         </table>
-        {cdToDelete && <DeleteCD cd={cdToDelete} handleDeleteClose={handleDeleteClose} />}
-        {cdToView && <CDView cd={cdToView} handleViewClose={handleViewClose} />}
+        {bookToDelete && <BookDelete book={bookToDelete} handleDeleteClose={handleDeleteClose} />}
+        {bookToView && <BookView book={bookToView} handleViewClose={handleViewClose} />}
       </section>
     </main>
   );
 };
 
-export default CDTable;
+export default BookTable;

@@ -75,8 +75,8 @@ section.modal {
       border: none;
       background-color: #e89843;
       color: #ffffff;
-      height: map-get($sizes, 'x-large');
-      width: map-get($sizes, 'x-large');
+      min-height: map-get($sizes, 'x-large');
+      min-width: map-get($sizes, 'x-large');
       border-radius: map-get($sizes, 'small');
       cursor: pointer;
     }

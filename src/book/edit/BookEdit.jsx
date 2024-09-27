@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 import { formatDate } from '@neslotech/ui-utils';
 
-import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
-
 import handleChange from '../../utils/handle-Change';
+
+import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 const BookEdit = (id) => {
   const [book, setBook] = useState({
@@ -31,7 +31,7 @@ const BookEdit = (id) => {
 
   const handleSave = () => {
     //TODO: implement put to API
-  }
+  };
 
   return (
     <section className="form">

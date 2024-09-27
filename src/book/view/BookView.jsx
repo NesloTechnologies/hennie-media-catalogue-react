@@ -4,14 +4,14 @@ import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 import '../../stylesheet/modal.scss';
 
-const BookView = ({ book }) => {
+const BookView = ({ book, handleViewClose }) => {
   const { id, title, author, duration, releaseDate } = book;
 
   return (
     <section className="modal">
       <header>
         <h1>{title}</h1>
-        <button>
+        <button onClick={handleViewClose}>
           <CloseIcon />
         </button>
       </header>

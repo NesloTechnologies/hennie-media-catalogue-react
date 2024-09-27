@@ -4,14 +4,14 @@ import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 import '../../stylesheet/modal.scss';
 
-const DVDView = ({ dvd, closeView }) => {
+const DVDView = ({ dvd, handleViewClose }) => {
   const { title, id, director, duration, leadActor, leadActress, releaseDate } = dvd;
 
   return (
     <section className="modal">
       <header>
         <h1>{title}</h1>
-        <button onClick={closeView}>
+        <button onClick={handleViewClose}>
           <CloseIcon />
         </button>
       </header>

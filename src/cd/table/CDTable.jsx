@@ -14,25 +14,27 @@ import CDView from '../view/CDView';
 import '../../stylesheet/table.scss';
 
 const CDRow = ({ cd, setCDView, setCDToDelete }) => {
-  const {id, title, artist, duration, releaseDate} = cd;
+  const { id, title, artist, duration, releaseDate } = cd;
 
-  return (<tr>
-    <td>{id}</td>
-    <td>{title}</td>
-    <td>{artist}</td>
-    <td>{duration}</td>
-    <td>{releaseDate}</td>
-    <td>
-      <ViewIcon className="icon view-icon" onClick={setCDView} />
-      <Link to="cd/edit">
-        <EditIcon className="icon edit-icon" />
-      </Link>
-      <DeleteIcon className="icon delete-icon" onClick={setCDToDelete} />
-    </td>
-    <td>
-      <ArrowIcon />
-    </td>
-  </tr>)
+  return (
+    <tr>
+      <td>{id}</td>
+      <td>{title}</td>
+      <td>{artist}</td>
+      <td>{duration}</td>
+      <td>{releaseDate}</td>
+      <td>
+        <ViewIcon className="icon view-icon" onClick={setCDView} />
+        <Link to="cd/edit">
+          <EditIcon className="icon edit-icon" />
+        </Link>
+        <DeleteIcon className="icon delete-icon" onClick={setCDToDelete} />
+      </td>
+      <td>
+        <ArrowIcon />
+      </td>
+    </tr>
+  );
 };
 
 const DeleteCD = ({ cd, closeDelete }) => {

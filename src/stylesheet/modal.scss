@@ -20,7 +20,7 @@ $margins: (
 );
 
 section.modal {
-  width: 42vw;
+  width: min-content;
   box-shadow: 0 0 2px map-get(colour.$colour, 'border');
   height: auto;
   border: none;
@@ -29,11 +29,11 @@ section.modal {
   background-color: #ffffff;
   position: absolute;
   top: 25%;
-  left: 25%;
+  left: 30%;
 
   > header {
     padding: 0;
-    width: 42vw;
+    width: 33vw;
     height: auto;
     display: flex;
     justify-content: space-between;
@@ -86,7 +86,7 @@ section.modal {
     display: flex;
     flex-wrap: wrap;
     margin: 0;
-    width: 42vw;
+    width: 33.33vw;
 
     dt {
       font-weight: map-get(typography.$typography, '700');

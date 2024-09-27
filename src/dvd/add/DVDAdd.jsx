@@ -23,7 +23,7 @@ const DVDAdd = () => {
     <section className="form">
       <header>
         <h1>Add&nbsp;DVD</h1>
-        <Link to="/dvd">
+        <Link to="/dvd/table">
           <CloseIcon />
         </Link>
       </header>
@@ -97,7 +97,7 @@ const DVDAdd = () => {
         </fieldset>
         <fieldset>
           <button>Save</button>
-          <Link to="/dvd">Cancel</Link>
+          <Link to="/dvd/table">Cancel</Link>
         </fieldset>
       </form>
     </section>

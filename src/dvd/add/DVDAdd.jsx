@@ -27,80 +27,79 @@ const DVDAdd = () => {
           <CloseIcon />
         </Link>
       </header>
-      <main>
-        <form>
+
+      <form>
+        <fieldset>
           <fieldset>
-            <fieldset>
-              <label htmlFor="title">Title</label>
-              <input
-                name="title"
-                id="title"
-                type="text"
-                value={dvd.title}
-                onChange={(event) => handleChange(event, setDVD)}
-              />
-            </fieldset>
-            <fieldset>
-              <label htmlFor="director">Director</label>
-              <input
-                name="director"
-                id="director"
-                type="text"
-                value={dvd.director}
-                onChange={(event) => handleChange(event, setDVD)}
-              />
-            </fieldset>
+            <label htmlFor="title">Title</label>
+            <input
+              name="title"
+              id="title"
+              type="text"
+              value={dvd.title}
+              onChange={(event) => handleChange(event, setDVD)}
+            />
           </fieldset>
           <fieldset>
-            <fieldset>
-              <label htmlFor="duration">Duration</label>
-              <input
-                name="duration"
-                id="duration"
-                type="number"
-                value={dvd.duration}
-                onChange={(event) => handleChange(event, setDVD)}
-              />
-            </fieldset>
-            <fieldset>
-              <label htmlFor="lead-actress">Lead&nbsp;Actress</label>
-              <input
-                name="leadActress"
-                id="leadActress"
-                type="text"
-                value={dvd.leadActress}
-                onChange={(event) => handleChange(event, setDVD)}
-              />
-            </fieldset>
+            <label htmlFor="director">Director</label>
+            <input
+              name="director"
+              id="director"
+              type="text"
+              value={dvd.director}
+              onChange={(event) => handleChange(event, setDVD)}
+            />
+          </fieldset>
+        </fieldset>
+        <fieldset>
+          <fieldset>
+            <label htmlFor="duration">Duration</label>
+            <input
+              name="duration"
+              id="duration"
+              type="number"
+              value={dvd.duration}
+              onChange={(event) => handleChange(event, setDVD)}
+            />
           </fieldset>
           <fieldset>
-            <fieldset>
-              <label htmlFor="leadActor">Lead&nbsp;Actor</label>
-              <input
-                name="leadActor"
-                id="leadActor"
-                type="text"
-                value={dvd.leadActor}
-                onChange={(event) => handleChange(event, setDVD)}
-              />
-            </fieldset>
-            <fieldset>
-              <label htmlFor="releaseDate">Release&nbsp;Date</label>
-              <input
-                name="releaseDate"
-                id="releaseDate"
-                type="date"
-                value={formatDate(dvd.releaseDate, 'fr-CA')}
-                onChange={(event) => handleChange(event, setDVD)}
-              />
-            </fieldset>
+            <label htmlFor="lead-actress">Lead&nbsp;Actress</label>
+            <input
+              name="leadActress"
+              id="leadActress"
+              type="text"
+              value={dvd.leadActress}
+              onChange={(event) => handleChange(event, setDVD)}
+            />
+          </fieldset>
+        </fieldset>
+        <fieldset>
+          <fieldset>
+            <label htmlFor="leadActor">Lead&nbsp;Actor</label>
+            <input
+              name="leadActor"
+              id="leadActor"
+              type="text"
+              value={dvd.leadActor}
+              onChange={(event) => handleChange(event, setDVD)}
+            />
           </fieldset>
           <fieldset>
-            <button>Save</button>
-            <Link to="/dvd">Cancel</Link>
+            <label htmlFor="releaseDate">Release&nbsp;Date</label>
+            <input
+              name="releaseDate"
+              id="releaseDate"
+              type="date"
+              value={formatDate(dvd.releaseDate, 'fr-CA')}
+              onChange={(event) => handleChange(event, setDVD)}
+            />
           </fieldset>
-        </form>
-      </main>
+        </fieldset>
+        <fieldset>
+          <button>Save</button>
+          <Link to="/dvd">Cancel</Link>
+        </fieldset>
+      </form>
     </section>
   );
 };

@@ -75,135 +75,117 @@ section.form {
       }
     }
   }
-
-  > main {
-    height: 100vh;
-    @include mixins.flex-centre;
-    width: auto;
-    height: auto;
+  > form {
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
     background-color: #ffffff;
     padding: 0 50px 55px 50px;
-    display: flex;
-    flex-direction: column;
-
-    @include medium {
-      width: 80vw;
-    }
-
     @include small {
-      width: 100vw;
-      padding: 0 0 55px 0;
+      width: 90vw;
     }
-    form {
-      @include small {
-        width: 90vw;
-      }
-      fieldset {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: flex-start;
-        padding: 0;
-        border: none;
+    fieldset {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 0;
+      border: none;
 
-        @include medium {
-          flex-direction: column;
-          justify-content: center;
-        }
+      @include medium {
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      @include small {
+        flex-direction: column;
+        justify-content: center;
+        width: 85vw;
+      }
+
+      > fieldset {
+        width: 50%;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
 
         @include small {
-          flex-direction: column;
-          justify-content: center;
           width: 85vw;
         }
-
-        > fieldset {
-          width: 50%;
-          border: none;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
+        &:nth-of-type(odd) {
+          margin-right: map-get($margin, 'x-large');
 
           @include small {
-            width: 85vw;
-          }
-          &:nth-of-type(odd) {
-            margin-right: map-get($margin, 'x-large');
-
-            @include small {
-              margin-right: 0;
-            }
-          }
-        }
-
-        > label {
-          margin-bottom: map-get($margin, 'small');
-          font-size: 0.875rem;
-        }
-
-        > input {
-          padding: 0 16px 0 16px;
-          margin-bottom: map-get($margin, 'medium');
-          width: 369px;
-          height: 44px;
-          border-radius: 5px;
-          border: 1px solid #20102b;
-          box-shadow: 0 0 1px #808080;
-
-          @include small {
-            width: 81vw;
+            margin-right: 0;
           }
         }
       }
 
-      > fieldset:last-child {
-        margin-top: map-get($margin, 'medium');
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-end;
+      > label {
+        margin-bottom: map-get($margin, 'small');
+        font-size: 0.875rem;
+      }
 
-        @include medium {
-          flex-direction: row;
-        }
+      > input {
+        padding: 0 16px 0 16px;
+        margin-bottom: map-get($margin, 'medium');
+        width: 369px;
+        height: 44px;
+        border-radius: 5px;
+        border: 1px solid #20102b;
+        box-shadow: 0 0 1px #808080;
+
         @include small {
-          flex-direction: row;
-        }
-
-        button {
-          font-size: 0.8125rem;
-          margin-right: map-get($margin, 'medium');
-          margin-bottom: map-get($margin, 'zero');
-          width: 79px;
-          height: 48px;
-          background-color: #20102b;
-          color: #f5f4f0;
-          border: none;
-          border-radius: 8px;
-        }
-
-        a {
-          @include mixins.flex-centre;
-          text-decoration: none;
-          font-size: 0.8125rem;
-          width: 79px;
-          height: 48px;
-          background-color: #ffffff;
-          width: 77px;
-          height: 46px;
-          color: #20102b;
-          font-size: 0.8125rem;
-          border: 1px solid #20102b;
-          border-radius: 8px;
+          width: 81vw;
         }
       }
+    }
 
-      button:nth-child(2) {
-        margin: map-get($margin, 'zero');
+    > fieldset:last-child {
+      margin-top: map-get($margin, 'medium');
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+
+      @include medium {
+        flex-direction: row;
+      }
+      @include small {
+        flex-direction: row;
+      }
+
+      button {
+        font-size: 0.8125rem;
+        margin-right: map-get($margin, 'medium');
+        margin-bottom: map-get($margin, 'zero');
+        width: 79px;
+        height: 48px;
+        background-color: #20102b;
+        color: #f5f4f0;
+        border: none;
+        border-radius: 8px;
+      }
+
+      a {
         @include mixins.flex-centre;
         text-decoration: none;
+        font-size: 0.8125rem;
+        width: 79px;
+        height: 48px;
+        background-color: #ffffff;
+        width: 77px;
+        height: 46px;
+        color: #20102b;
+        font-size: 0.8125rem;
+        border: 1px solid #20102b;
+        border-radius: 8px;
       }
+    }
+
+    button:nth-child(2) {
+      margin: map-get($margin, 'zero');
+      @include mixins.flex-centre;
+      text-decoration: none;
     }
   }
 }

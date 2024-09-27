@@ -43,61 +43,60 @@ const CDEdit = ({ id }) => {
           <CloseIcon />
         </Link>
       </header>
-      <main>
-        <form>
-          <fieldset>
-            <fieldset>
-              <label htmlFor="title">Title</label>
-              <input
-                name="title"
-                id="title"
-                type="text"
-                value={cd.title}
-                onChange={(event) => handleChange(event, setCd)}
-              />
-            </fieldset>
-            <fieldset>
-              <label htmlFor="artist">Artist</label>
-              <input
-                name="artist"
-                id="artist"
-                type="text"
-                value={cd.artist}
-                onChange={(event) => handleChange(event, setCd)}
-              />
-            </fieldset>
-          </fieldset>
 
+      <form>
+        <fieldset>
           <fieldset>
-            <fieldset>
-              <label htmlFor="duration">Duration</label>
-              <input
-                name="duration"
-                id="duration"
-                type="number"
-                value={cd.duration}
-                onChange={(event) => handleChange(event, setCd)}
-              />
-            </fieldset>
-            <fieldset>
-              <label htmlFor="releaseDate">Release Date</label>
-              <input
-                name="releaseDate"
-                id="releaseDate"
-                type="date"
-                value={cd.releaseDate}
-                onChange={(event) => handleChange(event, setCd)}
-              />
-            </fieldset>
+            <label htmlFor="title">Title</label>
+            <input
+              name="title"
+              id="title"
+              type="text"
+              value={cd.title}
+              onChange={(event) => handleChange(event, setCd)}
+            />
           </fieldset>
-
           <fieldset>
-            <button onClick={handleSave}>Save</button>
-
-            <Link to="/">Cancel</Link>
+            <label htmlFor="artist">Artist</label>
+            <input
+              name="artist"
+              id="artist"
+              type="text"
+              value={cd.artist}
+              onChange={(event) => handleChange(event, setCd)}
+            />
           </fieldset>
-        </form>
-      </main>
+        </fieldset>
+
+        <fieldset>
+          <fieldset>
+            <label htmlFor="duration">Duration</label>
+            <input
+              name="duration"
+              id="duration"
+              type="number"
+              value={cd.duration}
+              onChange={(event) => handleChange(event, setCd)}
+            />
+          </fieldset>
+          <fieldset>
+            <label htmlFor="releaseDate">Release Date</label>
+            <input
+              name="releaseDate"
+              id="releaseDate"
+              type="date"
+              value={cd.releaseDate}
+              onChange={(event) => handleChange(event, setCd)}
+            />
+          </fieldset>
+        </fieldset>
+
+        <fieldset>
+          <button onClick={handleSave}>Save</button>
+
+          <Link to="/">Cancel</Link>
+        </fieldset>
+      </form>
     </section>
   );
 };

@@ -4,7 +4,7 @@
 @use 'button' as button;
 @import 'media-queries';
 
-section.table {
+main.table {
   background-color: #f7f7f7;
 
   @include small {

@@ -132,7 +132,7 @@ const CDTable = () => {
   );
 
   return (
-    <section className="table">
+    <main className="table">
       <header>
         <div>
           <h1>Media&nbsp;Catalogue</h1>
@@ -169,7 +169,7 @@ const CDTable = () => {
         {cdToDelete && <DeleteCD cd={cdToDelete} closeDelete={closeDelete} />}
         {cdToView && <CDView cd={cdToView} closeView={closeView} />}
       </section>
-    </section>
+    </main>
   );
 };
 

@@ -120,7 +120,13 @@ main.table {
   }
 
   > section {
-    padding: 0 70px 0 70px;
+    @include medium {
+      padding: 4.4vh 5.2vw 4.4vh 5.2vw;
+    }
+
+    @include large {
+      padding: 0 4vw 0 4vw;
+    }
 
     table,
     caption,
@@ -337,6 +343,9 @@ main.table {
           }
         }
       }
+    }
+    > section {
+      top: 15vh;
     }
   }
 }

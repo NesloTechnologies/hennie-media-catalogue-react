@@ -141,11 +141,11 @@ const CDTable = () => {
               CD
             </Link>
             <span>|</span>
-            <Link className="link" to="/dvd-table">
+            <Link className="link" to="/dvd/table">
               DVD
             </Link>
             <span>|</span>
-            <Link className="link" to="/book-table">
+            <Link className="link" to="/book/table">
               Book
             </Link>
           </nav>

@@ -27,7 +27,7 @@ section.form {
   }
 
   header {
-    width: 856px;
+    width: 60vw;
     height: fit-content;
     display: flex;
     justify-content: space-between;
@@ -36,10 +36,6 @@ section.form {
     border-top-right-radius: 12px;
     background-color: #ffffff;
     padding: 55px 50px 28px 50px;
-
-    @include medium {
-      width: 80vw;
-    }
 
     @include small {
       height: 40px;
@@ -80,6 +76,7 @@ section.form {
     border-bottom-right-radius: 12px;
     background-color: #ffffff;
     padding: 0 50px 55px 50px;
+    width: 60vw;
     @include small {
       width: 90vw;
     }
@@ -90,10 +87,12 @@ section.form {
       align-items: flex-start;
       padding: 0;
       border: none;
+      margin: 0;
 
       @include medium {
         flex-direction: column;
         justify-content: center;
+        width: 100%;
       }
 
       @include small {
@@ -108,6 +107,11 @@ section.form {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+        margin: 0;
+
+        @include medium {
+          width: 90%;
+        }
 
         @include small {
           width: 85vw;
@@ -129,7 +133,7 @@ section.form {
       > input {
         padding: 0 16px 0 16px;
         margin-bottom: map-get($margin, 'medium');
-        width: 369px;
+        width: 91%;
         height: 44px;
         border-radius: 5px;
         border: 1px solid #20102b;

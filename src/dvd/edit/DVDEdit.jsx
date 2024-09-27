@@ -41,7 +41,7 @@ const DVDEdit = (id) => {
     <section className="form">
       <header>
         <h1>Edit CD</h1>
-        <Link to="/dvd">
+        <Link to="/dvd/table">
           <CloseIcon />
         </Link>
       </header>
@@ -119,7 +119,7 @@ const DVDEdit = (id) => {
         <fieldset>
           <button onClick={handleSave}>Save</button>
 
-          <Link to="/dvd">Cancel</Link>
+          <Link to="/dvd/table">Cancel</Link>
         </fieldset>
       </form>
     </section>

@@ -14,31 +14,29 @@ import DVDView from '../view/DVDView';
 import '../../stylesheet/dvd-table.scss';
 import '../../stylesheet/table.scss';
 
-const DVDRow = ({
-  dvd,
-  setDVDToView,
-  setDVDToDelete
-}) => {
-  const {id, title, director, leadActor, leadActress, duration, releaseDate} = dvd;
-  return(<tr>
-    <td>{id}</td>
-    <td>{title}</td>
-    <td>{director}</td>
-    <td>{leadActor}</td>
-    <td>{leadActress}</td>
-    <td>{duration}</td>
-    <td>{releaseDate}</td>
-    <td>
-      <ViewIcon className="icon view-icon" onClick={setDVDToView} />
-      <Link to="/dvd/edit">
-        <EditIcon className="icon edit-icon" />
-      </Link>
-      <DeleteIcon className="icon delete-icon" onClick={setDVDToDelete} />
-    </td>
-    <td>
-      <ArrowIcon />
-    </td>
-  </tr>)
+const DVDRow = ({ dvd, setDVDToView, setDVDToDelete }) => {
+  const { id, title, director, leadActor, leadActress, duration, releaseDate } = dvd;
+  return (
+    <tr>
+      <td>{id}</td>
+      <td>{title}</td>
+      <td>{director}</td>
+      <td>{leadActor}</td>
+      <td>{leadActress}</td>
+      <td>{duration}</td>
+      <td>{releaseDate}</td>
+      <td>
+        <ViewIcon className="icon view-icon" onClick={setDVDToView} />
+        <Link to="/dvd/edit">
+          <EditIcon className="icon edit-icon" />
+        </Link>
+        <DeleteIcon className="icon delete-icon" onClick={setDVDToDelete} />
+      </td>
+      <td>
+        <ArrowIcon />
+      </td>
+    </tr>
+  );
 };
 
 const DeleteDVD = ({ dvd, closeDelete }) => {

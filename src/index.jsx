@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
+import BookAdd from './book/add/BookAdd';
 import CDAdd from './cd/add/CDAdd';
 import CDEdit from './cd/edit/CDEdit';
 import CDTable from './cd/table/CDTable';
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
     element: <CDEdit />
   },
   {
+    path: '/dvd/table',
+    element: <DVDTable />
+  },
+  {
     path: '/dvd/add',
     element: <DVDAdd />
   },
@@ -38,8 +43,14 @@ const router = createBrowserRouter([
     element: <DVDEdit />
   },
   {
-    path: '/dvd/table',
-    element: <DVDTable />
+    path: '/book/table'
+  },
+  {
+    path: '/book/add',
+    element: <BookAdd />
+  },
+  {
+    path: '/book/edit'
   }
 ]);
 

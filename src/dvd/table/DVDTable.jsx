@@ -15,17 +15,12 @@ import '../../stylesheet/dvd-table.scss';
 import '../../stylesheet/table.scss';
 
 const DVDRow = ({
-  id,
-  title,
-  director,
-  leadActor,
-  leadActress,
-  duration,
-  releaseDate,
+  dvd,
   setDVDToView,
   setDVDToDelete
-}) => (
-  <tr>
+}) => {
+  const {id, title, director, leadActor, leadActress, duration, releaseDate} = dvd;
+  return(<tr>
     <td>{id}</td>
     <td>{title}</td>
     <td>{director}</td>
@@ -43,12 +38,11 @@ const DVDRow = ({
     <td>
       <ArrowIcon />
     </td>
-  </tr>
-);
+  </tr>)
+};
 
 const DeleteDVD = ({ dvd, closeDelete }) => {
   const { title, id, director, leadActor, leadActress, duration, releaseDate } = dvd;
-
   //TODO: Implement actual http delete
 
   return (
@@ -142,13 +136,7 @@ const DVDTable = () => {
       dvds.map((dvd) => (
         <DVDRow
           key={dvd.id}
-          id={dvd.id}
-          title={dvd.title}
-          director={dvd.director}
-          leadActor={dvd.leadActor}
-          leadActress={dvd.leadActress}
-          duration={dvd.duration}
-          releaseDate={dvd.releaseDate}
+          dvd={dvd}
           setDVDToDelete={() => handleDeleteClick(dvd)}
           setDVDToView={() => handleViewClick(dvd)}
         />

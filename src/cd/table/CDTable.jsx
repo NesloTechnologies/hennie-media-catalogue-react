@@ -13,8 +13,10 @@ import CDView from '../view/CDView';
 
 import '../../stylesheet/table.scss';
 
-const CDRow = ({ id, title, artist, duration, releaseDate, setCDView, setCDToDelete }) => (
-  <tr>
+const CDRow = ({ cd, setCDView, setCDToDelete }) => {
+  const {id, title, artist, duration, releaseDate} = cd;
+
+  return (<tr>
     <td>{id}</td>
     <td>{title}</td>
     <td>{artist}</td>
@@ -30,8 +32,8 @@ const CDRow = ({ id, title, artist, duration, releaseDate, setCDView, setCDToDel
     <td>
       <ArrowIcon />
     </td>
-  </tr>
-);
+  </tr>)
+};
 
 const DeleteCD = ({ cd, closeDelete }) => {
   const { title, id, artist, duration, releaseDate } = cd;
@@ -119,11 +121,7 @@ const CDTable = () => {
       cds.map((cd) => (
         <CDRow
           key={cd.id}
-          id={cd.id}
-          title={cd.title}
-          artist={cd.artist}
-          duration={cd.duration}
-          releaseDate={cd.releaseDate}
+          cd={cd}
           setCDView={() => handleViewClick(cd)}
           setCDToDelete={() => handleDeleteClick(cd)}
         ></CDRow>

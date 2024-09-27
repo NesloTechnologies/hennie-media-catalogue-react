@@ -12,7 +12,7 @@ import '../../stylesheet/form.scss';
 const BookAdd = () => {
   const [book, setBook] = useState({
     title: '',
-    artist: '',
+    author: '',
     duration: '',
     releaseDate: formatDate('01-01-1999', 'fr-CA')
   });
@@ -39,12 +39,12 @@ const BookAdd = () => {
             />
           </fieldset>
           <fieldset>
-            <label htmlFor="artist">Artist</label>
+            <label htmlFor="author">Author</label>
             <input
-              name="artist"
-              id="artist"
+              name="author"
+              id="author"
               type="text"
-              value={book.artist}
+              value={book.author}
               onChange={(event) => handleChange(event, setBook)}
             />
           </fieldset>

@@ -5,7 +5,7 @@ import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 import '../../stylesheet/modal.scss';
 
 const DVDView = ({ dvd }) => {
-  const {title, id, director, duration, leadActor, leadActress, releaseDate} = dvd;
+  const { title, id, director, duration, leadActor, leadActress, releaseDate } = dvd;
 
   return (
     <section className="modal">

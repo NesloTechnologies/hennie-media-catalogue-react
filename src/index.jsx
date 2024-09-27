@@ -6,6 +6,7 @@ import CDAdd from './cd/add/CDAdd';
 import CDEdit from './cd/edit/CDEdit';
 import CDTable from './cd/table/CDTable';
 import DVDAdd from './dvd/add/DVDAdd';
+import DVDEdit from './dvd/edit/DVDEdit';
 import ErrorPage from './error/ErrorPage';
 
 import './stylesheet/styles.scss';
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: '/dvd/add',
     element: <DVDAdd />
+  },
+  {
+    path: '/dvd/edit',
+    element: <DVDEdit />
   }
 ]);
 

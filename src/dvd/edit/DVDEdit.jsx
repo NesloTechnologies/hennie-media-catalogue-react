@@ -40,7 +40,7 @@ const DVDEdit = (id) => {
   return (
     <section className="form">
       <header>
-        <h1>Edit CD</h1>
+        <h1>Edit DVD</h1>
         <Link to="/dvd/table">
           <CloseIcon />
         </Link>

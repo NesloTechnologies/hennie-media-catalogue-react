@@ -107,7 +107,7 @@ section.modal {
     }
   }
 
-  fieldset {
+  div {
     @include mixins.flex-centre;
     justify-content: flex-start;
     border: none;

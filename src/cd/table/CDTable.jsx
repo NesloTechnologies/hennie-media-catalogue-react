@@ -66,10 +66,10 @@ const DeleteCD = ({ cd, handleDeleteClose }) => {
         <dt>Release&nbsp;Date:</dt>
         <dd>{releaseDate}</dd>
       </dl>
-      <fieldset>
+      <div>
         <button>Confirm</button>
         <button onClick={handleDeleteClose}>Cancel</button>
-      </fieldset>
+      </div>
     </section>
   );
 };

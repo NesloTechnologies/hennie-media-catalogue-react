@@ -1,37 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-
-import { formatDate } from '@neslotech/ui-utils';
+import React, { useState } from 'react';
+import { useLocation, Link } from 'react-router-dom';
 
 import handleChange from '../../utils/handle-Change';
 
 import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 const DVDEdit = (id) => {
-  const [dvd, setDVD] = useState({
-    title: '',
-    id: 0,
-    director: '',
-    duration: 0,
-    leadActor: '',
-    leadActress: '',
-    releaseDate: ''
-  });
-
-  useEffect(() => {
-    //TODO: add actual API call to fetch cd with id
-    const mockDVD = {
-      title: 'The Fantastic Mr. Fox',
-      id: 1,
-      director: 'Wes Anderson',
-      duration: 135,
-      leadActor: 'George Clooney',
-      leadActress: 'Meryl Streep',
-      releaseDate: formatDate('10-14-2009', 'fr-CA')
-    };
-
-    setDVD(mockDVD);
-  }, [id]);
+  const location = useLocation();
+  const [dvd, setDVD] = useState(location.state);
 
   const handleSave = () => {
     //TODO: add PUT implementation to API

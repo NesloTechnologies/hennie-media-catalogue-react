@@ -27,7 +27,7 @@ const DVDRow = ({ dvd, setDVDToView, setDVDToDelete }) => {
       <td>{releaseDate}</td>
       <td>
         <ViewIcon className="icon view-icon" onClick={setDVDToView} />
-        <Link to="/dvd/edit">
+        <Link to="/dvd/edit" state={dvd}>
           <EditIcon className="icon edit-icon" />
         </Link>
         <DeleteIcon className="icon delete-icon" onClick={setDVDToDelete} />

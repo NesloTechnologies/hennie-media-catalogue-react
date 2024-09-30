@@ -40,7 +40,7 @@ const BookRow = ({ book, handleDeleteClick, handleViewClick }) => {
       <td>{releaseDate}</td>
       <td>
         <ViewIcon className="icon view-icon" onClick={handleViewClick} />
-        <Link to="/book/edit">
+        <Link to="/book/edit" state={book}>
           <EditIcon className="icon edit-icon" />
         </Link>
         <DeleteIcon className="icon delete-icon" onClick={handleDeleteClick} />
@@ -114,13 +114,16 @@ const BookTable = () => {
   };
 
   const bookRows = useMemo(
-    () => 
-      books.map((book) =>( 
-      <BookRow 
-        book={book} 
-        handleViewClick={() => handleViewClick(book)} 
-        handleDeleteClick={() => handleDeleteClick(book)}
-      />)), [books]);
+    () =>
+      books.map((book) => (
+        <BookRow
+          book={book}
+          handleViewClick={() => handleViewClick(book)}
+          handleDeleteClick={() => handleDeleteClick(book)}
+        />
+      )),
+    [books]
+  );
 
   return (
     <main className="table">

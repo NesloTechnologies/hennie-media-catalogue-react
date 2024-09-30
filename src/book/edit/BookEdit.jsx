@@ -1,33 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-
-import { formatDate } from '@neslotech/ui-utils';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import handleChange from '../../utils/handle-Change';
 
 import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 const BookEdit = (id) => {
-  const [book, setBook] = useState({
-    id: 0,
-    title: '',
-    author: '',
-    duration: '',
-    releaseDate: ''
-  });
-
-  useEffect(() => {
-    //TODO: get book from api
-    const mockBook = {
-      id: 1,
-      title: 'The Great Gatsby',
-      author: 'F. Scott Fitzgerald',
-      duration: 120,
-      releaseDate: formatDate('01-01-1999', 'fr-CA')
-    };
-
-    setBook(mockBook);
-  }, []);
+  const location = useLocation();
+  const [book, setBook] = useState(location.state);
 
   const handleSave = () => {
     //TODO: implement put to API

@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-
-import { formatDate } from '@neslotech/ui-utils';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import handleChange from '../../utils/handle-Change';
 
@@ -9,27 +7,10 @@ import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 import '../../stylesheet/form.scss';
 
-const CDEdit = ({ id }) => {
-  const [cd, setCd] = useState({
-    id: 0,
-    title: '',
-    artist: '',
-    duration: 0,
-    releaseDate: new Date()
-  });
+const CDEdit = () => {
+  const location = useLocation();
 
-  useEffect(() => {
-    // TODO: make api call to get cd information using id
-    const mockCD = {
-      id,
-      title: 'Nevermind',
-      artist: 'Nirvana',
-      duration: 48,
-      releaseDate: formatDate('1991-04-24', 'fr-CA')
-    };
-
-    setCd(mockCD);
-  }, [id]);
+  const [cd, setCd] = useState(location.state);
 
   const handleSave = () => {
     // TODO: put back to API to save the updated CD

@@ -15,7 +15,7 @@ import '../../stylesheet/table.scss';
 
 const CDRow = ({ cd, setCDView, setCDToDelete }) => {
   const { id, title, artist, duration, releaseDate } = cd;
-
+  console.log(cd);
   return (
     <tr>
       <td>{id}</td>
@@ -25,7 +25,7 @@ const CDRow = ({ cd, setCDView, setCDToDelete }) => {
       <td>{releaseDate}</td>
       <td>
         <ViewIcon className="icon view-icon" onClick={setCDView} />
-        <Link to="cd/edit">
+        <Link to="/cd/edit" state={cd}>
           <EditIcon className="icon edit-icon" />
         </Link>
         <DeleteIcon className="icon delete-icon" onClick={setCDToDelete} />

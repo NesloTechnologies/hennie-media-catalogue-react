@@ -15,7 +15,7 @@ import '../../stylesheet/table.scss';
 
 const CDRow = ({ cd, setCDView, setCDToDelete }) => {
   const { id, title, artist, duration, releaseDate } = cd;
-  console.log(cd);
+
   return (
     <tr>
       <td>{id}</td>

@@ -16,6 +16,7 @@ import '../../stylesheet/table.scss';
 
 const DVDRow = ({ dvd, setDVDToView, setDVDToDelete }) => {
   const { id, title, director, leadActor, leadActress, duration, releaseDate } = dvd;
+
   return (
     <tr>
       <td>{id}</td>

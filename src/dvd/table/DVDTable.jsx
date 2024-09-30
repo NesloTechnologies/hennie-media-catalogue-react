@@ -39,7 +39,7 @@ const DVDRow = ({ dvd, setDVDToView, setDVDToDelete }) => {
   );
 };
 
-const DeleteDVD = ({ dvd, closeDelete }) => {
+const DeleteDVD = ({ dvd, handleDeleteClose }) => {
   const { title, id, director, leadActor, leadActress, duration, releaseDate } = dvd;
   //TODO: Implement actual http delete
 
@@ -47,7 +47,7 @@ const DeleteDVD = ({ dvd, closeDelete }) => {
     <section className="modal">
       <header>
         <h1>Are you sure you want to delete this item?</h1>
-        <button onClick={closeDelete}>
+        <button onClick={handleDeleteClose}>
           <CloseIcon />
         </button>
       </header>
@@ -73,10 +73,10 @@ const DeleteDVD = ({ dvd, closeDelete }) => {
         <dt>Release&nbsp;Date:</dt>
         <dd>{releaseDate}</dd>
       </dl>
-      <fieldset>
+      <div>
         <button>Confirm</button>
-        <button onClick={closeDelete}>Cancel</button>
-      </fieldset>
+        <button onClick={handleDeleteClose}>Cancel</button>
+      </div>
     </section>
   );
 };
@@ -179,8 +179,8 @@ const DVDTable = () => {
           </thead>
           <tbody>{tableRows}</tbody>
         </table>
-        {dvdToView && <DVDView dvd={dvdToView} closeView={handleViewClose} />}
-        {dvdToDelete && <DeleteDVD dvd={dvdToDelete} closeDelete={handleDeleteClose} />}
+        {dvdToView && <DVDView dvd={dvdToView} handleViewClose={handleViewClose} />}
+        {dvdToDelete && <DeleteDVD dvd={dvdToDelete} handleDeleteClose={handleDeleteClose} />}
       </section>
     </main>
   );

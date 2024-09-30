@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import BookAdd from './book/add/BookAdd';
+import BookEdit from './book/edit/BookEdit';
+import BookTable from './book/table/BookTable';
 import CDAdd from './cd/add/CDAdd';
 import CDEdit from './cd/edit/CDEdit';
 import CDTable from './cd/table/CDTable';
@@ -12,7 +14,6 @@ import DVDTable from './dvd/table/DVDTable';
 import ErrorPage from './error/ErrorPage';
 
 import './stylesheet/styles.scss';
-import BookEdit from './book/edit/BookEdit';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -44,7 +45,8 @@ const router = createBrowserRouter([
     element: <DVDEdit />
   },
   {
-    path: '/book/table'
+    path: '/book/table',
+    element: <BookTable />
   },
   {
     path: '/book/add',

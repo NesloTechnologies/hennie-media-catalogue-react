@@ -1,13 +1,16 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
+import store from './state/media-catalogue.store';
 
 import BookAdd from './book/add/BookAdd';
 import BookEdit from './book/edit/BookEdit';
 import BookTable from './book/table/BookTable';
-import CDAdd from './cd/add/CDAdd';
-import CDEdit from './cd/edit/CDEdit';
-import CDTable from './cd/table/CDTable';
+import CDAddContainer from './cd/add/CDAddContainer';
+import CDEditContainier from './cd/edit/CDEditContainer';
+import CDTableContainer from './cd/table/CDTableContainer';
 import DVDAdd from './dvd/add/DVDAdd';
 import DVDEdit from './dvd/edit/DVDEdit';
 import DVDTable from './dvd/table/DVDTable';
@@ -21,16 +24,16 @@ const root = createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <CDTable />,
+    element: <CDTableContainer />,
     errorElement: <ErrorPage />
   },
   {
     path: '/cd/add',
-    element: <CDAdd />
+    element: <CDAddContainer />
   },
   {
     path: '/cd/edit',
-    element: <CDEdit />
+    element: <CDEditContainier />
   },
   {
     path: '/dvd/table',
@@ -60,6 +63,8 @@ const router = createBrowserRouter([
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );

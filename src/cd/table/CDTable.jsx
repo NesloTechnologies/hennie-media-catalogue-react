@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useMemo, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { formatDate } from '@neslotech/ui-utils';
 
@@ -22,10 +22,10 @@ const CDRow = ({ cd, setCDView, setCDToDelete }) => {
       <td>{title}</td>
       <td>{artist}</td>
       <td>{duration}</td>
-      <td>{releaseDate}</td>
+      <td>{formatDate(releaseDate, 'fr-CA')}</td>
       <td>
         <ViewIcon className="icon view-icon" onClick={setCDView} />
-        <Link to="cd/edit">
+        <Link to="cd/edit" state={id}>
           <EditIcon className="icon edit-icon" />
         </Link>
         <DeleteIcon className="icon delete-icon" onClick={setCDToDelete} />
@@ -37,10 +37,15 @@ const CDRow = ({ cd, setCDView, setCDToDelete }) => {
   );
 };
 
-const DeleteCD = ({ cd, handleDeleteClose }) => {
+const DeleteCD = ({ cd, handleDeleteClose, removeCD }) => {
   const { title, id, artist, duration, releaseDate } = cd;
-
-  //TODO: Implement actual hhtp delete
+  const navigate = useNavigate()
+  
+  const handleDeleteClick = (id) => {
+    removeCD(id)
+    handleDeleteClose()
+    navigate('/')
+  }
 
   return (
     <section className="modal">
@@ -67,40 +72,16 @@ const DeleteCD = ({ cd, handleDeleteClose }) => {
         <dd>{releaseDate}</dd>
       </dl>
       <div>
-        <button>Confirm</button>
+        <button onClick={() => handleDeleteClick(id)}>Confirm</button>
         <button onClick={handleDeleteClose}>Cancel</button>
       </div>
     </section>
   );
 };
 
-const mockCDs = [
-  {
-    id: 1,
-    title: 'Nevermind',
-    artist: 'Nirvana',
-    duration: '48',
-    releaseDate: formatDate('1991-04-24', 'fr-CA')
-  },
-  {
-    id: 2,
-    title: 'Gorillaz',
-    artist: 'Gorillaz',
-    duration: '61',
-    releaseDate: formatDate('2001-03-26', 'fr-CA')
-  }
-];
-
-const CDTable = () => {
-  const [cds, setCds] = useState([]);
+const CDTable = ({ cds, removeCD }) => {
   const [cdToView, setCDToView] = useState(undefined);
   const [cdToDelete, setCDToDelete] = useState(undefined);
-
-  useEffect(() => {
-    // TODO: Make actual API call to initialize cds
-
-    setCds(mockCDs);
-  }, []);
 
   const handleViewClick = (cd) => {
     setCDToView(cd);
@@ -166,7 +147,7 @@ const CDTable = () => {
           </thead>
           <tbody>{tableRows}</tbody>
         </table>
-        {cdToDelete && <DeleteCD cd={cdToDelete} handleDeleteClose={handleDeleteClose} />}
+        {cdToDelete && <DeleteCD cd={cdToDelete} handleDeleteClose={handleDeleteClose} removeCD={removeCD}/>}
         {cdToView && <CDView cd={cdToView} handleViewClose={handleViewClose} />}
       </section>
     </main>

@@ -21,9 +21,6 @@ const CDEdit = ({ id, handleCDEdit, fetchCD }) => {
 
   useEffect(() => {
     const loadCD = async () => {
-      if (!id) {
-        return;
-      }
       const fetchedCD = await fetchCD(id);
       setCD((prevState) => ({ ...prevState, ...fetchedCD }));
     };

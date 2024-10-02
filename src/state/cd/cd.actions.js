@@ -1,20 +1,19 @@
-const addToStore = (cd) => ({
-  type: 'ADD_CD',
+export const ADD_CD = 'ADD_CD';
+export const GET_CDS = 'GET_CDS';
+export const UPDATE_CD = 'UPDATE_CD';
+export const DELETE_CD = 'DELETE_CD';
+
+export const addCDToStore = (cd) => ({
+  type: ADD_CD,
   payload: cd
 });
 
-const getFromStore = () => ({
-  type: 'GET_CDs'
+export const updateCDInStore = (id, newCD) => ({
+  type: UPDATE_CD,
+  payload: { id, newCD }
 });
 
-const updateToStore = (id, newCD) => ({
-  type: 'UPDATE_CD',
-  payload: { newCD }
-});
-
-const deleteFromStore = (id) => ({
-  type: 'DELETE_CD',
+export const deleteCDFromStore = (id) => ({
+  type: DELETE_CD,
   payload: id
 });
-
-export { addToStore, getFromStore, updateToStore, deleteFromStore };

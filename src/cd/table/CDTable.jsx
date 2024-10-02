@@ -39,13 +39,13 @@ const CDRow = ({ cd, setCDView, setCDToDelete }) => {
 
 const DeleteCD = ({ cd, handleDeleteClose, removeCD }) => {
   const { title, id, artist, duration, releaseDate } = cd;
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const handleDeleteClick = (id) => {
-    removeCD(id)
-    handleDeleteClose()
-    navigate('/')
-  }
+    removeCD(id);
+    handleDeleteClose();
+    navigate('/');
+  };
 
   return (
     <section className="modal">
@@ -147,7 +147,9 @@ const CDTable = ({ cds, removeCD }) => {
           </thead>
           <tbody>{tableRows}</tbody>
         </table>
-        {cdToDelete && <DeleteCD cd={cdToDelete} handleDeleteClose={handleDeleteClose} removeCD={removeCD}/>}
+        {cdToDelete && (
+          <DeleteCD cd={cdToDelete} handleDeleteClose={handleDeleteClose} removeCD={removeCD} />
+        )}
         {cdToView && <CDView cd={cdToView} handleViewClose={handleViewClose} />}
       </section>
     </main>

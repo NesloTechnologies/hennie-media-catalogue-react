@@ -5,12 +5,13 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import store from './state/media-catalogue.store';
 
+import CDAddContainer from './cd/container/CDAddContainer';
+import CDEditContainier from './cd/container/CDEditContainer';
+import CDTableContainer from './cd/container/CDTableContainer';
+
 import BookAdd from './book/add/BookAdd';
 import BookEdit from './book/edit/BookEdit';
 import BookTable from './book/table/BookTable';
-import CDAddContainer from './cd/add/CDAddContainer';
-import CDEditContainier from './cd/edit/CDEditContainer';
-import CDTableContainer from './cd/table/CDTableContainer';
 import DVDAdd from './dvd/add/DVDAdd';
 import DVDEdit from './dvd/edit/DVDEdit';
 import DVDTable from './dvd/table/DVDTable';

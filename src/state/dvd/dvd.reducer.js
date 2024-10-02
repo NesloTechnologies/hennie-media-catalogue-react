@@ -1,15 +1,22 @@
-const initialState = [];
+import { ADD_DVD, DELETE_DVD, UPDATE_DVD } from './dvd.actions';
+
+const initialState = {
+  dvds: []
+};
 
 const dvdReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_DVD':
-      return [...state, action.payload];
+    case ADD_DVD:
+      return { ...state, dvd: [...state.dvds, { ...action.payload }] };
 
-    case 'UPDATE_DVD':
-      return state.map((dvd) => (dvd.id === action.payload.id ? action.payload.dvd : dvd));
+    case UPDATE_DVD:
+      return {
+        ...state,
+        dvds: state.dvds.map((dvd) => (dvd.id === action.payload.id ? action.payload.dvd : dvd))
+      };
 
-    case 'DELETE_DVD':
-      return state.filter((dvd) => dvd.id !== action.payload);
+    case DELETE_DVD:
+      return { ...state, dvds: state.dvds.filter((dvd) => dvd.id !== action.payload) };
 
     default:
       return state;

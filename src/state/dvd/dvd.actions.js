@@ -1,21 +1,19 @@
-const addDVD = (dvd) => ({
-  type: 'ADD_DVD',
+export const ADD_DVD = 'ADD_DVD';
+export const GET_DVDS = 'GET_DVDS';
+export const UPDATE_DVD = 'UPDATE_DVD';
+export const DELETE_DVD = 'DELETE_DVD';
+
+export const addDVDToStore = (dvd) => ({
+  type: ADD_DVD,
   payload: dvd
 });
 
-const getDVD = (id) => ({
-  type: 'GET_DVD',
-  payload: id
-});
-
-const updateDVD = (id, newDVD) => ({
-  type: 'UPDATE_DVD',
+export const updateDVDInStore = (id, newDVD) => ({
+  type: UPDATE_DVD,
   payload: { id, newDVD }
 });
 
-const deleteDVD = (id) => ({
-  type: 'DELETE_DVD',
+export const deleteDVDFromStore = (id) => ({
+  type: DELETE_DVD,
   payload: id
 });
-
-export { addDVD, getDVD, updateDVD, deleteDVD };

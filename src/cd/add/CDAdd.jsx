@@ -20,8 +20,7 @@ const CDAdd = ({ handleCDAdd }) => {
 
   //TODO: add actual API create
 
-  const handleAddClick = (event) => {
-    event.preventDefault();
+  const handleAddClick = () => {
     handleCDAdd(cd);
     navigate('/');
   };
@@ -82,7 +81,7 @@ const CDAdd = ({ handleCDAdd }) => {
           </fieldset>
         </fieldset>
         <fieldset>
-          <button onClick={(event) => handleAddClick(event)}>Add</button>
+          <button onClick={handleAddClick}>Add</button>
 
           <Link to="/">Cancel</Link>
         </fieldset>

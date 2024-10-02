@@ -1,13 +1,14 @@
-import { ADD_CD, DELETE_CD, UPDATE_CD } from './cd.actions';
+import { ADD_CD, DELETE_CD, UPDATE_CD } from './cd.action';
 
 const initialState = {
   cds: []
 };
+let next = 1;
 
 const cdReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_CD:
-      return { ...state, cds: [...state.cds, { ...action.payload}] };
+      return { ...state, cds: [...state.cds, { ...action.payload, id: next++}] };
 
     case UPDATE_CD:
       return {

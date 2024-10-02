@@ -1,4 +1,4 @@
-import { ADD_DVD, DELETE_DVD, UPDATE_DVD } from './dvd.actions';
+import { ADD_DVD, DELETE_DVD, UPDATE_DVD } from './dvd.action';
 
 const initialState = {
   dvds: []

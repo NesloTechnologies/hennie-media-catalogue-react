@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import { addCDToStore } from '../../state/cd/cd.actions';
+import { addCDToStore } from '../../state/cd/cd.action';
 
 import CDAdd from '../add/CDAdd';
 

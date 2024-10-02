@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteCDFromStore } from '../../state/cd/cd.actions';
+import { deleteCDFromStore } from '../../state/cd/cd.action';
 
 import CDTable from '../table/CDTable';
 

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 
-import { updateCDInStore } from '../../state/cd/cd.actions';
+import { updateCDInStore } from '../../state/cd/cd.action';
 
 import CDEdit from '../edit/CDEdit';
 

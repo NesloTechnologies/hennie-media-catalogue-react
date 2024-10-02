@@ -8,13 +8,13 @@ import store from './state/media-catalogue.store';
 import CDAddContainer from './cd/container/CDAddContainer';
 import CDEditContainier from './cd/container/CDEditContainer';
 import CDTableContainer from './cd/container/CDTableContainer';
+import DVDAddContainer from './dvd/containers/DVDAddContainer';
+import DVDEditContainer from './dvd/containers/DVDEditContainer';
+import DVDTableContainer from './dvd/containers/DVDTableContainer';
 
 import BookAdd from './book/add/BookAdd';
 import BookEdit from './book/edit/BookEdit';
 import BookTable from './book/table/BookTable';
-import DVDAdd from './dvd/add/DVDAdd';
-import DVDEdit from './dvd/edit/DVDEdit';
-import DVDTable from './dvd/table/DVDTable';
 import ErrorPage from './error/ErrorPage';
 
 import './stylesheet/styles.scss';
@@ -38,15 +38,15 @@ const router = createBrowserRouter([
   },
   {
     path: '/dvd/table',
-    element: <DVDTable />
+    element: <DVDTableContainer />
   },
   {
     path: '/dvd/add',
-    element: <DVDAdd />
+    element: <DVDAddContainer />
   },
   {
     path: '/dvd/edit',
-    element: <DVDEdit />
+    element: <DVDEditContainer />
   },
   {
     path: '/book/table',

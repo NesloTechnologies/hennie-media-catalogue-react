@@ -11,6 +11,7 @@ import '../../stylesheet/form.scss';
 
 const CDAdd = ({ handleCDAdd }) => {
   const navigate = useNavigate();
+
   const [cd, setCD] = useState({
     title: '',
     artist: '',

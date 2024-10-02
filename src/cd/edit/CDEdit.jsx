@@ -28,9 +28,8 @@ const CDEdit = ({ id, handleCDEdit, fetchCD }) => {
     loadCD();
   }, [id, fetchCD]);
 
-  const handleSave = (event) => {
-    event.preventDefault();
-    handleCDEdit(id, cd);
+  const handleSave = () => {
+    handleCDEdit(cd);
     navigate('/');
   };
 
@@ -91,7 +90,7 @@ const CDEdit = ({ id, handleCDEdit, fetchCD }) => {
         </fieldset>
 
         <fieldset>
-          <button onClick={(event) => handleSave(event)}>Save</button>
+          <button onClick={handleSave}>Save</button>
 
           <Link to="/">Cancel</Link>
         </fieldset>

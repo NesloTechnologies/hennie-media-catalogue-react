@@ -1,7 +1,5 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
-
-import { formatDate } from '@neslotech/ui-utils';
+import React, { useMemo, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { ReactComponent as ArrowIcon } from '../../asset/icon/arrow.svg';
 import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
@@ -27,7 +25,7 @@ const DVDRow = ({ dvd, setDVDToView, setDVDToDelete }) => {
       <td>{releaseDate}</td>
       <td>
         <ViewIcon className="icon view-icon" onClick={setDVDToView} />
-        <Link to="/dvd/edit">
+        <Link to="/dvd/edit" state={id}>
           <EditIcon className="icon edit-icon" />
         </Link>
         <DeleteIcon className="icon delete-icon" onClick={setDVDToDelete} />
@@ -39,9 +37,15 @@ const DVDRow = ({ dvd, setDVDToView, setDVDToDelete }) => {
   );
 };
 
-const DeleteDVD = ({ dvd, handleDeleteClose }) => {
+const DeleteDVD = ({ dvd, handleDeleteClose, removeDVD }) => {
   const { title, id, director, leadActor, leadActress, duration, releaseDate } = dvd;
+  const navigate = useNavigate();
   //TODO: Implement actual http delete
+
+  const handleConfirmClick = () => {
+    removeDVD(id);
+    handleDeleteClose();
+  };
 
   return (
     <section className="modal">
@@ -74,44 +78,16 @@ const DeleteDVD = ({ dvd, handleDeleteClose }) => {
         <dd>{releaseDate}</dd>
       </dl>
       <div>
-        <button>Confirm</button>
+        <button onClick={handleConfirmClick}>Confirm</button>
         <button onClick={handleDeleteClose}>Cancel</button>
       </div>
     </section>
   );
 };
 
-const mockDVDs = [
-  {
-    title: 'The Fantastic Mr. Fox',
-    id: 1,
-    director: 'Wes Anderson',
-    duration: 135,
-    leadActor: 'George Clooney',
-    leadActress: 'Meryl Streep',
-    releaseDate: formatDate('10-14-2009', 'fr-CA')
-  },
-  {
-    title: 'The Fantastic Mr. Fox',
-    id: 2,
-    director: 'Wes Anderson',
-    duration: 135,
-    leadActor: 'George Clooney',
-    leadActress: 'Meryl Streep',
-    releaseDate: formatDate('10-14-2009', 'fr-CA')
-  }
-];
-
-const DVDTable = () => {
-  const [dvds, setDVDs] = useState([]);
+const DVDTable = ({ dvds, removeDVD }) => {
   const [dvdToView, setDVDToView] = useState(undefined);
   const [dvdToDelete, setDVDToDelete] = useState(undefined);
-
-  useEffect(() => {
-    //TODO: make actual api call to fetch all dvds
-
-    setDVDs(mockDVDs);
-  }, []);
 
   const handleViewClick = (dvd) => {
     setDVDToView(dvd);
@@ -180,7 +156,13 @@ const DVDTable = () => {
           <tbody>{tableRows}</tbody>
         </table>
         {dvdToView && <DVDView dvd={dvdToView} handleViewClose={handleViewClose} />}
-        {dvdToDelete && <DeleteDVD dvd={dvdToDelete} handleDeleteClose={handleDeleteClose} />}
+        {dvdToDelete && (
+          <DeleteDVD
+            dvd={dvdToDelete}
+            handleDeleteClose={handleDeleteClose}
+            removeDVD={removeDVD}
+          />
+        )}
       </section>
     </main>
   );

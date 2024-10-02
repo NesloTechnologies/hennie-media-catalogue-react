@@ -15,8 +15,8 @@ const CDEditContainier = () => {
     return cds.find((cd) => cd.id === id);
   };
 
-  const handleCDEdit = (id, cd) => {
-    dispatch(updateCDInStore(id, cd));
+  const handleCDEdit = (cd) => {
+    dispatch(updateCDInStore(cd.id, cd));
   };
 
   return <CDEdit id={id} handleCDEdit={handleCDEdit} fetchCD={fetchCD} />;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { formatDate } from '@neslotech/ui-utils';
 
@@ -9,7 +9,8 @@ import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 import '../../stylesheet/form.scss';
 
-const CDAdd = () => {
+const CDAdd = ({ handleCDAdd }) => {
+  const navigate = useNavigate();
   const [cd, setCD] = useState({
     title: '',
     artist: '',
@@ -18,6 +19,11 @@ const CDAdd = () => {
   });
 
   //TODO: add actual API create
+
+  const handleAddClick = () => {
+    handleCDAdd(cd);
+    navigate('/');
+  };
 
   return (
     <section className="form">
@@ -75,7 +81,7 @@ const CDAdd = () => {
           </fieldset>
         </fieldset>
         <fieldset>
-          <button>Add</button>
+          <button onClick={handleAddClick}>Add</button>
 
           <Link to="/">Cancel</Link>
         </fieldset>

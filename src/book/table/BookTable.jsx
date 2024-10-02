@@ -114,13 +114,16 @@ const BookTable = () => {
   };
 
   const bookRows = useMemo(
-    () => 
-      books.map((book) =>( 
-      <BookRow 
-        book={book} 
-        handleViewClick={() => handleViewClick(book)} 
-        handleDeleteClick={() => handleDeleteClick(book)}
-      />)), [books]);
+    () =>
+      books.map((book) => (
+        <BookRow
+          book={book}
+          handleViewClick={() => handleViewClick(book)}
+          handleDeleteClick={() => handleDeleteClick(book)}
+        />
+      )),
+    [books]
+  );
 
   return (
     <main className="table">

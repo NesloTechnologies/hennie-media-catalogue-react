@@ -5,6 +5,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import store from './state/media-catalogue.store';
 
+import BookAddContainer from './book/container/BookAdd.container';
+import BookEditContainer from './book/container/BookEdit.container';
+import BookTableContainer from './book/container/BookTable.container';
 import CDAddContainer from './cd/container/CDAdd.container';
 import CDEditContainier from './cd/container/CDEdit.container';
 import CDTableContainer from './cd/container/CDTable.container';
@@ -12,9 +15,6 @@ import DVDAddContainer from './dvd/container/DVDAdd.container';
 import DVDEditContainer from './dvd/container/DVDEdit.container';
 import DVDTableContainer from './dvd/container/DVDTable.container';
 
-import BookAdd from './book/add/BookAdd';
-import BookEdit from './book/edit/BookEdit';
-import BookTable from './book/table/BookTable';
 import ErrorPage from './error/ErrorPage';
 
 import './stylesheet/styles.scss';
@@ -50,15 +50,15 @@ const router = createBrowserRouter([
   },
   {
     path: '/book/table',
-    element: <BookTable />
+    element: <BookTableContainer />
   },
   {
     path: '/book/add',
-    element: <BookAdd />
+    element: <BookAddContainer />
   },
   {
-    path: '/book/edit',
-    element: <BookEdit />
+    path: '/book/edit/:id',
+    element: <BookEditContainer />
   }
 ]);
 

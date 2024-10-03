@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { formatDate } from '@neslotech/ui-utils';
 
@@ -39,12 +39,10 @@ const CDRow = ({ cd, setCDView, setCDToDelete }) => {
 
 const DeleteCD = ({ cd, handleDeleteClose, removeCD }) => {
   const { title, id, artist, duration, releaseDate } = cd;
-  const navigate = useNavigate();
 
-  const handleDeleteClick = (id) => {
+  const handleConfirmClick = () => {
     removeCD(id);
     handleDeleteClose();
-    navigate('/');
   };
 
   return (
@@ -69,10 +67,10 @@ const DeleteCD = ({ cd, handleDeleteClose, removeCD }) => {
         <dd>{duration}</dd>
 
         <dt>Release&nbsp;Date:</dt>
-        <dd>{releaseDate}</dd>
+        <dd>{formatDate(releaseDate, 'fr-CA')}</dd>
       </dl>
       <div>
-        <button onClick={() => handleDeleteClick(id)}>Confirm</button>
+        <button onClick={handleConfirmClick}>Confirm</button>
         <button onClick={handleDeleteClose}>Cancel</button>
       </div>
     </section>

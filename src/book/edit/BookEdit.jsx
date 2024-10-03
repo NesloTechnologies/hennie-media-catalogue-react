@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { formatDate } from '@neslotech/ui-utils';
 
@@ -7,30 +7,29 @@ import handleChange from '../../utils/handle-Change';
 
 import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
-const BookEdit = (id) => {
+const BookEdit = ({ id, fetchBook, handleBookEdit }) => {
+  const navigate = useNavigate();
+
   const [book, setBook] = useState({
     id: 0,
     title: '',
     author: '',
     duration: '',
-    releaseDate: ''
+    releaseDate: new Date()
   });
 
   useEffect(() => {
-    //TODO: get book from api
-    const mockBook = {
-      id: 1,
-      title: 'The Great Gatsby',
-      author: 'F. Scott Fitzgerald',
-      duration: 120,
-      releaseDate: formatDate('01-01-1999', 'fr-CA')
+    const loadBook = async () => {
+      const book = await fetchBook(id);
+      setBook(book);
     };
 
-    setBook(mockBook);
-  }, []);
+    loadBook();
+  }, [id]);
 
   const handleSave = () => {
-    //TODO: implement put to API
+    handleBookEdit(book);
+    navigate('/book/table');
   };
 
   return (
@@ -83,7 +82,7 @@ const BookEdit = (id) => {
               name="releaseDate"
               id="releaseDate"
               type="date"
-              value={book.releaseDate}
+              value={formatDate(book.releaseDate, 'fr-CA')}
               onChange={(event) => handleChange(event, setBook)}
             />
           </fieldset>

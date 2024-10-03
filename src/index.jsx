@@ -5,12 +5,12 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import store from './state/media-catalogue.store';
 
-import CDAddContainer from './cd/container/CDAddContainer';
-import CDEditContainier from './cd/container/CDEditContainer';
-import CDTableContainer from './cd/container/CDTableContainer';
-import DVDAddContainer from './dvd/containers/DVDAddContainer';
-import DVDEditContainer from './dvd/containers/DVDEditContainer';
-import DVDTableContainer from './dvd/containers/DVDTableContainer';
+import CDAddContainer from './cd/container/CDAdd.container';
+import CDEditContainier from './cd/container/CDEdit.container';
+import CDTableContainer from './cd/container/CDTable.container';
+import DVDAddContainer from './dvd/container/DVDAdd.container';
+import DVDEditContainer from './dvd/container/DVDEdit.container';
+import DVDTableContainer from './dvd/container/DVDTable.container';
 
 import BookAdd from './book/add/BookAdd';
 import BookEdit from './book/edit/BookEdit';
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
     element: <CDAddContainer />
   },
   {
-    path: '/cd/edit',
+    path: '/cd/edit/:id',
     element: <CDEditContainier />
   },
   {
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
     element: <DVDAddContainer />
   },
   {
-    path: '/dvd/edit',
+    path: '/dvd/edit/:id',
     element: <DVDEditContainer />
   },
   {

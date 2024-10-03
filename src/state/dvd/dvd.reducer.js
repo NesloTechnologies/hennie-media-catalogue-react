@@ -4,12 +4,10 @@ const initialState = {
   dvds: []
 };
 
-let nextID = 1;
-
 const dvdReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_DVD:
-      return { ...state, dvds: [...state.dvds, { ...action.payload, id: nextID++ }] };
+      return { ...state, dvds: [...state.dvds, { ...action.payload }] };
 
     case UPDATE_DVD:
       return {

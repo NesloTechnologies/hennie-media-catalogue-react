@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router';
+import { useParams } from 'react-router';
 
 import { updateDVDInStore } from '../../state/dvd/dvd.action';
 
 import DVDEdit from '../edit/DVDEdit';
 
 const DVDEditContainer = () => {
-  const location = useLocation();
-  const id = location.state;
+  const params = useParams();
+  const id = parseInt(params.id);
   const dispatch = useDispatch();
-  const dvds = useSelector((state) => state['dvd-store'].dvds);
+  const dvds = useSelector(({ dvdStore }) => dvdStore.dvds);
 
   const fetchDVD = (id) => {
     return dvds.find((dvd) => dvd.id === id);

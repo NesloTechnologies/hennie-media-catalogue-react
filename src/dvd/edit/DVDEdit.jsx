@@ -23,11 +23,12 @@ const DVDEdit = ({ id, handleDVDEdit, fetchDVD }) => {
   useEffect(() => {
     const loadDVD = async () => {
       const dvd = await fetchDVD(id);
+
       setDVD((prevState) => ({ ...prevState, ...dvd }));
     };
 
     loadDVD();
-  }, [id, fetchDVD]);
+  }, [id]);
 
   const handleSave = () => {
     handleDVDEdit(dvd);

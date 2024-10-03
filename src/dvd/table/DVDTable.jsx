@@ -25,7 +25,7 @@ const DVDRow = ({ dvd, setDVDToView, setDVDToDelete }) => {
       <td>{releaseDate}</td>
       <td>
         <ViewIcon className="icon view-icon" onClick={setDVDToView} />
-        <Link to="/dvd/edit" state={id}>
+        <Link to={`/dvd/edit/${id}`}>
           <EditIcon className="icon edit-icon" />
         </Link>
         <DeleteIcon className="icon delete-icon" onClick={setDVDToDelete} />
@@ -39,7 +39,6 @@ const DVDRow = ({ dvd, setDVDToView, setDVDToDelete }) => {
 
 const DeleteDVD = ({ dvd, handleDeleteClose, removeDVD }) => {
   const { title, id, director, leadActor, leadActress, duration, releaseDate } = dvd;
-  const navigate = useNavigate();
   //TODO: Implement actual http delete
 
   const handleConfirmClick = () => {

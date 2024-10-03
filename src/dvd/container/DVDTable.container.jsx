@@ -5,7 +5,7 @@ import { deleteDVDFromStore } from '../../state/dvd/dvd.action';
 import DVDTable from '../table/DVDTable';
 
 const DVDTableContainer = () => {
-  const dvds = useSelector((state) => state['dvd-store'].dvds);
+  const dvds = useSelector(({ dvdStore }) => dvdStore.dvds);
 
   const dispatch = useDispatch();
 

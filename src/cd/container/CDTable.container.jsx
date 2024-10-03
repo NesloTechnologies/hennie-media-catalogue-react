@@ -5,7 +5,7 @@ import { deleteCDFromStore } from '../../state/cd/cd.action';
 import CDTable from '../table/CDTable';
 
 const CDTableContainer = () => {
-  const cds = useSelector((state) => state['cd-store'].cds);
+  const cds = useSelector(({ cdStore }) => cdStore.cds);
 
   const dispatch = useDispatch();
 

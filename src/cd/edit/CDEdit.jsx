@@ -26,7 +26,7 @@ const CDEdit = ({ id, handleCDEdit, fetchCD }) => {
     };
 
     loadCD();
-  }, [id, fetchCD]);
+  }, [id]);
 
   const handleSave = () => {
     handleCDEdit(cd);

@@ -1,22 +1,22 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 
 import { updateCDInStore } from '../../state/cd/cd.action';
 
 import CDEdit from '../edit/CDEdit';
 
 const CDEditContainier = () => {
-  const location = useLocation();
-  const id = location.state;
-  const cds = useSelector((state) => state['cd-store'].cds);
+  const params = useParams();
+  const id = parseInt(params.id);
+  const cds = useSelector(({ cdStore }) => cdStore.cds);
   const dispatch = useDispatch();
 
   const fetchCD = (id) => {
     return cds.find((cd) => cd.id === id);
   };
 
-  const handleCDEdit = (id, cd) => {
-    dispatch(updateCDInStore(id, cd));
+  const handleCDEdit = (cd) => {
+    dispatch(updateCDInStore(cd.id, cd));
   };
 
   return <CDEdit id={id} handleCDEdit={handleCDEdit} fetchCD={fetchCD} />;

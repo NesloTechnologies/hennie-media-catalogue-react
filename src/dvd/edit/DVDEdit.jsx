@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { formatDate } from '@neslotech/ui-utils';
 
@@ -7,7 +7,9 @@ import handleChange from '../../utils/handle-Change';
 
 import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
-const DVDEdit = (id) => {
+const DVDEdit = ({ id, handleDVDEdit, fetchDVD }) => {
+  const navigate = useNavigate();
+
   const [dvd, setDVD] = useState({
     title: '',
     id: 0,
@@ -15,26 +17,22 @@ const DVDEdit = (id) => {
     duration: 0,
     leadActor: '',
     leadActress: '',
-    releaseDate: ''
+    releaseDate: new Date()
   });
 
   useEffect(() => {
-    //TODO: add actual API call to fetch cd with id
-    const mockDVD = {
-      title: 'The Fantastic Mr. Fox',
-      id: 1,
-      director: 'Wes Anderson',
-      duration: 135,
-      leadActor: 'George Clooney',
-      leadActress: 'Meryl Streep',
-      releaseDate: formatDate('10-14-2009', 'fr-CA')
+    const loadDVD = async () => {
+      const dvd = await fetchDVD(id);
+
+      setDVD((prevState) => ({ ...prevState, ...dvd }));
     };
 
-    setDVD(mockDVD);
+    loadDVD();
   }, [id]);
 
   const handleSave = () => {
-    //TODO: add PUT implementation to API
+    handleDVDEdit(dvd);
+    navigate('/dvd/table');
   };
 
   return (
@@ -110,7 +108,7 @@ const DVDEdit = (id) => {
               name="releaseDate"
               id="releaseDate"
               type="date"
-              value={dvd.releaseDate}
+              value={formatDate(dvd.releaseDate, 'fr-CA')}
               onChange={(event) => handleChange(event, setDVD)}
             />
           </fieldset>

@@ -5,9 +5,9 @@ import cdReducer from './cd/cd.reducer';
 import dvdReducer from './dvd/dvd.reducer';
 
 const rootReducer = combineReducers({
-  'book-store': bookReducer,
-  'dvd-store': dvdReducer,
-  'cd-store': cdReducer
+  bookStore: bookReducer,
+  dvdStore: dvdReducer,
+  cdStore: cdReducer
 });
 
 const store = createStore(rootReducer);

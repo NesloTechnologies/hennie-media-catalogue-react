@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { formatDate } from '@neslotech/ui-utils';
 
@@ -9,7 +10,9 @@ import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 import '../../stylesheet/form.scss';
 
-const DVDAdd = () => {
+const DVDAdd = ({ handleDVDAdd }) => {
+  const navigate = useNavigate();
+
   const [dvd, setDVD] = useState({
     title: '',
     director: '',
@@ -18,6 +21,11 @@ const DVDAdd = () => {
     leadActor: '',
     releaseDate: new Date()
   });
+
+  const handleSaveClick = () => {
+    handleDVDAdd(dvd);
+    navigate('/dvd/table');
+  };
 
   return (
     <section className="form">
@@ -96,7 +104,7 @@ const DVDAdd = () => {
           </fieldset>
         </fieldset>
         <fieldset>
-          <button>Save</button>
+          <button onClick={handleSaveClick}>Save</button>
           <Link to="/dvd/table">Cancel</Link>
         </fieldset>
       </form>

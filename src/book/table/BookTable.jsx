@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { formatDate } from '@neslotech/ui-utils';
@@ -11,23 +11,6 @@ import { ReactComponent as ViewIcon } from '../../asset/icon/view.svg';
 
 import BookView from '../view/BookView';
 
-const mockBooks = [
-  {
-    id: 1,
-    title: 'The Great Gatsby',
-    author: 'F. Scott Fitzgerald',
-    duration: 120,
-    releaseDate: formatDate('01-01-1999', 'fr-CA')
-  },
-  {
-    id: 1,
-    title: 'The Great Gatsby',
-    author: 'F. Scott Fitzgerald',
-    duration: 120,
-    releaseDate: formatDate('01-01-1999', 'fr-CA')
-  }
-];
-
 const BookRow = ({ book, handleDeleteClick, handleViewClick }) => {
   const { id, title, author, duration, releaseDate } = book;
 
@@ -37,10 +20,10 @@ const BookRow = ({ book, handleDeleteClick, handleViewClick }) => {
       <td>{title}</td>
       <td>{author}</td>
       <td>{duration}</td>
-      <td>{releaseDate}</td>
+      <td>{formatDate(releaseDate, 'fr-CA')}</td>
       <td>
         <ViewIcon className="icon view-icon" onClick={handleViewClick} />
-        <Link to="/book/edit">
+        <Link to={`/book/edit/${id}`}>
           <EditIcon className="icon edit-icon" />
         </Link>
         <DeleteIcon className="icon delete-icon" onClick={handleDeleteClick} />
@@ -52,8 +35,14 @@ const BookRow = ({ book, handleDeleteClick, handleViewClick }) => {
   );
 };
 
-const BookDelete = ({ book, handleDeleteClose }) => {
+const BookDelete = ({ book, handleDeleteClose, removeBook }) => {
   const { id, title, author, duration, releaseDate } = book;
+
+  const handleConfirmClick = () => {
+    removeBook(id);
+    handleDeleteClose();
+  };
+
   return (
     <section className="modal">
       <header>
@@ -76,26 +65,19 @@ const BookDelete = ({ book, handleDeleteClose }) => {
         <dd>{duration}</dd>
 
         <dt>Release&nbsp;Date:</dt>
-        <dd>{releaseDate}</dd>
+        <dd>{formatDate(releaseDate, 'fr-CA')}</dd>
       </dl>
       <div>
-        <button>Confirm</button>
+        <button onClick={handleConfirmClick}>Confirm</button>
         <button onClick={handleDeleteClose}>Cancel</button>
       </div>
     </section>
   );
 };
 
-const BookTable = () => {
-  const [books, setBooks] = useState([]);
+const BookTable = ({ books, removeBook }) => {
   const [bookToView, setBookToView] = useState(undefined);
   const [bookToDelete, setBookToDelete] = useState(undefined);
-
-  useEffect(() => {
-    //TODO: initailize books from API
-
-    setBooks(mockBooks);
-  }, []);
 
   const handleViewClick = (book) => {
     setBookToView(book);
@@ -117,6 +99,7 @@ const BookTable = () => {
     () =>
       books.map((book) => (
         <BookRow
+          key={book.id}
           book={book}
           handleViewClick={() => handleViewClick(book)}
           handleDeleteClick={() => handleDeleteClick(book)}
@@ -160,7 +143,13 @@ const BookTable = () => {
           </thead>
           <tbody>{bookRows}</tbody>
         </table>
-        {bookToDelete && <BookDelete book={bookToDelete} handleDeleteClose={handleDeleteClose} />}
+        {bookToDelete && (
+          <BookDelete
+            book={bookToDelete}
+            handleDeleteClose={handleDeleteClose}
+            removeBook={removeBook}
+          />
+        )}
         {bookToView && <BookView book={bookToView} handleViewClose={handleViewClose} />}
       </section>
     </main>

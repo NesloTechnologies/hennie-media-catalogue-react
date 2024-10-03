@@ -4,21 +4,23 @@ const initialState = {
   books: []
 };
 
+let nextId = 1;
+
 const bookReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_BOOK:
-      return { ...state, books: [...state.books, { ...action.payload }] };
+      return { ...state, books: [...state.books, { ...action.payload, id: nextId++ }] };
 
     case UPDATE_BOOK:
       return {
         ...state,
-        book: state.books.map((book) =>
-          book.id === action.payload.id ? action.payload.book : book
+        books: state.books.map((book) =>
+          book.id === action.payload.id ? action.payload.newBook : book
         )
       };
 
     case DELETE_BOOK:
-      return { ...state, books: state.books.filter((book) => book.id !== action.payload.id) };
+      return { ...state, books: state.books.filter((book) => book.id !== action.payload) };
 
     default:
       return state;

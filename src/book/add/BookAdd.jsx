@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { formatDate } from '@neslotech/ui-utils';
 
@@ -9,13 +9,19 @@ import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 
 import '../../stylesheet/form.scss';
 
-const BookAdd = () => {
+const BookAdd = ({ handleBookAdd }) => {
+  const navigate = useNavigate();
   const [book, setBook] = useState({
     title: '',
     author: '',
     duration: '',
-    releaseDate: formatDate('01-01-1999', 'fr-CA')
+    releaseDate: new Date()
   });
+
+  const handleAddClick = () => {
+    handleBookAdd(book);
+    navigate('/book/table');
+  };
 
   return (
     <section className="form">
@@ -73,7 +79,7 @@ const BookAdd = () => {
           </fieldset>
         </fieldset>
         <fieldset>
-          <button>Add</button>
+          <button onClick={handleAddClick}>Add</button>
 
           <Link to="/book/table">Cancel</Link>
         </fieldset>

@@ -21,7 +21,8 @@ const CDAdd = ({ handleCDAdd }) => {
 
   //TODO: add actual API create
 
-  const handleAddClick = () => {
+  const handleAddClick = (event) => {
+    event.preventDefault();
     handleCDAdd(cd);
     navigate('/');
   };

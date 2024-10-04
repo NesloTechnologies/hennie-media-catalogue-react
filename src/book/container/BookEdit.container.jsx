@@ -1,9 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 
-import { updateBookInStore } from '../../state/book/book.action';
-
 import BookEdit from '../edit/BookEdit';
+import { updateBook } from '../../state/book/book.reducer';
 
 const BookEditContainer = () => {
   const params = useParams();
@@ -16,7 +15,7 @@ const BookEditContainer = () => {
   };
 
   const handleBookEdit = (book) => {
-    dispatch(updateBookInStore(id, book));
+    dispatch(updateBook(book));
   };
 
   return <BookEdit id={id} fetchBook={fetchBook} handleBookEdit={handleBookEdit} />;

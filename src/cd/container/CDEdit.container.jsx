@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 
-import { updateCDInStore } from '../../state/cd/cd.action';
+import { updateCD } from '../../state/cd/cd.reducer';
 
 import CDEdit from '../edit/CDEdit';
 
@@ -16,7 +16,7 @@ const CDEditContainier = () => {
   };
 
   const handleCDEdit = (cd) => {
-    dispatch(updateCDInStore(id, cd));
+    dispatch(updateCD(cd));
   };
 
   return <CDEdit id={id} handleCDEdit={handleCDEdit} fetchCD={fetchCD} />;

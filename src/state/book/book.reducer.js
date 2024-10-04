@@ -1,30 +1,20 @@
-import { ADD_BOOK, DELETE_BOOK, UPDATE_BOOK } from './book.action';
+import { createSlice } from '@reduxjs/toolkit';
+import { addItem, deleteItem, updateItem } from '../../utils/state-Util';
 
 const initialState = {
   books: []
 };
 
-let nextId = 1;
-
-const bookReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_BOOK:
-      return { ...state, books: [...state.books, { ...action.payload, id: nextId++ }] };
-
-    case UPDATE_BOOK:
-      return {
-        ...state,
-        books: state.books.map((book) =>
-          book.id === action.payload.id ? action.payload.newBook : book
-        )
-      };
-
-    case DELETE_BOOK:
-      return { ...state, books: state.books.filter((book) => book.id !== action.payload) };
-
-    default:
-      return state;
+const bookSlice = createSlice({
+  name: 'bookSlice',
+  initialState,
+  reducers: {
+    addBook: (state, action) => addItem(state.books, action.payload),
+    updateBook: (state, action) => updateItem(state.books, action.payload), 
+    deleteBook: (state, action) => deleteItem(state.books, action.payload)
   }
-};
+})
 
-export default bookReducer;
+export const {addBook, deleteBook, updateBook} = bookSlice.actions;
+
+export default bookSlice.reducer;

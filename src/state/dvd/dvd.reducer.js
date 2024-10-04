@@ -1,26 +1,20 @@
-import { ADD_DVD, DELETE_DVD, UPDATE_DVD } from './dvd.action';
+import { createSlice } from '@reduxjs/toolkit';
+import { addItem, deleteItem, updateItem } from '../../utils/state-Util';
 
 const initialState = {
   dvds: []
 };
 
-const dvdReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_DVD:
-      return { ...state, dvds: [...state.dvds, { ...action.payload }] };
-
-    case UPDATE_DVD:
-      return {
-        ...state,
-        dvds: state.dvds.map((dvd) => (dvd.id === action.payload.id ? action.payload.newDVD : dvd))
-      };
-
-    case DELETE_DVD:
-      return { ...state, dvds: state.dvds.filter((dvd) => dvd.id !== action.payload) };
-
-    default:
-      return state;
+const dvdSlice = createSlice({
+  name: 'dvdSlice',
+  initialState,
+  reducers: {
+    addDVD: (state, action) => addItem(state.dvds, action.payload),
+    updateDVD: (state, action) => updateItem(state.dvds, action.payload),
+    deleteDVD: (state, action) => deleteItem(state.dvds, action.payload)
   }
-};
+});
 
-export default dvdReducer;
+export const { addDVD, updateDVD, deleteDVD } = dvdSlice.actions;
+
+export default dvdSlice.reducer;

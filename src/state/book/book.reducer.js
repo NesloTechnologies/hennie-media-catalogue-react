@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { addItem, deleteItem, updateItem } from '../../utils/state-util';
+import { addItem, deleteItem, updateItem } from '../../util/state-util';
 
 const initialState = {
   books: []

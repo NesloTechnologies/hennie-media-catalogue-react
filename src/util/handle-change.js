@@ -1,6 +1,6 @@
 import { formatDate } from '@neslotech/ui-utils';
 
-const handleChange = (event, setter) => {
+const   handleChange = (event, setter) => {
   const key = event.target.name;
   const value = event.target.value;
 

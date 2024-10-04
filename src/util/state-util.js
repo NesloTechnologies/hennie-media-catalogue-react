@@ -11,7 +11,7 @@ const addItem = (state, newItem) => {
 const updateItem = (state, newItem) => {
   const index = findItemIndex(state, newItem.id);
 
-  if (index > -1) {
+  if (index !== -1) {
     state[index] = newItem;
   }
 };
@@ -19,7 +19,7 @@ const updateItem = (state, newItem) => {
 const deleteItem = (state, id) => {
   const index = findItemIndex(state, id);
 
-  if (index > -1) {
+  if (index !== -1) {
     state.splice(index, 1);
   }
 };

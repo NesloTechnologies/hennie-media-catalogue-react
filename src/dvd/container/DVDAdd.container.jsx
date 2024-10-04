@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import { addDVDToStore } from '../../state/dvd/dvd.action';
+import { addDVD } from '../../state/dvd/dvd.reducer';
 
 import DVDAdd from '../add/DVDAdd';
 
@@ -8,7 +8,7 @@ const DVDAddContainer = () => {
   const dispatch = useDispatch();
 
   const handleDVDAdd = (dvd) => {
-    dispatch(addDVDToStore(dvd));
+    dispatch(addDVD(dvd));
   };
 
   return <DVDAdd handleDVDAdd={handleDVDAdd} />;

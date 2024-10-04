@@ -1,26 +1,21 @@
-import { ADD_CD, DELETE_CD, UPDATE_CD } from './cd.action';
+import { createSlice } from '@reduxjs/toolkit';
+
+import { addItem, deleteItem, updateItem } from '../../util/state-util';
 
 const initialState = {
   cds: []
 };
 
-const cdReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_CD:
-      return { ...state, cds: [...state.cds, { ...action.payload }] };
-
-    case UPDATE_CD:
-      return {
-        ...state,
-        cds: state.cds.map((cd) => (cd.id === action.payload.id ? action.payload.newCD : cd))
-      };
-
-    case DELETE_CD:
-      return { ...state, cds: state.cds.filter((cd) => cd.id !== action.payload) };
-
-    default:
-      return state;
+const cdSlice = createSlice({
+  name: 'cdSlice',
+  initialState,
+  reducers: {
+    addCD: (state, action) => addItem(state.cds, action.payload),
+    updateCD: (state, action) => updateItem(state.cds, action.payload),
+    deleteCD: (state, action) => deleteItem(state.cds, action.payload)
   }
-};
+});
 
-export default cdReducer;
+export const { addCD, updateCD, deleteCD } = cdSlice.actions;
+
+export default cdSlice.reducer;

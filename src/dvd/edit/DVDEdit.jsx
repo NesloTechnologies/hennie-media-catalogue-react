@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { formatDate } from '@neslotech/ui-utils';
 
-import handleChange from '../../utils/handle-Change';
+import handleChange from '../../util/handle-change';
 
 import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 

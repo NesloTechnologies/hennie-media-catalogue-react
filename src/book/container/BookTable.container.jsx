@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteBookFromStore } from '../../state/book/book.action';
+import { deleteBook } from '../../state/book/book.reducer';
 
 import BookTable from '../table/BookTable';
 
@@ -9,7 +9,7 @@ const BookTableContainer = () => {
   const dispatch = useDispatch();
 
   const removeBook = (id) => {
-    dispatch(deleteBookFromStore(id));
+    dispatch(deleteBook(id));
   };
 
   return <BookTable books={books} removeBook={removeBook} />;

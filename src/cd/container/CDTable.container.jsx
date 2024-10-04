@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteCDFromStore } from '../../state/cd/cd.action';
+import { deleteCD } from '../../state/cd/cd.reducer';
 
 import CDTable from '../table/CDTable';
 
@@ -10,7 +10,7 @@ const CDTableContainer = () => {
   const dispatch = useDispatch();
 
   const removeCD = (id) => {
-    dispatch(deleteCDFromStore(id));
+    dispatch(deleteCD(id));
   };
 
   return <CDTable cds={cds} removeCD={removeCD} />;

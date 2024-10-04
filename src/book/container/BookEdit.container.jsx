@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 
-import BookEdit from '../edit/BookEdit';
 import { updateBook } from '../../state/book/book.reducer';
+
+import BookEdit from '../edit/BookEdit';
 
 const BookEditContainer = () => {
   const params = useParams();

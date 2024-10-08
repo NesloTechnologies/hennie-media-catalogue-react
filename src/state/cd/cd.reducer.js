@@ -8,27 +8,25 @@ const initialState = {
   error: null
 };
 
+let nextID = 1;
+
 const cdSlice = createSlice({
   name: 'cdSlice',
   initialState,
   reducers: {
-    addCDRequest: (state) => {
-      state.loading = true;
-      state.error = null;
-    }, 
-    addCDSuccess: (state, action) => {
-      state.loading = false;
-      state.cds.push(action.payload);
+    setCD: (state, action) => {},
+    addCD: (state, action) => {
+      state.cds.push({ ...action.payload, id: nextID++ });
+      setLoading(false);
     },
-    addCDFailure: (state, action) => {
-      state.loading = false;
-      state.error = action.payload
+    setLoading: (state, action) => {
+      state.loading = action.payload;
     },
     updateCD: (state, action) => updateItem(state.cds, action.payload),
     deleteCD: (state, action) => deleteItem(state.cds, action.payload)
   }
 });
 
-export const { addCDRequest, addCDSuccess, addCDFailure, updateCD, deleteCD } = cdSlice.actions;
+export const { setCD, addCD, setLoading, updateCD, deleteCD } = cdSlice.actions;
 
 export default cdSlice.reducer;

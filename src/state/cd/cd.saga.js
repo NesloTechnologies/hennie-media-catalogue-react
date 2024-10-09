@@ -27,6 +27,10 @@ function* addCDSaga(action) {
   }
 }
 
+function* watchForAddCD() {
+  yield takeLatest(setCD.type, addCDSaga);
+}
+
 function* updateCDSaga(action) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
@@ -41,10 +45,6 @@ function* updateCDSaga(action) {
   } catch (error) {
     console.warn(error);
   }
-}
-
-function* watchForAddCD() {
-  yield takeLatest(setCD.type, addCDSaga);
 }
 
 function* watchForUpdateCD() {

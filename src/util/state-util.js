@@ -2,10 +2,12 @@ const findItemIndex = (array, id) => {
   return array.findIndex((item) => item.id === id);
 };
 
-const setItems = (state, items) => {
-  if (state.toString() !== items.toString()) {
-    for (let i = 0; i < items.length; i++) {
-      state.push(items[i]);
+const setItems = (currentState, incomingState) => {
+  const longestArray = currentState > incomingState? currentState : incomingState;
+
+  if (currentState.toString() !== incomingState.toString()) {
+    for (let i = 0; i < longestArray.length; i++) {
+      currentState.push(incomingState[i]);
     }
   }
 };

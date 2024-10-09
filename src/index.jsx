@@ -22,7 +22,7 @@ import './stylesheet/styles.scss';
 const root = createRoot(document.getElementById('root'));
 
 //TODO: Implement login and register screen to set cookie instead of doing this
-document.cookie = `auth_token=`;
+document.cookie = `auth_token=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb2huIiwiaWF0IjoxNzI4NDY2MDI4LCJleHAiOjE3Mjg1NzQwMjh9.Zh9MTHEhLQIe-4dEBSS4xsWU1VQWobmQa3uSJcT2Kvp9nLj_VuFWLK2c2ztrpENJ0gtaj6qOnCi8xVbWxGs5xg`;
 
 const router = createBrowserRouter([
   {

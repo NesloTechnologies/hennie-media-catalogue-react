@@ -6,8 +6,8 @@ import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 import {
   addCD,
   addCDTrigger,
-  setCDs,
-  setCDsTrigger,
+  loadCDs,
+  loadCDsTrigger,
   updateCD,
   updateCDTrigger
 } from './cd.reducer';
@@ -23,14 +23,14 @@ function* setCDsSaga() {
     const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.GET, HEADERS);
 
     const response = yield call(axios, endpoint, axiosOptions);
-    yield put(setCDs(response.data));
+    yield put(loadCDs(response.data));
   } catch (error) {
     console.warn(error);
   }
 }
 
 function* watchForSetCDs() {
-  yield takeLatest(setCDsTrigger.type, setCDsSaga);
+  yield takeLatest(loadCDsTrigger.type, setCDsSaga);
 }
 
 function* addCDSaga(action) {

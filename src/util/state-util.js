@@ -2,7 +2,7 @@ const findItemIndex = (array, id) => {
   return array.findIndex((item) => item.id === id);
 };
 
-const setItems = (currentState, incomingState) => {
+const loadItems = (currentState, incomingState) => {
   const longestArray = currentState > incomingState? currentState : incomingState;
 
   if (currentState.toString() !== incomingState.toString()) {
@@ -32,4 +32,4 @@ const deleteItem = (state, id) => {
   }
 };
 
-export { setItems, addItem, updateItem, deleteItem };
+export { loadItems, addItem, updateItem, deleteItem };

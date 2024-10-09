@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { call, put, all, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 
-import { addCD, setCD, setLoading } from './cd.reducer';
+import { addCD, editCD, setCD, updateCD } from './cd.reducer';
 
 const API_HOME = 'http://localhost:8080/api/cds';
 
@@ -19,7 +19,7 @@ function* addCDSaga(action) {
       HEADERS,
       action.payload
     );
-    yield put(setLoading(true));
+
     const response = yield call(axios, endpoint, axiosOptions);
     yield put(addCD(response.data));
   } catch (error) {
@@ -31,8 +31,28 @@ function* watchForAddCD() {
   yield takeLatest(setCD.type, addCDSaga);
 }
 
-export function* cdSaga() {
-  yield all([watchForAddCD()]);
+function* updateCDSaga(action) {
+  try {
+    const { endpoint, axiosOptions } = new ApiRequest(
+      `${API_HOME}/${action.payload.id}`,
+      HttpVerb.PUT,
+      HEADERS,
+      action.payload
+    );
+
+    const response = yield call(axios, endpoint, axiosOptions);
+    yield put(updateCD(response.data));
+  } catch (error) {
+    console.warn(error);
+  }
 }
 
-export default watchForAddCD;
+function* watchForUpdateCD() {
+  yield takeLatest(editCD.type, updateCDSaga);
+}
+
+function* cdSaga() {
+  yield all([watchForAddCD(), watchForUpdateCD()]);
+}
+
+export default cdSaga;

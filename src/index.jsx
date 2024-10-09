@@ -23,6 +23,7 @@ const root = createRoot(document.getElementById('root'));
 
 //TODO: Implement login and register screen to set cookie instead of doing this
 document.cookie = `auth_token=`;
+
 const router = createBrowserRouter([
   {
     path: '/',

@@ -3,7 +3,9 @@ const findItemIndex = (array, id) => {
 };
 
 const loadItems = (currentState, incomingState) => {
-  currentState = incomingState;
+  for (let i = 0; i < incomingState.length; i++) {
+    currentState[i] = incomingState[i];
+  }
 };
 
 const addItem = (state, newItem) => {

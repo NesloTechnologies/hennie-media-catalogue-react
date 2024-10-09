@@ -12,13 +12,11 @@ import {
   updateCDTrigger
 } from './cd.reducer';
 
+import HEADERS from '../headers';
+
 const API_HOME = 'http://localhost:8080/api/cds';
 
-const HEADERS = {
-  Authorization: `Bearer ${document.cookie.substring(document.cookie.indexOf('auth_token=') + 11)}`
-};
-
-function* setCDsSaga() {
+function* loadCDsSaga() {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.GET, HEADERS);
 
@@ -29,8 +27,8 @@ function* setCDsSaga() {
   }
 }
 
-function* watchForSetCDs() {
-  yield takeLatest(loadCDsTrigger.type, setCDsSaga);
+function* watchForLoadCDs() {
+  yield takeLatest(loadCDsTrigger.type, loadCDsSaga);
 }
 
 function* addCDSaga(action) {
@@ -74,7 +72,7 @@ function* watchForUpdateCD() {
 }
 
 function* cdSaga() {
-  yield all([watchForAddCD(), watchForUpdateCD(), watchForSetCDs()]);
+  yield all([watchForAddCD(), watchForUpdateCD(), watchForLoadCDs()]);
 }
 
 export default cdSaga;

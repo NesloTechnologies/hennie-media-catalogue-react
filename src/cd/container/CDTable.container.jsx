@@ -1,13 +1,18 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteCD } from '../../state/cd/cd.reducer';
+import { deleteCD, loadCDsTrigger } from '../../state/cd/cd.reducer';
 
 import CDTable from '../table/CDTable';
 
 const CDTableContainer = () => {
-  const cds = useSelector(({ cdStore }) => cdStore.cds);
-
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadCDsTrigger());
+  }, []);
+
+  const cds = useSelector(({ cdStore }) => cdStore.cds);
 
   const removeCD = (id) => {
     dispatch(deleteCD(id));

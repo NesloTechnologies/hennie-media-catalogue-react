@@ -2,6 +2,10 @@ const findItemIndex = (array, id) => {
   return array.findIndex((item) => item.id === id);
 };
 
+const loadItems = (currentState, incomingState) => {
+  currentState = incomingState;
+};
+
 const addItem = (state, newItem) => {
   state.push({ ...newItem });
 };
@@ -21,4 +25,5 @@ const deleteItem = (state, id) => {
     state.splice(index, 1);
   }
 };
-export { findItemIndex, addItem, updateItem, deleteItem };
+
+export { loadItems, addItem, updateItem, deleteItem };

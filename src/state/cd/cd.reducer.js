@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { addItem, deleteItem, updateItem } from '../../util/state-util';
+import { addItem, deleteItem, loadItems, updateItem } from '../../util/state-util';
 
 const initialState = {
   cds: [],
@@ -16,7 +16,16 @@ const cdSlice = createSlice({
       state.loading = action.payload;
     },
 
-    setCD: () => {
+    loadCDsTrigger: () => {
+      setLoading(true);
+    },
+    loadCDs: (state, action) => {
+      loadItems(state.cds, action.payload);
+
+      setLoading(false);
+    },
+
+    addCDTrigger: () => {
       setLoading(true);
     },
     addCD: (state, action) => {
@@ -24,7 +33,7 @@ const cdSlice = createSlice({
       setLoading(false);
     },
 
-    editCD: () => {
+    updateCDTrigger: () => {
       setLoading(true);
     },
     updateCD: (state, action) => {
@@ -36,6 +45,15 @@ const cdSlice = createSlice({
   }
 });
 
-export const { setCD, addCD, setLoading, editCD, updateCD, deleteCD } = cdSlice.actions;
+export const {
+  loadCDsTrigger,
+  loadCDs,
+  addCDTrigger,
+  addCD,
+  setLoading,
+  updateCDTrigger,
+  updateCD,
+  deleteCD
+} = cdSlice.actions;
 
 export default cdSlice.reducer;

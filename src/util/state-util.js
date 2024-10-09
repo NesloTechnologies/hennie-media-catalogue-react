@@ -2,6 +2,14 @@ const findItemIndex = (array, id) => {
   return array.findIndex((item) => item.id === id);
 };
 
+const setItems = (state, items) => {
+  if (state.toString() !== items.toString()) {
+    for (let i = 0; i < items.length; i++) {
+      state.push(items[i]);
+    }
+  }
+};
+
 const addItem = (state, newItem) => {
   state.push({ ...newItem });
 };
@@ -21,4 +29,5 @@ const deleteItem = (state, id) => {
     state.splice(index, 1);
   }
 };
-export { findItemIndex, addItem, updateItem, deleteItem };
+
+export { setItems, addItem, updateItem, deleteItem };

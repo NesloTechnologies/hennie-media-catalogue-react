@@ -3,13 +3,7 @@ const findItemIndex = (array, id) => {
 };
 
 const loadItems = (currentState, incomingState) => {
-  const longestArray = currentState > incomingState ? currentState : incomingState;
-
-  if (currentState.toString() !== incomingState.toString()) {
-    for (let i = 0; i < longestArray.length; i++) {
-      currentState.push(incomingState[i]);
-    }
-  }
+  currentState = incomingState;
 };
 
 const addItem = (state, newItem) => {

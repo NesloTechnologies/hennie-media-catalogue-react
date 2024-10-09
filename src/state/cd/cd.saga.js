@@ -5,11 +5,11 @@ import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 
 import {
   addCD,
-  addCDDispatch,
+  addCDTrigger,
   setCDs,
-  setCDsDispatch,
+  setCDsTrigger,
   updateCD,
-  updateCDDispatch
+  updateCDTrigger
 } from './cd.reducer';
 
 const API_HOME = 'http://localhost:8080/api/cds';
@@ -30,7 +30,7 @@ function* setCDsSaga() {
 }
 
 function* watchForSetCDs() {
-  yield takeLatest(setCDsDispatch.type, setCDsSaga);
+  yield takeLatest(setCDsTrigger.type, setCDsSaga);
 }
 
 function* addCDSaga(action) {
@@ -50,7 +50,7 @@ function* addCDSaga(action) {
 }
 
 function* watchForAddCD() {
-  yield takeLatest(addCDDispatch.type, addCDSaga);
+  yield takeLatest(addCDTrigger.type, addCDSaga);
 }
 
 function* updateCDSaga(action) {
@@ -70,7 +70,7 @@ function* updateCDSaga(action) {
 }
 
 function* watchForUpdateCD() {
-  yield takeLatest(updateCDDispatch.type, updateCDSaga);
+  yield takeLatest(updateCDTrigger.type, updateCDSaga);
 }
 
 function* cdSaga() {

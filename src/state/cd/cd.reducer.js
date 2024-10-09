@@ -16,7 +16,7 @@ const cdSlice = createSlice({
       state.loading = action.payload;
     },
 
-    setCDsDispatch: () => {
+    setCDsTrigger: () => {
       setLoading(true);
     },
     setCDs: (state, action) => {
@@ -25,7 +25,7 @@ const cdSlice = createSlice({
       setLoading(false);
     },
 
-    addCDDispatch: () => {
+    addCDTrigger: () => {
       setLoading(true);
     },
     addCD: (state, action) => {
@@ -33,7 +33,7 @@ const cdSlice = createSlice({
       setLoading(false);
     },
 
-    updateCDDispatch: () => {
+    updateCDTrigger: () => {
       setLoading(true);
     },
     updateCD: (state, action) => {
@@ -46,12 +46,12 @@ const cdSlice = createSlice({
 });
 
 export const {
-  setCDsDispatch,
+  setCDsTrigger,
   setCDs,
-  addCDDispatch,
+  addCDTrigger,
   addCD,
   setLoading,
-  updateCDDispatch,
+  updateCDTrigger,
   updateCD,
   deleteCD
 } = cdSlice.actions;

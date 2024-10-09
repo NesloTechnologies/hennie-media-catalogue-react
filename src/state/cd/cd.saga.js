@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { call, put, all, takeLatest } from 'redux-saga/effects';
 
 import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 
@@ -29,6 +29,10 @@ function* addCDSaga(action) {
 
 function* watchForAddCD() {
   yield takeLatest(setCD.type, addCDSaga);
+}
+
+export function* cdSaga() {
+  yield all([watchForAddCD()]);
 }
 
 export default watchForAddCD;

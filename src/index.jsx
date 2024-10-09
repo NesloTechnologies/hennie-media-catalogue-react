@@ -21,7 +21,8 @@ import './stylesheet/styles.scss';
 
 const root = createRoot(document.getElementById('root'));
 
-//TODO: add DVDTable and BookTable routes once they have been created
+//TODO: Implement login and register screen to set cookie instead of doing this
+document.cookie = `auth_token=`;
 const router = createBrowserRouter([
   {
     path: '/',

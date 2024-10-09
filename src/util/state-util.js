@@ -1,11 +1,9 @@
-let nextID = 1;
-
 const findItemIndex = (array, id) => {
   return array.findIndex((item) => item.id === id);
 };
 
 const addItem = (state, newItem) => {
-  state.push({ ...newItem, id: nextID });
+  state.push({ ...newItem });
 };
 
 const updateItem = (state, newItem) => {

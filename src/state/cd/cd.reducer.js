@@ -4,8 +4,7 @@ import { addItem, deleteItem, loadItems, updateItem } from '../../util/state-uti
 
 const initialState = {
   cds: [],
-  loading: false,
-  error: null
+  loading: false
 };
 
 const cdSlice = createSlice({
@@ -21,7 +20,6 @@ const cdSlice = createSlice({
     },
     loadCDs: (state, action) => {
       loadItems(state.cds, action.payload);
-
       setLoading(false);
     },
 

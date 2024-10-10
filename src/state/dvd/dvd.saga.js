@@ -9,13 +9,13 @@ import HEADERS from '../headers';
 
 const API_HOME = 'http://localhost:8080/api/dvds';
 
-function* addDVDSaga(action) {
+function* addDVDSaga({payload}) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
       API_HOME,
       HttpVerb.POST,
       HEADERS,
-      action.payload
+      payload
     );
 
     const response = yield call(axios, endpoint, axiosOptions);
@@ -29,13 +29,13 @@ function* watchForAddDVD() {
   yield takeLatest(addDVDTrigger.type, addDVDSaga);
 }
 
-function* updateDVDSaga(action) {
+function* updateDVDSaga({payload}) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_HOME}/${action.payload.id}`,
+      `${API_HOME}/${payload.id}`,
       HttpVerb.PUT,
       HEADERS,
-      action.payload
+      payload
     );
 
     const response = yield call(axios, endpoint, axiosOptions);

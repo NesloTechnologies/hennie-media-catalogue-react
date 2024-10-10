@@ -33,13 +33,13 @@ function* watchForLoadCDs() {
   yield takeLatest(loadCDsTrigger.type, loadCDsSaga);
 }
 
-function* addCDSaga(action) {
+function* addCDSaga({payload}) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
       API_HOME,
       HttpVerb.POST,
       HEADERS,
-      action.payload
+      payload
     );
 
     const response = yield call(axios, endpoint, axiosOptions);
@@ -53,13 +53,13 @@ function* watchForAddCD() {
   yield takeLatest(addCDTrigger.type, addCDSaga);
 }
 
-function* updateCDSaga(action) {
+function* updateCDSaga({payload}) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_HOME}/${action.payload.id}`,
+      `${API_HOME}/${payload.id}`,
       HttpVerb.PUT,
       HEADERS,
-      action.payload
+      payload
     );
 
     const response = yield call(axios, endpoint, axiosOptions);
@@ -73,16 +73,16 @@ function* watchForUpdateCD() {
   yield takeLatest(updateCDTrigger.type, updateCDSaga);
 }
 
-function* deleteCDSaga(action) {
+function* deleteCDSaga({payload}) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_HOME}/${action.payload}`,
+      `${API_HOME}/${payload}`,
       HttpVerb.DELETE,
       HEADERS
     );
 
     yield call(axios, endpoint, axiosOptions);
-    yield put(deleteCD(action.payload));
+    yield put(deleteCD(payload));
   } catch (error) {
     console.warn(error);
   }

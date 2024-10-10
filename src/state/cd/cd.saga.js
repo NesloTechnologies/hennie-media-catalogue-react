@@ -33,14 +33,9 @@ function* watchForLoadCDs() {
   yield takeLatest(loadCDsTrigger.type, loadCDsSaga);
 }
 
-function* addCDSaga({payload}) {
+function* addCDSaga({ payload }) {
   try {
-    const { endpoint, axiosOptions } = new ApiRequest(
-      API_HOME,
-      HttpVerb.POST,
-      HEADERS,
-      payload
-    );
+    const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.POST, HEADERS, payload);
 
     const response = yield call(axios, endpoint, axiosOptions);
     yield put(addCD(response.data));
@@ -53,7 +48,7 @@ function* watchForAddCD() {
   yield takeLatest(addCDTrigger.type, addCDSaga);
 }
 
-function* updateCDSaga({payload}) {
+function* updateCDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
       `${API_HOME}/${payload.id}`,
@@ -73,7 +68,7 @@ function* watchForUpdateCD() {
   yield takeLatest(updateCDTrigger.type, updateCDSaga);
 }
 
-function* deleteCDSaga({payload}) {
+function* deleteCDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
       `${API_HOME}/${payload}`,

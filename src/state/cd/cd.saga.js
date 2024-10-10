@@ -4,6 +4,8 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 
 import {
+  setCDTrigger, 
+  setCD,
   addCD,
   addCDTrigger,
   deleteCD,
@@ -17,6 +19,18 @@ import {
 import HEADERS from '../headers';
 
 const API_HOME = 'http://localhost:8080/api/cds';
+
+function* setCDSaga(action) {
+  try {
+    yield put(setCD(action.payload))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+function* watchForSetCD() {
+  yield takeLatest(setCDTrigger.type, setCDSaga)
+}
 
 function* loadCDsSaga() {
   try {
@@ -93,7 +107,7 @@ function* watchForDeleteCD() {
 }
 
 function* cdSaga() {
-  yield all([watchForAddCD(), watchForUpdateCD(), watchForLoadCDs(), watchForDeleteCD()]);
+  yield all([watchForAddCD(), watchForUpdateCD(), watchForLoadCDs(), watchForDeleteCD(), watchForSetCD()]);
 }
 
 export default cdSaga;

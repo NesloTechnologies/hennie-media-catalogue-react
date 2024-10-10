@@ -4,6 +4,7 @@ import { addItem, deleteItem, loadItems, updateItem } from '../../util/state-uti
 
 const initialState = {
   cds: [],
+  cd: undefined,
   loading: false
 };
 
@@ -13,6 +14,14 @@ const cdSlice = createSlice({
   reducers: {
     setLoading: (state, action) => {
       state.loading = action.payload;
+    },
+
+    setCDTrigger: () => {
+      setLoading(true)
+    },
+    setCD: (state, action) => {
+      state.cd = action.payload;
+      setLoading(false)
     },
 
     loadCDsTrigger: () => {
@@ -50,6 +59,8 @@ const cdSlice = createSlice({
 });
 
 export const {
+  setCDTrigger,
+  setCD,
   loadCDsTrigger,
   loadCDs,
   addCDTrigger,

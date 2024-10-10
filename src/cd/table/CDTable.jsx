@@ -12,8 +12,9 @@ import { ReactComponent as ViewIcon } from '../../asset/icon/view.svg';
 import CDView from '../view/CDView';
 
 import '../../stylesheet/table.scss';
+import { useSelector } from 'react-redux';
 
-const CDRow = ({ cd, setCDView, setCDToDelete }) => {
+const CDRow = ({ cd, setCDToDelete, setCDInStore }) => {
   const { id, title, artist, duration, releaseDate } = cd;
 
   return (
@@ -24,7 +25,7 @@ const CDRow = ({ cd, setCDView, setCDToDelete }) => {
       <td>{duration}</td>
       <td>{formatDate(releaseDate, 'fr-CA')}</td>
       <td>
-        <ViewIcon className="icon view-icon" onClick={setCDView} />
+        <ViewIcon className="icon view-icon" onClick={setCDInStore} />
         <Link to={`cd/edit/${id}`}>
           <EditIcon className="icon edit-icon" />
         </Link>
@@ -77,17 +78,13 @@ const DeleteCD = ({ cd, handleDeleteClose, removeCD }) => {
   );
 };
 
-const CDTable = ({ cds, removeCD }) => {
-  const [cdToView, setCDToView] = useState(undefined);
+const CDTable = ({ cds, removeCD, setCDInStore }) => {
+  const cd = useSelector(({cdStore}) => cdStore.cd);
   const [cdToDelete, setCDToDelete] = useState(undefined);
 
-  const handleViewClick = (cd) => {
-    setCDToView(cd);
-  };
-
   const handleViewClose = () => {
-    setCDToView(undefined);
-  };
+    setCDInStore(undefined)
+  }
 
   const handleDeleteClick = (cd) => {
     setCDToDelete(cd);
@@ -103,7 +100,7 @@ const CDTable = ({ cds, removeCD }) => {
         <CDRow
           key={cd.id}
           cd={cd}
-          setCDView={() => handleViewClick(cd)}
+          setCDInStore={() => setCDInStore(cd)}
           setCDToDelete={() => handleDeleteClick(cd)}
         ></CDRow>
       )),
@@ -148,7 +145,7 @@ const CDTable = ({ cds, removeCD }) => {
         {cdToDelete && (
           <DeleteCD cd={cdToDelete} handleDeleteClose={handleDeleteClose} removeCD={removeCD} />
         )}
-        {cdToView && <CDView cd={cdToView} handleViewClose={handleViewClose} />}
+        {cd && <CDView cd={cd} handleViewClose={handleViewClose} />}
       </section>
     </main>
   );

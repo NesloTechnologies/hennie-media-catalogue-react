@@ -17,10 +17,10 @@ const dvdSlice = createSlice({
       state.loading = action.payload;
     },
 
-    fetchDVDsTrigger: (state) => {
+    setDVDsStateTrigger: (state) => {
       setLoading(true);
     },
-    fetchDVDs: (state, action) => {
+    setDVDsState: (state, action) => {
       loadItems(state.dvds, action.payload);
       setLoading(false);
     },
@@ -45,8 +45,8 @@ const dvdSlice = createSlice({
 });
 
 export const {
-  fetchDVDsTrigger,
-  fetchDVDs,
+  setDVDsStateTrigger,
+  setDVDsState,
   addDVDTrigger,
   addDVD,
   updateDVDTrigger,

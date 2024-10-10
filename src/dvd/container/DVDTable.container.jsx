@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteDVD, fetchDVDsTrigger } from '../../state/dvd/dvd.reducer';
+import { deleteDVD, setDVDsStateTrigger,  } from '../../state/dvd/dvd.reducer';
 
 import DVDTable from '../table/DVDTable';
 
@@ -11,7 +11,7 @@ const DVDTableContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchDVDsTrigger());
+    dispatch(setDVDsStateTrigger());
   }, []);
 
   const removeDVD = (id) => {

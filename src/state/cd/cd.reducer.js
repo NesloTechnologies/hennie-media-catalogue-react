@@ -15,10 +15,10 @@ const cdSlice = createSlice({
       state.loading = action.payload;
     },
 
-    loadCDsTrigger: () => {
+    setCDsStateTrigger: () => {
       setLoading(true);
     },
-    loadCDs: (state, action) => {
+    setCDsState: (state, action) => {
       loadItems(state.cds, action.payload);
       setLoading(false);
     },
@@ -50,8 +50,8 @@ const cdSlice = createSlice({
 });
 
 export const {
-  loadCDsTrigger,
-  loadCDs,
+  setCDsStateTrigger,
+  setCDsState,
   addCDTrigger,
   addCD,
   setLoading,

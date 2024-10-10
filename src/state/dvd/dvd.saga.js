@@ -6,8 +6,8 @@ import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 import {
   addDVD,
   addDVDTrigger,
-  fetchDVDs,
-  fetchDVDsTrigger,
+  setDVDsState,
+  setDVDsStateTrigger,
   updateDVD,
   updateDVDTrigger
 } from './dvd.reducer';
@@ -16,19 +16,19 @@ import HEADERS from '../headers';
 
 const API_HOME = 'http://localhost:8080/api/dvds';
 
-function* fetchDVDsSaga() {
+function* setDVDsStateSaga() {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.GET, HEADERS);
 
     const response = yield call(axios, endpoint, axiosOptions);
-    yield put(fetchDVDs(response.data));
+    yield put(setDVDsState(response.data));
   } catch (error) {
     console.warn(error);
   }
 }
 
-function* watchForFetchCDs() {
-  yield takeLatest(fetchDVDsTrigger.type, fetchDVDsSaga);
+function* watchForSetDVDsState() {
+  yield takeLatest(setDVDsStateTrigger.type, setDVDsStateSaga);
 }
 
 function* addDVDSaga({ payload }) {
@@ -67,7 +67,7 @@ function* watchForUpdateDVD() {
 }
 
 function* dvdSaga() {
-  yield all([watchForAddDVD(), watchForUpdateDVD(), watchForFetchCDs()]);
+  yield all([watchForAddDVD(), watchForUpdateDVD(), watchForSetDVDsState()]);
 }
 
 export default dvdSaga;

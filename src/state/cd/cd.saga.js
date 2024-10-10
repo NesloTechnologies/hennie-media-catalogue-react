@@ -80,7 +80,7 @@ function* deleteCDSaga(action) {
       HttpVerb.DELETE,
       HEADERS
     );
-    
+
     yield call(axios, endpoint, axiosOptions);
     yield put(deleteCD(action.payload));
   } catch (error) {

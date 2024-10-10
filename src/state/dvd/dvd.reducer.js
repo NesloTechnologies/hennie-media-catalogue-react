@@ -25,11 +25,18 @@ const dvdSlice = createSlice({
       setLoading(false);
     },
 
-    updateDVD: (state, action) => updateItem(state.dvds, action.payload),
+    updateDVDTrigger: (state) => {
+      state.loading = true;
+    },
+    updateDVD: (state, action) => {
+      updateItem(state.dvds, action.payload);
+      state.loading = false;
+    },
+
     deleteDVD: (state, action) => deleteItem(state.dvds, action.payload)
   }
 });
 
-export const { addDVDTrigger, addDVD, updateDVD, deleteDVD } = dvdSlice.actions;
+export const { addDVDTrigger, addDVD, updateDVDTrigger, updateDVD, deleteDVD } = dvdSlice.actions;
 
 export default dvdSlice.reducer;

@@ -6,6 +6,8 @@ import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 import {
   addCD,
   addCDTrigger,
+  deleteCD,
+  deleteCDTrigger,
   loadCDs,
   loadCDsTrigger,
   updateCD,
@@ -71,8 +73,27 @@ function* watchForUpdateCD() {
   yield takeLatest(updateCDTrigger.type, updateCDSaga);
 }
 
+function* deleteCDSaga(action) {
+  try {
+    const { endpoint, axiosOptions } = new ApiRequest(
+      `${API_HOME}/${action.payload}`,
+      HttpVerb.DELETE,
+      HEADERS
+    );
+    
+    yield call(axios, endpoint, axiosOptions);
+    yield put(deleteCD(action.payload));
+  } catch (error) {
+    console.warn(error);
+  }
+}
+
+function* watchForDeleteCD() {
+  yield takeLatest(deleteCDTrigger, deleteCDSaga);
+}
+
 function* cdSaga() {
-  yield all([watchForAddCD(), watchForUpdateCD(), watchForLoadCDs()]);
+  yield all([watchForAddCD(), watchForUpdateCD(), watchForLoadCDs(), watchForDeleteCD()]);
 }
 
 export default cdSaga;

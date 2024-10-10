@@ -39,7 +39,13 @@ const cdSlice = createSlice({
       setLoading(false);
     },
 
-    deleteCD: (state, action) => deleteItem(state.cds, action.payload)
+    deleteCDTrigger: () => {
+      setLoading(true);
+    },
+    deleteCD: (state, action) => {
+      deleteItem(state.cds, action.payload);
+      setLoading(false);
+    }
   }
 });
 
@@ -51,6 +57,7 @@ export const {
   setLoading,
   updateCDTrigger,
   updateCD,
+  deleteCDTrigger,
   deleteCD
 } = cdSlice.actions;
 

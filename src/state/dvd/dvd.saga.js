@@ -3,11 +3,33 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 
-import { addDVD, addDVDTrigger, updateDVD, updateDVDTrigger } from './dvd.reducer';
+import {
+  addDVD,
+  addDVDTrigger,
+  fetchDVDs,
+  fetchDVDsTrigger,
+  updateDVD,
+  updateDVDTrigger
+} from './dvd.reducer';
 
 import HEADERS from '../headers';
 
 const API_HOME = 'http://localhost:8080/api/dvds';
+
+function* fetchDVDsSaga() {
+  try {
+    const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.GET, HEADERS);
+
+    const response = yield call(axios, endpoint, axiosOptions);
+    yield put(fetchDVDs(response.data));
+  } catch (error) {
+    console.warn(error);
+  }
+}
+
+function* watchForFetchCDs() {
+  yield takeLatest(fetchDVDsTrigger.type, fetchDVDsSaga);
+}
 
 function* addDVDSaga({ payload }) {
   try {
@@ -45,7 +67,7 @@ function* watchForUpdateDVD() {
 }
 
 function* dvdSaga() {
-  yield all([watchForAddDVD(), watchForUpdateDVD()]);
+  yield all([watchForAddDVD(), watchForUpdateDVD(), watchForFetchCDs()]);
 }
 
 export default dvdSaga;

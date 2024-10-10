@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 
-import { updateDVD } from '../../state/dvd/dvd.reducer';
+import { updateDVDTrigger } from '../../state/dvd/dvd.reducer';
 
 import DVDEdit from '../edit/DVDEdit';
 
@@ -16,7 +16,7 @@ const DVDEditContainer = () => {
   };
 
   const handleDVDEdit = (dvd) => {
-    dispatch(updateDVD(dvd));
+    dispatch(updateDVDTrigger(dvd));
   };
 
   return <DVDEdit id={id} handleDVDEdit={handleDVDEdit} fetchDVD={fetchDVD} />;

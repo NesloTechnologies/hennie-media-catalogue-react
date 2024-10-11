@@ -3,28 +3,50 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 
-import { addDVD, addDVDTrigger, updateDVD, updateDVDTrigger } from './dvd.reducer';
+import {
+  createDVD,
+  addDVD,
+  setDVDs,
+  loadDVDs,
+  editDVD,
+  updateDVD,
+} from './dvd.reducer';
 
 import HEADERS from '../headers';
 
 const API_HOME = 'http://localhost:8080/api/dvds';
+
+function* setDVDsStateSaga() {
+  try {
+    const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.GET, HEADERS);
+
+    const response = yield call(axios, endpoint, axiosOptions);
+    yield put(setDVDs(response.data));
+  } catch (error) {
+    console.warn(error);
+  }
+}
+
+function* watchForLoadDVDs() {
+  yield takeLatest(loadDVDs.type, setDVDsStateSaga);
+}
 
 function* addDVDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.POST, HEADERS, payload);
 
     const response = yield call(axios, endpoint, axiosOptions);
-    yield put(addDVD(response.data));
+    yield put(createDVD(response.data));
   } catch (error) {
     console.warn(error);
   }
 }
 
 function* watchForAddDVD() {
-  yield takeLatest(addDVDTrigger.type, addDVDSaga);
+  yield takeLatest(addDVD.type, addDVDSaga);
 }
 
-function* updateDVDSaga({ payload }) {
+function* editDVDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
       `${API_HOME}/${payload.id}`,
@@ -40,12 +62,12 @@ function* updateDVDSaga({ payload }) {
   }
 }
 
-function* watchForUpdateDVD() {
-  yield takeLatest(updateDVDTrigger.type, updateDVDSaga);
+function* watchForEditDVD() {
+  yield takeLatest(editDVD.type, editDVDSaga);
 }
 
 function* dvdSaga() {
-  yield all([watchForAddDVD(), watchForUpdateDVD()]);
+  yield all([watchForAddDVD(), watchForEditDVD(), watchForLoadDVDs()]);
 }
 
 export default dvdSaga;

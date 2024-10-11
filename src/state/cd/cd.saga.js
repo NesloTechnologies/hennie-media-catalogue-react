@@ -8,8 +8,8 @@ import {
   addCDTrigger,
   deleteCD,
   deleteCDTrigger,
-  loadCDs,
-  loadCDsTrigger,
+  setCDsState,
+  setCDsStateTrigger,
   updateCD,
   updateCDTrigger
 } from './cd.reducer';
@@ -18,19 +18,19 @@ import HEADERS from '../headers';
 
 const API_HOME = 'http://localhost:8080/api/cds';
 
-function* loadCDsSaga() {
+function* setCDsStateSaga() {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.GET, HEADERS);
 
     const response = yield call(axios, endpoint, axiosOptions);
-    yield put(loadCDs(response.data));
+    yield put(setCDsState(response.data));
   } catch (error) {
     console.warn(error);
   }
 }
 
-function* watchForLoadCDs() {
-  yield takeLatest(loadCDsTrigger.type, loadCDsSaga);
+function* watchForsetCDsState() {
+  yield takeLatest(setCDsStateTrigger.type, setCDsStateSaga);
 }
 
 function* addCDSaga({ payload }) {
@@ -88,7 +88,7 @@ function* watchForDeleteCD() {
 }
 
 function* cdSaga() {
-  yield all([watchForAddCD(), watchForUpdateCD(), watchForLoadCDs(), watchForDeleteCD()]);
+  yield all([watchForAddCD(), watchForUpdateCD(), watchForsetCDsState(), watchForDeleteCD()]);
 }
 
 export default cdSaga;

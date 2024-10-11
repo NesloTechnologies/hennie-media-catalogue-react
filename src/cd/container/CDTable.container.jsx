@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteCDTrigger, loadCDsTrigger } from '../../state/cd/cd.reducer';
+import { deleteCDTrigger, setCDsStateTrigger } from '../../state/cd/cd.reducer';
 
 import CDTable from '../table/CDTable';
 
@@ -9,7 +9,7 @@ const CDTableContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadCDsTrigger());
+    dispatch(setCDsStateTrigger());
   }, []);
 
   const cds = useSelector(({ cdStore }) => cdStore.cds);

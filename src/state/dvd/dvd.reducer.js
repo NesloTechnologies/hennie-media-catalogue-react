@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { addItem, deleteItem, updateItem } from '../../util/state-util';
+import { addItem, deleteItem, loadItems, updateItem } from '../../util/state-util';
 
 import { setLoading } from '../cd/cd.reducer';
 
@@ -17,16 +17,24 @@ const dvdSlice = createSlice({
       state.loading = action.payload;
     },
 
-    addDVDTrigger: () => {
+    loadDVDs: () => {
       setLoading(true);
     },
-    addDVD: (state, action) => {
+    setDVDs: (state, action) => {
+      loadItems(state.dvds, action.payload);
+      setLoading(false);
+    },
+
+    addDVD: () => {
+      setLoading(true);
+    },
+    createDVD: (state, action) => {
       addItem(state.dvds, action.payload);
       setLoading(false);
     },
 
-    updateDVDTrigger: (state) => {
-      state.loading = true;
+    editDVD: () => {
+      setLoading(true);
     },
     updateDVD: (state, action) => {
       updateItem(state.dvds, action.payload);
@@ -37,6 +45,14 @@ const dvdSlice = createSlice({
   }
 });
 
-export const { addDVDTrigger, addDVD, updateDVDTrigger, updateDVD, deleteDVD } = dvdSlice.actions;
+export const {
+  loadDVDs,
+  setDVDs,
+  addDVD,
+  createDVD,
+  editDVD,
+  updateDVD,
+  deleteDVD
+} = dvdSlice.actions;
 
 export default dvdSlice.reducer;

@@ -37,12 +37,12 @@ const DVDRow = ({ dvd, setDVDToView, setDVDToDelete }) => {
   );
 };
 
-const DeleteDVD = ({ dvd, handleDeleteClose, removeDVD }) => {
+const DeleteDVD = ({ dvd, handleDeleteClose, deleteDVD }) => {
   const { title, id, director, leadActor, leadActress, duration, releaseDate } = dvd;
   //TODO: Implement actual http delete
 
   const handleConfirmClick = () => {
-    removeDVD(id);
+    deleteDVD(id);
     handleDeleteClose();
   };
 
@@ -84,7 +84,7 @@ const DeleteDVD = ({ dvd, handleDeleteClose, removeDVD }) => {
   );
 };
 
-const DVDTable = ({ dvds, removeDVD }) => {
+const DVDTable = ({ dvds, deleteDVD }) => {
   const [dvdToView, setDVDToView] = useState(undefined);
   const [dvdToDelete, setDVDToDelete] = useState(undefined);
 
@@ -159,7 +159,7 @@ const DVDTable = ({ dvds, removeDVD }) => {
           <DeleteDVD
             dvd={dvdToDelete}
             handleDeleteClose={handleDeleteClose}
-            removeDVD={removeDVD}
+            deleteDVD={deleteDVD}
           />
         )}
       </section>

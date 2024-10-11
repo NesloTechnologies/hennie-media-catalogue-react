@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import { addCDTrigger } from '../../state/cd/cd.reducer';
+import { addCD } from '../../state/cd/cd.reducer';
 
 import CDAdd from '../add/CDAdd';
 
@@ -8,7 +8,7 @@ const CDAddContainer = () => {
   const dispatch = useDispatch();
 
   const handleCDAdd = (cd) => {
-    dispatch(addCDTrigger(cd));
+    dispatch(addCD(cd));
   };
 
   return <CDAdd handleCDAdd={handleCDAdd} />;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 
 import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 
@@ -10,6 +10,8 @@ import {
   loadDVDs,
   editDVD,
   updateDVD,
+  deleteDVD,
+  removeDVD
 } from './dvd.reducer';
 
 import HEADERS from '../headers';
@@ -66,8 +68,27 @@ function* watchForEditDVD() {
   yield takeLatest(editDVD.type, editDVDSaga);
 }
 
+function* removeDVDSaga(action) {
+  try {
+    const {endpoint, axiosOptions} = new ApiRequest(
+      `${API_HOME}/${action.payload}`,
+      HttpVerb.DELETE,
+      HEADERS
+    )
+
+    yield call(axios, endpoint, axiosOptions);
+    yield put(deleteDVD(action.payload))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+function* watchForRemoveDVD() {
+  yield takeEvery(removeDVD.type, removeDVDSaga)
+}
+
 function* dvdSaga() {
-  yield all([watchForAddDVD(), watchForEditDVD(), watchForLoadDVDs()]);
+  yield all([watchForAddDVD(), watchForEditDVD(), watchForLoadDVDs(), watchForRemoveDVD()]);
 }
 
 export default dvdSaga;

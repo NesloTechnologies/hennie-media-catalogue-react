@@ -40,8 +40,13 @@ const dvdSlice = createSlice({
       updateItem(state.dvds, action.payload);
       state.loading = false;
     },
-
-    deleteDVD: (state, action) => deleteItem(state.dvds, action.payload)
+    removeDVD: () => {
+      setLoading(true)
+    },
+    deleteDVD: (state, action) => {
+      deleteItem(state.dvds, action.payload);
+      setLoading(false)
+    }
   }
 });
 
@@ -52,6 +57,7 @@ export const {
   createDVD,
   editDVD,
   updateDVD,
+  removeDVD,
   deleteDVD
 } = dvdSlice.actions;
 

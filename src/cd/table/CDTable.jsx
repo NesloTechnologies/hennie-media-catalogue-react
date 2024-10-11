@@ -37,11 +37,11 @@ const CDRow = ({ cd, setCDView, setCDToDelete }) => {
   );
 };
 
-const DeleteCD = ({ cd, handleDeleteClose, removeCD }) => {
+const DeleteCD = ({ cd, handleDeleteClose, deleteCD }) => {
   const { title, id, artist, duration, releaseDate } = cd;
 
   const handleConfirmClick = () => {
-    removeCD(id);
+    deleteCD(id);
     handleDeleteClose();
   };
 
@@ -77,7 +77,7 @@ const DeleteCD = ({ cd, handleDeleteClose, removeCD }) => {
   );
 };
 
-const CDTable = ({ cds, removeCD }) => {
+const CDTable = ({ cds, deleteCD }) => {
   const [cdToView, setCDToView] = useState(undefined);
   const [cdToDelete, setCDToDelete] = useState(undefined);
 
@@ -146,7 +146,7 @@ const CDTable = ({ cds, removeCD }) => {
           <tbody>{tableRows}</tbody>
         </table>
         {cdToDelete && (
-          <DeleteCD cd={cdToDelete} handleDeleteClose={handleDeleteClose} removeCD={removeCD} />
+          <DeleteCD cd={cdToDelete} handleDeleteClose={handleDeleteClose} deleteCD={deleteCD} />
         )}
         {cdToView && <CDView cd={cdToView} handleViewClose={handleViewClose} />}
       </section>

@@ -4,12 +4,12 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 
 import {
+  createDVD,
   addDVD,
-  addDVDTrigger,
-  setDVDsState,
-  setDVDsStateTrigger,
+  setDVDs,
+  loadDVDs,
+  editDVD,
   updateDVD,
-  updateDVDTrigger
 } from './dvd.reducer';
 
 import HEADERS from '../headers';
@@ -21,14 +21,14 @@ function* setDVDsStateSaga() {
     const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.GET, HEADERS);
 
     const response = yield call(axios, endpoint, axiosOptions);
-    yield put(setDVDsState(response.data));
+    yield put(setDVDs(response.data));
   } catch (error) {
     console.warn(error);
   }
 }
 
-function* watchForSetDVDsState() {
-  yield takeLatest(setDVDsStateTrigger.type, setDVDsStateSaga);
+function* watchForSetDVDs() {
+  yield takeLatest(loadDVDs.type, setDVDsStateSaga);
 }
 
 function* addDVDSaga({ payload }) {
@@ -36,17 +36,17 @@ function* addDVDSaga({ payload }) {
     const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.POST, HEADERS, payload);
 
     const response = yield call(axios, endpoint, axiosOptions);
-    yield put(addDVD(response.data));
+    yield put(createDVD(response.data));
   } catch (error) {
     console.warn(error);
   }
 }
 
 function* watchForAddDVD() {
-  yield takeLatest(addDVDTrigger.type, addDVDSaga);
+  yield takeLatest(addDVD.type, addDVDSaga);
 }
 
-function* updateDVDSaga({ payload }) {
+function* editDVDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
       `${API_HOME}/${payload.id}`,
@@ -62,12 +62,12 @@ function* updateDVDSaga({ payload }) {
   }
 }
 
-function* watchForUpdateDVD() {
-  yield takeLatest(updateDVDTrigger.type, updateDVDSaga);
+function* watchForEditDVD() {
+  yield takeLatest(editDVD.type, editDVDSaga);
 }
 
 function* dvdSaga() {
-  yield all([watchForAddDVD(), watchForUpdateDVD(), watchForSetDVDsState()]);
+  yield all([watchForAddDVD(), watchForEditDVD(), watchForSetDVDs()]);
 }
 
 export default dvdSaga;

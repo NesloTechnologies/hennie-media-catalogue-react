@@ -17,23 +17,24 @@ const dvdSlice = createSlice({
       state.loading = action.payload;
     },
 
-    setDVDsStateTrigger: (state) => {
+    loadDVDs: () => {
       setLoading(true);
     },
-    setDVDsState: (state, action) => {
+    setDVDs: (state, action) => {
       loadItems(state.dvds, action.payload);
       setLoading(false);
     },
-    addDVDTrigger: () => {
+
+    addDVD: () => {
       setLoading(true);
     },
-    addDVD: (state, action) => {
+    createDVD: (state, action) => {
       addItem(state.dvds, action.payload);
       setLoading(false);
     },
 
-    updateDVDTrigger: (state) => {
-      state.loading = true;
+    editDVD: () => {
+      setLoading(true);
     },
     updateDVD: (state, action) => {
       updateItem(state.dvds, action.payload);
@@ -45,11 +46,11 @@ const dvdSlice = createSlice({
 });
 
 export const {
-  setDVDsStateTrigger,
-  setDVDsState,
-  addDVDTrigger,
+  loadDVDs,
+  setDVDs,
   addDVD,
-  updateDVDTrigger,
+  createDVD,
+  editDVD,
   updateDVD,
   deleteDVD
 } = dvdSlice.actions;

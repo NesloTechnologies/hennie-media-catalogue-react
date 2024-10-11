@@ -27,7 +27,7 @@ function* setDVDsStateSaga() {
   }
 }
 
-function* watchForSetDVDs() {
+function* watchForLoadDVDs() {
   yield takeLatest(loadDVDs.type, setDVDsStateSaga);
 }
 
@@ -67,7 +67,7 @@ function* watchForEditDVD() {
 }
 
 function* dvdSaga() {
-  yield all([watchForAddDVD(), watchForEditDVD(), watchForSetDVDs()]);
+  yield all([watchForAddDVD(), watchForEditDVD(), watchForLoadDVDs()]);
 }
 
 export default dvdSaga;

@@ -1,21 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { addItem, deleteItem, updateItem } from '../../util/state-util';
+import { setLoading } from '../cd/cd.reducer';
 
 const initialState = {
-  books: []
+  books: [],
+  loading: false
 };
 
 const bookSlice = createSlice({
   name: 'bookSlice',
   initialState,
   reducers: {
-    addBook: (state, action) => addItem(state.books, action.payload),
-    updateBook: (state, action) => updateItem(state.books, action.payload),
-    deleteBook: (state, action) => deleteItem(state.books, action.payload)
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
+
+    loadBooks: () => {
+      setLoading(true);
+    },
+    setBooks: (state, action) => {
+      state.books = action.payload;
+      setLoading(false);
+    },
+
+    addBook: () => {
+      setLoading(true);
+    },
+
+    editBook: () => {
+      setLoading(true);
+    },
+
+    removeBook: () => {
+      setLoading(true);
+    }
   }
 });
 
-export const { addBook, deleteBook, updateBook } = bookSlice.actions;
+export const { loadBooks, setBooks, addBook, editBook, removeBook } = bookSlice.actions;
 
 export default bookSlice.reducer;

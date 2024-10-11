@@ -1,18 +1,24 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteBook } from '../../state/book/book.reducer';
+import { loadBooks, removeBook } from '../../state/book/book.reducer';
 
 import BookTable from '../table/BookTable';
 
 const BookTableContainer = () => {
   const books = useSelector(({ bookStore }) => bookStore.books);
+
   const dispatch = useDispatch();
 
-  const removeBook = (id) => {
-    dispatch(deleteBook(id));
+  useEffect(() => {
+    dispatch(loadBooks());
+  }, []);
+
+  const deleteBook = (id) => {
+    dispatch(removeBook(id));
   };
 
-  return <BookTable books={books} removeBook={removeBook} />;
+  return <BookTable books={books} deleteBook={deleteBook} />;
 };
 
 export default BookTableContainer;

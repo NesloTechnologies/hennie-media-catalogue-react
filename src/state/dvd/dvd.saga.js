@@ -68,16 +68,16 @@ function* watchForEditDVD() {
   yield takeLatest(editDVD.type, editDVDSaga);
 }
 
-function* removeDVDSaga(action) {
+function* removeDVDSaga({payload}) {
   try {
     const {endpoint, axiosOptions} = new ApiRequest(
-      `${API_HOME}/${action.payload}`,
+      `${API_HOME}/${payload}`,
       HttpVerb.DELETE,
       HEADERS
     )
 
     yield call(axios, endpoint, axiosOptions);
-    yield put(deleteDVD(action.payload))
+    yield put(deleteDVD(payload))
   } catch (error) {
     console.log(error)
   }

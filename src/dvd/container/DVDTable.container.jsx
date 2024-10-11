@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { removeDVD, loadDVDs } from '../../state/dvd/dvd.reducer';
+import { loadDVDs, removeDVD } from '../../state/dvd/dvd.reducer';
 
 import DVDTable from '../table/DVDTable';
 

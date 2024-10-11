@@ -3,16 +3,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 
-import {
-  addCD,
-  createCD,
-  deleteCD,
-  removeCD,
-  loadCDs,
-  setCDs,
-  updateCD,
-  editCD
-} from './cd.reducer';
+import { addCD, editCD, loadCDs, removeCD, setCDs } from './cd.reducer';
 
 import HEADERS from '../headers';
 
@@ -37,8 +28,8 @@ function* addCDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.POST, HEADERS, payload);
 
-    const response = yield call(axios, endpoint, axiosOptions);
-    yield put(createCD(response.data));
+    yield call(axios, endpoint, axiosOptions);
+    yield put(loadCDs());
   } catch (error) {
     console.warn(error);
   }
@@ -57,8 +48,8 @@ function* updateCDSaga({ payload }) {
       payload
     );
 
-    const response = yield call(axios, endpoint, axiosOptions);
-    yield put(updateCD(response.data));
+    yield call(axios, endpoint, axiosOptions);
+    yield put(loadCDs());
   } catch (error) {
     console.warn(error);
   }
@@ -77,7 +68,7 @@ function* deleteCDSaga({ payload }) {
     );
 
     yield call(axios, endpoint, axiosOptions);
-    yield put(deleteCD(payload));
+    yield put(loadCDs());
   } catch (error) {
     console.warn(error);
   }

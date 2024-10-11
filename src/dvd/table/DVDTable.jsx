@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { ReactComponent as ArrowIcon } from '../../asset/icon/arrow.svg';
 import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
@@ -39,7 +39,6 @@ const DVDRow = ({ dvd, setDVDToView, setDVDToDelete }) => {
 
 const DeleteDVD = ({ dvd, handleDeleteClose, deleteDVD }) => {
   const { title, id, director, leadActor, leadActress, duration, releaseDate } = dvd;
-  //TODO: Implement actual http delete
 
   const handleConfirmClick = () => {
     deleteDVD(id);

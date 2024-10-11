@@ -3,16 +3,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 
-import {
-  addCD,
-  addCDTrigger,
-  deleteCD,
-  deleteCDTrigger,
-  setCDsState,
-  setCDsStateTrigger,
-  updateCD,
-  updateCDTrigger
-} from './cd.reducer';
+import { addCD, editCD, loadCDs, removeCD, setCDs } from './cd.reducer';
 
 import HEADERS from '../headers';
 
@@ -23,29 +14,29 @@ function* setCDsStateSaga() {
     const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.GET, HEADERS);
 
     const response = yield call(axios, endpoint, axiosOptions);
-    yield put(setCDsState(response.data));
+    yield put(setCDs(response.data));
   } catch (error) {
     console.warn(error);
   }
 }
 
-function* watchForsetCDsState() {
-  yield takeLatest(setCDsStateTrigger.type, setCDsStateSaga);
+function* watchForLoadCDs() {
+  yield takeLatest(loadCDs.type, setCDsStateSaga);
 }
 
 function* addCDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.POST, HEADERS, payload);
 
-    const response = yield call(axios, endpoint, axiosOptions);
-    yield put(addCD(response.data));
+    yield call(axios, endpoint, axiosOptions);
+    yield put(loadCDs());
   } catch (error) {
     console.warn(error);
   }
 }
 
 function* watchForAddCD() {
-  yield takeLatest(addCDTrigger.type, addCDSaga);
+  yield takeLatest(addCD.type, addCDSaga);
 }
 
 function* updateCDSaga({ payload }) {
@@ -57,15 +48,15 @@ function* updateCDSaga({ payload }) {
       payload
     );
 
-    const response = yield call(axios, endpoint, axiosOptions);
-    yield put(updateCD(response.data));
+    yield call(axios, endpoint, axiosOptions);
+    yield put(loadCDs());
   } catch (error) {
     console.warn(error);
   }
 }
 
-function* watchForUpdateCD() {
-  yield takeLatest(updateCDTrigger.type, updateCDSaga);
+function* watchForEditCD() {
+  yield takeLatest(editCD.type, updateCDSaga);
 }
 
 function* deleteCDSaga({ payload }) {
@@ -77,18 +68,18 @@ function* deleteCDSaga({ payload }) {
     );
 
     yield call(axios, endpoint, axiosOptions);
-    yield put(deleteCD(payload));
+    yield put(loadCDs());
   } catch (error) {
     console.warn(error);
   }
 }
 
-function* watchForDeleteCD() {
-  yield takeLatest(deleteCDTrigger, deleteCDSaga);
+function* watchForRemoveCD() {
+  yield takeLatest(removeCD, deleteCDSaga);
 }
 
 function* cdSaga() {
-  yield all([watchForAddCD(), watchForUpdateCD(), watchForsetCDsState(), watchForDeleteCD()]);
+  yield all([watchForAddCD(), watchForEditCD(), watchForLoadCDs(), watchForRemoveCD()]);
 }
 
 export default cdSaga;

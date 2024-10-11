@@ -1,11 +1,6 @@
+// Will remmove when starting iwth book implementations
 const findItemIndex = (array, id) => {
   return array.findIndex((item) => item.id === id);
-};
-
-const loadItems = (currentState, incomingState) => {
-  for (let i = 0; i < incomingState.length; i++) {
-    currentState[i] = incomingState[i];
-  }
 };
 
 const addItem = (state, newItem) => {
@@ -28,4 +23,4 @@ const deleteItem = (state, id) => {
   }
 };
 
-export { loadItems, addItem, updateItem, deleteItem };
+export { addItem, updateItem, deleteItem };

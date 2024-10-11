@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteDVD, loadDVDs } from '../../state/dvd/dvd.reducer';
+import { loadDVDs, removeDVD } from '../../state/dvd/dvd.reducer';
 
 import DVDTable from '../table/DVDTable';
 
@@ -14,11 +14,11 @@ const DVDTableContainer = () => {
     dispatch(loadDVDs());
   }, []);
 
-  const removeDVD = (id) => {
-    dispatch(deleteDVD(id));
+  const deleteDVD = (id) => {
+    dispatch(removeDVD(id));
   };
 
-  return <DVDTable dvds={dvds} removeDVD={removeDVD} />;
+  return <DVDTable dvds={dvds} deleteDVD={deleteDVD} />;
 };
 
 export default DVDTableContainer;

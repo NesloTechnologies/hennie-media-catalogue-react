@@ -3,7 +3,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 
-import { addBook, loadBooks, setBooks } from './book.reducer';
+import { addBook, editBook, loadBooks, setBooks } from './book.reducer';
 
 import HEADERS from '../headers';
 
@@ -39,8 +39,29 @@ function* watchForAddBook() {
   yield takeLatest(addBook.type, addBookSaga);
 }
 
+function* editBookSaga({ payload }) {
+  try {
+    const { endpoint, axiosOptions } = new ApiRequest(
+      `${API_HOME}/${payload.id}`,
+      HttpVerb.PUT,
+      HEADERS,
+      payload
+    );
+
+    yield call(axios, endpoint, axiosOptions);
+    yield put(loadBooks());
+  } catch (error) {
+    console.warn(error);
+  }
+}
+
+function* watchForEditBook() {
+  yield takeLatest(editBook.type, editBookSaga)
+}
+
+
 function* bookSaga() {
-  yield all([watchForLoadBooks(), watchForAddBook()]);
+  yield all([watchForLoadBooks(), watchForAddBook(), watchForEditBook()]);
 }
 
 export default bookSaga;

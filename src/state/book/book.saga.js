@@ -9,7 +9,7 @@ import HEADERS from '../headers';
 
 const API_HOME = 'http://localhost:8080/api/books';
 
-function* setBooksSaga() {
+function* loadBooksSaga() {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.GET, HEADERS);
 
@@ -21,7 +21,7 @@ function* setBooksSaga() {
 }
 
 function* watchForLoadBooks() {
-  yield takeLatest(loadBooks.type, setBooksSaga);
+  yield takeLatest(loadBooks.type, loadBooksSaga);
 }
 
 function* addBookSaga({ payload }) {

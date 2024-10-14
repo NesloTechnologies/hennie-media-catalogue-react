@@ -9,7 +9,7 @@ import HEADERS from '../headers';
 
 const API_HOME = 'http://localhost:8080/api/cds';
 
-function* setCDsStateSaga() {
+function* loadCDsSaga() {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.GET, HEADERS);
 
@@ -21,7 +21,7 @@ function* setCDsStateSaga() {
 }
 
 function* watchForLoadCDs() {
-  yield takeLatest(loadCDs.type, setCDsStateSaga);
+  yield takeLatest(loadCDs.type, loadCDsSaga);
 }
 
 function* addCDSaga({ payload }) {

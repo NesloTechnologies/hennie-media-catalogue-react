@@ -19,11 +19,9 @@ const CDAdd = ({ handleCDAdd }) => {
     releaseDate: new Date()
   });
 
-  //TODO: add actual API create
-
   const handleAddClick = () => {
     handleCDAdd(cd);
-    navigate('/');
+    navigate('/cd/table');
   };
 
   return (

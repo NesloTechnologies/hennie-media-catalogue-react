@@ -15,18 +15,24 @@ import DVDAddContainer from './dvd/container/DVDAdd.container';
 import DVDEditContainer from './dvd/container/DVDEdit.container';
 import DVDTableContainer from './dvd/container/DVDTable.container';
 
+import Login from './auth/login/Login';
 import ErrorPage from './error/ErrorPage';
 
 import './stylesheet/styles.scss';
 
 const root = createRoot(document.getElementById('root'));
 
-//TODO: Implement login and register screen to set cookie instead of doing this
+// TODO: implement context and store token in there
 document.cookie = `auth_token=`;
 
 const router = createBrowserRouter([
   {
     path: '/',
+    element: <Login />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: '/cd/table',
     element: <CDTableContainer />,
     errorElement: <ErrorPage />
   },

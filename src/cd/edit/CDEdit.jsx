@@ -30,7 +30,7 @@ const CDEdit = ({ id, handleCDEdit, fetchCD }) => {
 
   const handleSave = () => {
     handleCDEdit(cd);
-    navigate('/');
+    navigate('/cd/table');
   };
 
   return (

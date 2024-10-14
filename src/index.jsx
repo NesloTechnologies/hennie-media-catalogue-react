@@ -16,6 +16,7 @@ import DVDEditContainer from './dvd/container/DVDEdit.container';
 import DVDTableContainer from './dvd/container/DVDTable.container';
 
 import Login from './auth/login/Login';
+import Register from './auth/register/Register';
 import ErrorPage from './error/ErrorPage';
 
 import './stylesheet/styles.scss';
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Login />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: '/register',
+    element: <Register />,
     errorElement: <ErrorPage />
   },
   {

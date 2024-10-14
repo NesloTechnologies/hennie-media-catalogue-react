@@ -36,7 +36,7 @@ const BookRow = ({ book, handleDeleteClick, handleViewClick }) => {
 };
 
 const BookDelete = ({ book, handleDeleteClose, deleteBook }) => {
-  const { id, title, author, duration, releaseDate } = book;
+  const { id, title, author, duration, publishedDate } = book;
 
   const handleConfirmClick = () => {
     deleteBook(id);
@@ -65,7 +65,7 @@ const BookDelete = ({ book, handleDeleteClose, deleteBook }) => {
         <dd>{duration}</dd>
 
         <dt>Release&nbsp;Date:</dt>
-        <dd>{formatDate(releaseDate, 'fr-CA')}</dd>
+        <dd>{formatDate(publishedDate, 'fr-CA')}</dd>
       </dl>
       <div>
         <button onClick={handleConfirmClick}>Confirm</button>

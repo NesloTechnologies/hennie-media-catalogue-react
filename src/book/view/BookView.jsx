@@ -5,7 +5,7 @@ import { ReactComponent as CloseIcon } from '../../asset/icon/close.svg';
 import '../../stylesheet/modal.scss';
 
 const BookView = ({ book, handleViewClose }) => {
-  const { id, title, author, duration, releaseDate } = book;
+  const { id, title, author, duration, publishedDate } = book;
 
   return (
     <section className="modal">
@@ -26,7 +26,7 @@ const BookView = ({ book, handleViewClose }) => {
         <dd>{duration}</dd>
 
         <dt>Release&nbsp;Date: </dt>
-        <dd>{releaseDate}</dd>
+        <dd>{publishedDate}</dd>
       </dl>
     </section>
   );

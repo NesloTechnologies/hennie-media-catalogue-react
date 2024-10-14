@@ -12,7 +12,7 @@ import { ReactComponent as ViewIcon } from '../../asset/icon/view.svg';
 import BookView from '../view/BookView';
 
 const BookRow = ({ book, handleDeleteClick, handleViewClick }) => {
-  const { id, title, author, duration, releaseDate } = book;
+  const { id, title, author, duration, publishedDate } = book;
 
   return (
     <tr>
@@ -20,7 +20,7 @@ const BookRow = ({ book, handleDeleteClick, handleViewClick }) => {
       <td>{title}</td>
       <td>{author}</td>
       <td>{duration}</td>
-      <td>{formatDate(releaseDate, 'fr-CA')}</td>
+      <td>{formatDate(publishedDate, 'fr-CA')}</td>
       <td>
         <ViewIcon className="icon view-icon" onClick={handleViewClick} />
         <Link to={`/book/edit/${id}`}>
@@ -35,11 +35,11 @@ const BookRow = ({ book, handleDeleteClick, handleViewClick }) => {
   );
 };
 
-const BookDelete = ({ book, handleDeleteClose, removeBook }) => {
+const BookDelete = ({ book, handleDeleteClose, deleteBook }) => {
   const { id, title, author, duration, releaseDate } = book;
 
   const handleConfirmClick = () => {
-    removeBook(id);
+    deleteBook(id);
     handleDeleteClose();
   };
 
@@ -75,7 +75,7 @@ const BookDelete = ({ book, handleDeleteClose, removeBook }) => {
   );
 };
 
-const BookTable = ({ books, removeBook }) => {
+const BookTable = ({ books, deleteBook }) => {
   const [bookToView, setBookToView] = useState(undefined);
   const [bookToDelete, setBookToDelete] = useState(undefined);
 
@@ -147,7 +147,7 @@ const BookTable = ({ books, removeBook }) => {
           <BookDelete
             book={bookToDelete}
             handleDeleteClose={handleDeleteClose}
-            removeBook={removeBook}
+            deleteBook={deleteBook}
           />
         )}
         {bookToView && <BookView book={bookToView} handleViewClose={handleViewClose} />}

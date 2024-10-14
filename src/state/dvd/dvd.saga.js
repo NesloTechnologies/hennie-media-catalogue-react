@@ -9,7 +9,7 @@ import HEADERS from '../headers';
 
 const API_HOME = 'http://localhost:8080/api/dvds';
 
-function* setDVDsStateSaga() {
+function* loadDVDsSaga() {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.GET, HEADERS);
 
@@ -21,7 +21,7 @@ function* setDVDsStateSaga() {
 }
 
 function* watchForLoadDVDs() {
-  yield takeLatest(loadDVDs.type, setDVDsStateSaga);
+  yield takeLatest(loadDVDs.type, loadDVDsSaga);
 }
 
 function* addDVDSaga({ payload }) {

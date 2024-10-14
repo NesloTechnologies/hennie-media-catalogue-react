@@ -15,7 +15,7 @@ const BookAdd = ({ handleBookAdd }) => {
     title: '',
     author: '',
     duration: '',
-    releaseDate: new Date()
+    publishedDate: new Date()
   });
 
   const handleAddClick = () => {
@@ -68,12 +68,12 @@ const BookAdd = ({ handleBookAdd }) => {
             />
           </fieldset>
           <fieldset>
-            <label htmlFor="releaseDate">Release&nbsp;Date</label>
+            <label htmlFor="publishedDate">Release&nbsp;Date</label>
             <input
-              name="releaseDate"
-              id="releaseDate"
+              name="publishedDate"
+              id="publishedDate"
               type="date"
-              value={formatDate(book.releaseDate, 'fr-CA')}
+              value={formatDate(book.publishedDate, 'fr-CA')}
               onChange={(event) => handleChange(event, setBook)}
             />
           </fieldset>

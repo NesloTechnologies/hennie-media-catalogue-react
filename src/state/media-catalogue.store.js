@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import { all } from 'redux-saga/effects';
 
+import bookSaga from './book/book.saga';
 import cdSaga from './cd/cd.saga';
 import dvdSaga from './dvd/dvd.saga';
 
@@ -21,7 +22,7 @@ const store = configureStore({
 });
 
 function* rootSaga() {
-  yield all([cdSaga(), dvdSaga()]);
+  yield all([cdSaga(), dvdSaga(), bookSaga()]);
 }
 
 sagaMiddleware.run(rootSaga);

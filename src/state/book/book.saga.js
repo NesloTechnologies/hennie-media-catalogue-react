@@ -56,27 +56,26 @@ function* editBookSaga({ payload }) {
 }
 
 function* watchForEditBook() {
-  yield takeLatest(editBook.type, editBookSaga)
+  yield takeLatest(editBook.type, editBookSaga);
 }
 
-function* removeBookSaga({payload}) {
+function* removeBookSaga({ payload }) {
   try {
-    const {endpoint, axiosOptions} = new ApiRequest(
+    const { endpoint, axiosOptions } = new ApiRequest(
       `${API_HOME}/${payload}`,
       HttpVerb.DELETE,
       HEADERS
-    )
+    );
     yield call(axios, endpoint, axiosOptions);
-    yield put(loadBooks())
+    yield put(loadBooks());
   } catch (error) {
-    console.warn(error)
+    console.warn(error);
   }
 }
 
 function* watchForRemoveBook() {
-  yield takeLatest(removeBook.type, removeBookSaga)
+  yield takeLatest(removeBook.type, removeBookSaga);
 }
-
 
 function* bookSaga() {
   yield all([watchForLoadBooks(), watchForAddBook(), watchForEditBook(), watchForRemoveBook()]);

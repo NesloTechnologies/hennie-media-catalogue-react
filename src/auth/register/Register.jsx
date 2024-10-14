@@ -1,17 +1,28 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import handleChange from '../../util/handle-change';
 
-import '../../stylesheet/auth.scss';
+import '../../stylesheet/form.scss';
 
-const Register = () => {
-  const [user, setUser] = useState({
+const Register = ({ registerNewUser }) => {
+  const navigate = useNavigate();
+  const [newUser, setNewUser] = useState({
     username: '',
     password: '',
     confirmPassword: ''
   });
 
+  const isMatchingPasswords = newUser.password === newUser.confirmPassword;
+
+  const handleRegisterClick = () => {
+    if (!isMatchingPasswords) {
+      return;
+    }
+
+    registerNewUser({ username: newUser.username, password: newUser.password });
+    navigate('/');
+  };
   return (
     <section className="form auth">
       <header>
@@ -26,8 +37,8 @@ const Register = () => {
               name="username"
               id="username"
               type="text"
-              value={user.username}
-              onChange={(event) => handleChange(event, setUser)}
+              value={newUser.username}
+              onChange={(event) => handleChange(event, setNewUser)}
             />
           </fieldset>
           <fieldset>
@@ -36,8 +47,8 @@ const Register = () => {
               name="password"
               id="password"
               type="password"
-              value={user.password}
-              onChange={(event) => handleChange(event, setUser)}
+              value={newUser.password}
+              onChange={(event) => handleChange(event, setNewUser)}
             />
           </fieldset>
           <fieldset>
@@ -46,14 +57,14 @@ const Register = () => {
               name="confirmPassword"
               id="confirmPassword"
               type="confirmPassword"
-              value={user.confirmPassword}
-              onChange={(event) => handleChange(event, setUser)}
+              value={newUser.confirmPassword}
+              onChange={(event) => handleChange(event, setNewUser)}
             />
           </fieldset>
         </fieldset>
-
+        {!isMatchingPasswords && <p>Passwords do not match.</p>}
         <fieldset>
-          <button>Register</button>
+          <button onClick={handleRegisterClick}>Register</button>
 
           <Link to="/">Login</Link>
         </fieldset>

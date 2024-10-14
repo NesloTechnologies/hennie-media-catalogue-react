@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import store from './state/media-catalogue.store';
 
+import RegisterContainer from './auth/container/Register.container';
 import BookAddContainer from './book/container/BookAdd.container';
 import BookEditContainer from './book/container/BookEdit.container';
 import BookTableContainer from './book/container/BookTable.container';
@@ -16,7 +17,6 @@ import DVDEditContainer from './dvd/container/DVDEdit.container';
 import DVDTableContainer from './dvd/container/DVDTable.container';
 
 import Login from './auth/login/Login';
-import Register from './auth/register/Register';
 import ErrorPage from './error/ErrorPage';
 
 import './stylesheet/styles.scss';
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/register',
-    element: <Register />,
+    element: <RegisterContainer />,
     errorElement: <ErrorPage />
   },
   {

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 import handleChange from '../../util/handle-change';
 
-import '../../stylesheet/auth.scss';
 import '../../stylesheet/form.scss';
+import '../../stylesheet/auth.scss';
 
 const Login = () => {
   const [user, setUser] = useState({

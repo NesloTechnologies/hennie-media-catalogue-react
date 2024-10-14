@@ -51,7 +51,7 @@ function* editDVDSaga({ payload }) {
     yield call(axios, endpoint, axiosOptions);
     yield put(loadDVDs());
   } catch (error) {
-    console.log(error);
+    console.warn(error);
   }
 }
 
@@ -69,7 +69,7 @@ function* removeDVDSaga({ payload }) {
     yield call(axios, endpoint, axiosOptions);
     yield put(loadDVDs());
   } catch (error) {
-    console.log(error);
+    console.warn(error);
   }
 }
 

@@ -3,15 +3,15 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 
+import { API_URL } from '../../util/api-url';
+
 import { addCD, editCD, loadCDs, removeCD, setCDs } from './cd.reducer';
 
 import HEADERS from '../headers';
 
-const API_HOME = 'http://localhost:8080/api/cds';
-
 function* loadCDsSaga() {
   try {
-    const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.GET, HEADERS);
+    const { endpoint, axiosOptions } = new ApiRequest(`${API_URL}/cds`, HttpVerb.GET, HEADERS);
 
     const response = yield call(axios, endpoint, axiosOptions);
     yield put(setCDs(response.data));
@@ -26,7 +26,12 @@ function* watchForLoadCDs() {
 
 function* addCDSaga({ payload }) {
   try {
-    const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.POST, HEADERS, payload);
+    const { endpoint, axiosOptions } = new ApiRequest(
+      `${API_URL}/cds`,
+      HttpVerb.POST,
+      HEADERS,
+      payload
+    );
 
     yield call(axios, endpoint, axiosOptions);
     yield put(loadCDs());
@@ -42,7 +47,7 @@ function* watchForAddCD() {
 function* updateCDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_HOME}/${payload.id}`,
+      `${API_URL}/cds/${payload.id}`,
       HttpVerb.PUT,
       HEADERS,
       payload
@@ -62,7 +67,7 @@ function* watchForEditCD() {
 function* deleteCDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_HOME}/${payload}`,
+      `${API_URL}/cds/${payload}`,
       HttpVerb.DELETE,
       HEADERS
     );

@@ -3,15 +3,19 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 
+import { API_URL } from '../../util/api-url';
+
 import { addBook, editBook, loadBooks, removeBook, setBooks } from './book.reducer';
 
 import HEADERS from '../headers';
 
-const API_HOME = 'http://localhost:8080/api/books';
-
 function* loadBooksSaga() {
   try {
-    const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.GET, HEADERS);
+    const { endpoint, axiosOptions } = new ApiRequest(
+      `${API_URL}/books`,
+      HttpVerb.GET,
+      HEADERS
+    );
 
     const response = yield call(axios, endpoint, axiosOptions);
     yield put(setBooks(response.data));
@@ -26,7 +30,12 @@ function* watchForLoadBooks() {
 
 function* addBookSaga({ payload }) {
   try {
-    const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.POST, HEADERS, payload);
+    const { endpoint, axiosOptions } = new ApiRequest(
+      `${API_URL}/books`,
+      HttpVerb.POST,
+      HEADERS,
+      payload
+    );
 
     yield call(axios, endpoint, axiosOptions);
     yield put(loadBooks());
@@ -42,7 +51,7 @@ function* watchForAddBook() {
 function* editBookSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_HOME}/${payload.id}`,
+      `${API_URL}/books/${payload.id}`,
       HttpVerb.PUT,
       HEADERS,
       payload
@@ -62,7 +71,7 @@ function* watchForEditBook() {
 function* removeBookSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_HOME}/${payload}`,
+      `${API_URL}/books/${payload}`,
       HttpVerb.DELETE,
       HEADERS
     );

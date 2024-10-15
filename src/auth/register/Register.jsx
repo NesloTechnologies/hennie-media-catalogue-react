@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import handleChange from '../../util/handle-change';
 
 import '../../stylesheet/form.scss';
+import '../../stylesheet/auth.scss';
 
 const Register = ({ registerNewUser }) => {
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ const Register = ({ registerNewUser }) => {
             <input
               name="confirmPassword"
               id="confirmPassword"
-              type="confirmPassword"
+              type="password"
               value={newUser.confirmPassword}
               onChange={(event) => handleChange(event, setNewUser)}
             />

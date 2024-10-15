@@ -3,15 +3,15 @@ import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 
 import { ApiRequest, HttpVerb } from '@neslotech/ui-utils';
 
+import { API_URL } from '../../util/api-url';
+
 import { addDVD, editDVD, loadDVDs, removeDVD, setDVDs } from './dvd.reducer';
 
 import HEADERS from '../headers';
 
-const API_HOME = 'http://localhost:8080/api/dvds';
-
 function* loadDVDsSaga() {
   try {
-    const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.GET, HEADERS);
+    const { endpoint, axiosOptions } = new ApiRequest(`${API_URL}/api/dvds`, HttpVerb.GET, HEADERS);
 
     const response = yield call(axios, endpoint, axiosOptions);
     yield put(setDVDs(response.data));
@@ -26,7 +26,12 @@ function* watchForLoadDVDs() {
 
 function* addDVDSaga({ payload }) {
   try {
-    const { endpoint, axiosOptions } = new ApiRequest(API_HOME, HttpVerb.POST, HEADERS, payload);
+    const { endpoint, axiosOptions } = new ApiRequest(
+      `${API_URL}/api/dvds`,
+      HttpVerb.POST,
+      HEADERS,
+      payload
+    );
 
     yield call(axios, endpoint, axiosOptions);
     yield put(loadDVDs());
@@ -42,7 +47,7 @@ function* watchForAddDVD() {
 function* editDVDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_HOME}/${payload.id}`,
+      `${API_URL}/api/dvds/${payload.id}`,
       HttpVerb.PUT,
       HEADERS,
       payload
@@ -62,7 +67,7 @@ function* watchForEditDVD() {
 function* removeDVDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_HOME}/${payload}`,
+      `${API_URL}/api/dvds/${payload}`,
       HttpVerb.DELETE,
       HEADERS
     );

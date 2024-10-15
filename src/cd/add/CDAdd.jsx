@@ -28,7 +28,7 @@ const CDAdd = ({ handleCDAdd }) => {
     <section className="form">
       <header>
         <h1>Add&nbsp;CD</h1>
-        <Link to="/">
+        <Link to="/cd/table">
           <CloseIcon />
         </Link>
       </header>

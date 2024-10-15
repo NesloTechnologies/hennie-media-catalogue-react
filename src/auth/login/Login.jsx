@@ -1,16 +1,25 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import handleChange from '../../util/handle-change';
 
 import '../../stylesheet/form.scss';
 import '../../stylesheet/auth.scss';
 
-const Login = () => {
+const Login = ({ login }) => {
+  const [isValidToken, setIsValidToken] = useState(true);
+
+  const navigate = useNavigate();
+  
   const [user, setUser] = useState({
     username: '',
     password: ''
   });
+
+  const handleLoginClick = (event) => {
+    event.preventDefault();
+    login({ user, setIsValidToken, navigate });
+  };
 
   return (
     <section className="form auth">
@@ -41,9 +50,9 @@ const Login = () => {
             />
           </fieldset>
         </fieldset>
-
+        {!isValidToken && <p>Invalid Credentials</p>}
         <fieldset>
-          <button>Login</button>
+          <button onClick={handleLoginClick}>Login</button>
 
           <Link to="/register">Register</Link>
         </fieldset>

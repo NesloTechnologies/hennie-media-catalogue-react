@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import store from './state/media-catalogue.store';
 
+import LoginContainer from './auth/container/Login.container';
 import RegisterContainer from './auth/container/Register.container';
 import BookAddContainer from './book/container/BookAdd.container';
 import BookEditContainer from './book/container/BookEdit.container';
@@ -16,20 +17,16 @@ import DVDAddContainer from './dvd/container/DVDAdd.container';
 import DVDEditContainer from './dvd/container/DVDEdit.container';
 import DVDTableContainer from './dvd/container/DVDTable.container';
 
-import Login from './auth/login/Login';
 import ErrorPage from './error/ErrorPage';
 
 import './stylesheet/styles.scss';
 
 const root = createRoot(document.getElementById('root'));
 
-// TODO: implement context and store token in there
-document.cookie = `auth_token=`;
-
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Login />,
+    element: <LoginContainer />,
     errorElement: <ErrorPage />
   },
   {

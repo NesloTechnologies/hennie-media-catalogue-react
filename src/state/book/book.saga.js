@@ -11,11 +11,7 @@ import HEADERS from '../headers';
 
 function* loadBooksSaga() {
   try {
-    const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_URL}/books`,
-      HttpVerb.GET,
-      HEADERS
-    );
+    const { endpoint, axiosOptions } = new ApiRequest(`${API_URL}/books`, HttpVerb.GET, HEADERS);
 
     const response = yield call(axios, endpoint, axiosOptions);
     yield put(setBooks(response.data));

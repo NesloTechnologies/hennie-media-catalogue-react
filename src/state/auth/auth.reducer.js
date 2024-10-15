@@ -6,10 +6,11 @@ const authSlice = createSlice({
   name: 'authSlice',
   initialState,
   reducers: {
-    registerUser: () => {}
+    registerUser: () => {},
+    loginUser: () => {}
   }
 });
 
-export const { registerUser } = authSlice.actions;
+export const { registerUser, loginUser } = authSlice.actions;
 
 export default authSlice.reducer;

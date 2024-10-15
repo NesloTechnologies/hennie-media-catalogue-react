@@ -25,7 +25,7 @@ const CDRow = ({ cd, setCDView, setCDToDelete }) => {
       <td>{formatDate(releaseDate, 'fr-CA')}</td>
       <td>
         <ViewIcon className="icon view-icon" onClick={setCDView} />
-        <Link to={`cd/edit/${id}`}>
+        <Link to={`/cd/edit/${id}`}>
           <EditIcon className="icon edit-icon" />
         </Link>
         <DeleteIcon className="icon delete-icon" onClick={setCDToDelete} />

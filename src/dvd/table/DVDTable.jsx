@@ -122,7 +122,7 @@ const DVDTable = ({ dvds, deleteDVD }) => {
         <div>
           <h1>Media&nbsp;Catalogue</h1>
           <nav>
-            <Link className="link" to="/">
+            <Link className="link" to="/cd/table">
               CD
             </Link>
             <span>|</span>

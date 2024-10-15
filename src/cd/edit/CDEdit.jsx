@@ -37,7 +37,7 @@ const CDEdit = ({ id, handleCDEdit, fetchCD }) => {
     <section className="form">
       <header>
         <h1>Edit CD</h1>
-        <Link to="/">
+        <Link to="/cd/table">
           <CloseIcon />
         </Link>
       </header>

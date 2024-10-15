@@ -11,7 +11,7 @@ import HEADERS from '../headers';
 
 function* loadDVDsSaga() {
   try {
-    const { endpoint, axiosOptions } = new ApiRequest(`${API_URL}/api/dvds`, HttpVerb.GET, HEADERS);
+    const { endpoint, axiosOptions } = new ApiRequest(`${API_URL}/dvds`, HttpVerb.GET, HEADERS);
 
     const response = yield call(axios, endpoint, axiosOptions);
     yield put(setDVDs(response.data));
@@ -27,7 +27,7 @@ function* watchForLoadDVDs() {
 function* addDVDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_URL}/api/dvds`,
+      `${API_URL}/dvds`,
       HttpVerb.POST,
       HEADERS,
       payload
@@ -47,7 +47,7 @@ function* watchForAddDVD() {
 function* editDVDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_URL}/api/dvds/${payload.id}`,
+      `${API_URL}/dvds/${payload.id}`,
       HttpVerb.PUT,
       HEADERS,
       payload
@@ -67,7 +67,7 @@ function* watchForEditDVD() {
 function* removeDVDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_URL}/api/dvds/${payload}`,
+      `${API_URL}/dvds/${payload}`,
       HttpVerb.DELETE,
       HEADERS
     );

@@ -12,7 +12,7 @@ import HEADERS from '../headers';
 function* loadBooksSaga() {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_URL}/api/books`,
+      `${API_URL}/books`,
       HttpVerb.GET,
       HEADERS
     );
@@ -31,7 +31,7 @@ function* watchForLoadBooks() {
 function* addBookSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_URL}/api/books`,
+      `${API_URL}/books`,
       HttpVerb.POST,
       HEADERS,
       payload
@@ -51,7 +51,7 @@ function* watchForAddBook() {
 function* editBookSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_URL}/api/books/${payload.id}`,
+      `${API_URL}/books/${payload.id}`,
       HttpVerb.PUT,
       HEADERS,
       payload
@@ -71,7 +71,7 @@ function* watchForEditBook() {
 function* removeBookSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_URL}/api/books/${payload}`,
+      `${API_URL}/books/${payload}`,
       HttpVerb.DELETE,
       HEADERS
     );

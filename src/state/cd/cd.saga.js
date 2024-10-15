@@ -11,7 +11,7 @@ import HEADERS from '../headers';
 
 function* loadCDsSaga() {
   try {
-    const { endpoint, axiosOptions } = new ApiRequest(`${API_URL}/api/cds`, HttpVerb.GET, HEADERS);
+    const { endpoint, axiosOptions } = new ApiRequest(`${API_URL}/cds`, HttpVerb.GET, HEADERS);
 
     const response = yield call(axios, endpoint, axiosOptions);
     yield put(setCDs(response.data));
@@ -27,7 +27,7 @@ function* watchForLoadCDs() {
 function* addCDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_URL}/api/cds`,
+      `${API_URL}/cds`,
       HttpVerb.POST,
       HEADERS,
       payload
@@ -47,7 +47,7 @@ function* watchForAddCD() {
 function* updateCDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_URL}/api/cds/${payload.id}`,
+      `${API_URL}/cds/${payload.id}`,
       HttpVerb.PUT,
       HEADERS,
       payload
@@ -67,7 +67,7 @@ function* watchForEditCD() {
 function* deleteCDSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_URL}/api/cds/${payload}`,
+      `${API_URL}/cds/${payload}`,
       HttpVerb.DELETE,
       HEADERS
     );

@@ -12,7 +12,7 @@ import HEADERS from '../headers';
 function* registerUserSaga({ payload }) {
   try {
     const { endpoint, axiosOptions } = new ApiRequest(
-      `${API_URL}/api/users/register`,
+      `${API_URL}/users/register`,
       HttpVerb.POST,
       HEADERS,
       payload
